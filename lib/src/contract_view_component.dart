@@ -2,8 +2,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 @Component(
-    selector: 'contract-view',
-    templateUrl: 'contract_view_component.html')
+    selector: 'contract-view', templateUrl: 'contract_view_component.html')
 class ContractViewComponent implements OnInit {
   static const String route_name = "ContractView";
   static const String route_path = "contractView";
