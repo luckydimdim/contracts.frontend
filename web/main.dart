@@ -1,5 +1,4 @@
 import 'dart:core';
-import 'dart:html';
 
 import 'package:angular2/platform/browser.dart';
 import 'package:angular2/core.dart';
@@ -11,8 +10,7 @@ import 'package:angular2/platform/common.dart';
 import 'package:contract/contract_view_component.dart';
 
 bool get isDebug =>
-    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
-    'true';
+    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) != 'true';
 
 main() async {
   if (isDebug) {
