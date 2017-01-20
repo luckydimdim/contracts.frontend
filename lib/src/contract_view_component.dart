@@ -1,9 +1,10 @@
+import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 @Component(
     selector: 'contract-view', templateUrl: 'contract_view_component.html')
-class ContractViewComponent implements OnInit {
+class ContractViewComponent implements AfterViewInit {
   static const String route_name = "ContractView";
   static const String route_path = "contractView";
   static const Route route = const Route(
@@ -16,7 +17,15 @@ class ContractViewComponent implements OnInit {
   ContractViewComponent(this._router) {}
 
   @override
-  void ngOnInit() {}
+  void ngAfterViewInit() {
+    //_alertService.Info('ngAfterViewInit!');
+
+    var script = new ScriptElement()
+      ..async = true
+      ..type = 'text/javascript'
+      ..src = 'assets/js/app.js';
+    document.body.append(script);
+  }
 
   onSubmit() {}
 }
