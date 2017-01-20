@@ -13,6 +13,5 @@
   },
   "_source": "https://github.com/chartjs/Chart.js.git",
   "_target": "^2.4.0",
-  "_originalSource": "chart.js",
-  "_direct": true
+  "_originalSource": "chart.js"
 }
