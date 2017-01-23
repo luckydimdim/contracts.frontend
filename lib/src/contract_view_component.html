@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-  <div emailapp="" class="emailApp ng-scope">
+  <div class="emailApp">
     <nav>
       <ul class="nav">
         <li class="nav-item">
@@ -122,7 +122,7 @@
           <div class="card">
             <div class="card-header">
               Морской порт
-              <i class="fa fa-close pull-right"></i>
+              <!--<i class="fa fa-close pull-right"></i>-->
             </div>
             <div class="card-block">
               <div>Код титульного списка: 16</div>
@@ -135,7 +135,7 @@
           <div class="card">
             <div class="card-header">
               Аэродром
-              <i class="fa fa-close pull-right"></i>
+              <!--<i class="fa fa-close pull-right"></i>-->
             </div>
             <div class="card-block">
               <div>Код титульного списка: 17</div>
@@ -148,7 +148,7 @@
           <div class="card">
             <div class="card-header">
               Резервуары хранения конденсата
-              <i class="fa fa-close pull-right"></i>
+              <!--<i class="fa fa-close pull-right"></i>-->
             </div>
             <div class="card-block">
               <div>Код титульного списка: 18</div>
@@ -157,10 +157,10 @@
           </div>
         </div>
         <!--/.col-->
-        <div class="col-md-12">
+        <!--<div class="col-md-12">
           <i class="fa fa-plus-circle"></i>
           <a href="#">Добавить объект</a>
-        </div>
+        </div>-->
       </div>
       <!--/.row-->
       <h2>Порядок оплаты</h2>
@@ -199,76 +199,86 @@
           </table>
         </div>
         <!--/.col-->
-        <div class="col-md-12">
+        <!--<div class="col-md-12">
           <i class="fa fa-plus-circle"></i>
           <a href="#">Добавить аванс</a>
-        </div>
+        </div>-->
       </div>
       <!--/.row-->
       <div class="row">
-        <div class="col-md-12">
-            <label class="switch switch-default switch-primary-outline switch-sm">
-              <input type="checkbox" class="switch-input" checked="">
-              <span class="switch-label"></span>
-              <span class="switch-handle"></span>
-            </label>
-            Удерживать резерв
-            <select class="form-control">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-
-            Дата возврата резерва
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-              <input type="text" class="form-control ng-pristine ng-valid ng-valid-mask ng-empty ng-touched" ui-mask="99/99/9999" placeholder="__/__/____" style="">
+        <div class="form-group col-sm-4">
+          <label for="reserve-enabled">Удерживать резерв</label>
+          <div>
+          <label class="switch switch-default switch-primary-outline switch-sm">
+            <input id="reserve-enabled" type="checkbox" class="switch-input" checked="" />
+            <span class="switch-label"></span>
+            <span class="switch-handle"></span>
+          </label>
             </div>
+        </div>
 
-            По умолчанию включать НДС
+        <div class="form-group col-sm-4">
+          <label for="reserve-amount">Величина резерва</label>
+          <select class="form-control" id="reserve-amount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="reserve-return-date">Дата возврата резерва</label>
+          <input type="text" id="reserve-return-date" class="form-control ng-pristine ng-valid ng-valid-mask ng-empty ng-touched" ui-mask="99/99/9999" placeholder="__/__/____" style="">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="vat-enabled">По умолчанию включать НДС</label>
+          <div>
             <label class="switch switch-default switch-primary-outline switch-sm">
-              <input type="checkbox" class="switch-input" checked="">
+              <input id="vat-enabled" type="checkbox" class="switch-input" checked="" />
               <span class="switch-label"></span>
               <span class="switch-handle"></span>
             </label>
+          </div>
         </div>
-        <!--/.col-->
       </div>
-      <!--/.row-->
+
       <div class="form-group row">
-        <div class="col-sm-3">
-          Максимальный срок оплаты платежей
-        </div>
-        <div class="col-sm-1">
-          <input type="text" class="form-control" placeholder="60" />
+        <div class="form-group col-sm-4">
+          <label for="max-pay-days">Максимальный срок оплаты платежей</label>
+          <input type="text" id="max-pay-days" class="form-control" placeholder="60" />
         </div>
         <!--/.col-->
       </div>
       <!--/.row-->
       <h4>График финансирования</h4>
       <div class="row">
-        <div class="col-lg-12">
-          Период
-          <select class="form-control">
+
+        <div class="form-group col-sm-6">
+          <label for="period">Период</label>
+          <select class="form-control" id="period">
             <option value="1">По кварталам</option>
             <option value="2">По неделям</option>
             <option value="3">По дням</option>
             <option value="4">По годам</option>
           </select>
-
-          Год
-          <input type="text" class="form-control" placeholder="2017" />
         </div>
-        <!--/.col-->
+
+        <div class="form-group col-sm-6">
+          <label for="year">Год</label>
+          <input type="text" class="form-control" id="year" placeholder="2017" />
+        </div>
+
       </div>
       <!--/.row-->
     </main>
