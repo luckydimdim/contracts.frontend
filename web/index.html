@@ -248,9 +248,6 @@
                     </a>
                 </div>
             </li>
-            <!-- <li class="nav-item">
-         <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-       </li>-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
@@ -260,23 +257,19 @@
                     
                     <div class="dropdown-header text-xs-center">
                         <strong>Аккаунт</strong>
-                    </div>
+                    </div>                    
                     
-                    <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="tag tag-info">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="tag tag-success">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="tag tag-danger">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="tag tag-warning">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Сообщения<span class="tag tag-success">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Задачи<span class="tag tag-danger">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Комментарии<span class="tag tag-warning">42</span></a>
+                    <a class="dropdown-item" href="#"><i class="icon-hourglass"></i> Черновики</a>
+                    <a class="dropdown-item" href="#"><i class="icon-support"></i> Помощь</a>
                     
                     <div class="dropdown-header text-xs-center">
                         <strong>Настройки</strong>
                     </div>
                     
                     <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Профиль</a>
-                    <!--                    <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="tag tag-default">42</span></a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="tag tag-primary">42</span></a>
-                    <div class="divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>-->
                     <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Выход</a>
                 </div>
             </li>
@@ -297,10 +290,10 @@
                 <a class="nav-link" [routerLink]="['Dashboard']" ><i class="icon-home"></i> Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" [routerLink]="['ContractView']"><i class="icon-docs"></i> Договоры </a>
+                <a class="nav-link" [routerLink]="['ContractList']"><i class="icon-docs"></i> Договоры </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-note"></i> Заявки </a>
+                <a class="nav-link" [routerLink]="['RequestList']"><i class="icon-note"></i> Заявки </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-calculator"></i> Бюджеты </a>
@@ -327,27 +320,26 @@
             </li>
             <li class="nav-item px-1 hidden-cn">
                 <div class="text-uppercase mb-q">
-                    <small><b>CPU Usage</b>
-                    </small>
+                    <small><b>Исполнение договоров</b></small>
                 </div>
-                <progress class="progress progress-xs progress-info m-0" value="25" max="100">25%</progress>
-                <small class="text-muted">348 Processes. 1/4 Cores.</small>
+                <progress class="progress progress-xs progress-info m-0" value="77" max="100">77%</progress>
+                <small class="text-muted">77% (2 000 000 <i class="fa fa-rub"></i>/ 2 400 000 <i class="fa fa-rub"></i>)</small>
             </li>
             <li class="nav-item px-1 hidden-cn">
                 <div class="text-uppercase mb-q">
-                    <small><b>Memory Usage</b>
+                    <small><b>Отклонение по бюджету</b>
                     </small>
                 </div>
-                <progress class="progress progress-xs progress-warning m-0" value="70" max="100">70%</progress>
-                <small class="text-muted">11444GB/16384MB</small>
+                <progress class="progress progress-xs progress-warning m-0" value="4" max="100">4%</progress>
+                <small class="text-muted">4% (300 000 <i class="fa fa-rub"></i>)</small>
             </li>
             <li class="nav-item px-1 hidden-cn">
                 <div class="text-uppercase mb-q">
-                    <small><b>SSD 1 Usage</b>
+                    <small><b>Платежный бюджет</b>
                     </small>
                 </div>
                 <progress class="progress progress-xs progress-danger m-0" value="95" max="100">95%</progress>
-                <small class="text-muted">243GB/256GB</small>
+                <small class="text-muted">95% заявок согласовано</small>
             </li>
         
         </ul>
@@ -360,17 +352,17 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Главная</li>
-        <li class="breadcrumb-item"><a href="#">Договоры</a></li>
-        <li class="breadcrumb-item active">№ 644/15-ЯСПГ &laquo;Резервуары хранения конденсата&raquo;</li>
+        <!--        <li class="breadcrumb-item"><a href="#">Admin</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>-->
         
         <!-- Breadcrumb Menu-->
-        <!--   <li class="breadcrumb-menu">
+        <li class="breadcrumb-menu">
          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-           <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-           <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-           <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+           <a class="btn btn-secondary" href="#"><i class="icon-bubbles"></i></a>          
+           <a class="btn btn-secondary" href="#"><i class="icon-list"></i> &nbsp;История действий</a>
+           <a class="btn btn-secondary" href="#"><i class="icon-question"></i> &nbsp;</a>           
          </div>
-       </li>-->
+       </li>
     </ol>
     
     <div class="container-fluid">
@@ -396,98 +388,71 @@
     <div class="tab-content">
         <div class="tab-pane active" id="timeline" role="tabpanel">
             <div class="callout m-0 py-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>Today</b>
+                <small><b>последние события</b>
                 </small>
             </div>
             <hr class="transparent mx-1 my-0">
             <div class="callout callout-warning m-0 py-1">
-                <div class="avatar pull-xs-right">
-                    <img src="/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                <div class="pull-xs-right">
+                    <small class="text-muted mr-1"><i class="icon-clock"></i>&nbsp; 3 минуты назад</small>
                 </div>
-                <div>Meeting with
-                    <strong>Lucas</strong>
+                <div>
+                    <strong>ООО &laquo;Подрядчик А&raquo;</strong>
+                    внес исправления в заявку на проверку № 245125
                 </div>
-                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-                <!-- <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>-->
+                <small class="text-muted mr-1"><i class="icon-control-forward"></i>&nbsp; <a href="#">перейти</a></small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-phone"></i>&nbsp; 8 (245) 245-442</small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-envelope"></i>&nbsp; <a href="#">podryadchik@asdsdg.ru</a></small>
             </div>
             <hr class="mx-1 my-0">
             <div class="callout callout-info m-0 py-1">
-                <div class="avatar pull-xs-right">
-                    <img src="/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                <div class="pull-xs-right">
+                    <small class="text-muted mr-1"><i class="icon-clock"></i>&nbsp; 10 минут назад</small>
                 </div>
-                <div>Skype with
-                    <strong>Megan</strong>
+                <div>
+                    <strong>Михаил Андреев</strong>
+                    Новая версия бюджета объекта &laquo;Строительство морского порта&raquo;
+                    <span class="tag tag-success">согласована</span>
                 </div>
-                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 4 - 5pm</small>
-                <small class="text-muted"><i class="icon-social-skype"></i>&nbsp; On-line</small>
+                <small class="text-muted mr-1"><i class="icon-control-forward"></i>&nbsp; <a href="#">перейти</a></small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-phone"></i>&nbsp; 8 (245) 245-442</small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-envelope"></i>&nbsp; <a href="#">misha@asdsdg.ru</a></small>
             </div>
             <hr class="transparent mx-1 my-0">
-            <div class="callout m-0 py-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>Tomorrow</b>
-                </small>
-            </div>
-            <hr class="transparent mx-1 my-0">
-            <div class="callout callout-danger m-0 py-1">
-                <div>New UI Project -
-                    <strong>deadline</strong>
+            <div class="callout callout-warning m-0 py-1">
+                <div class="pull-xs-right">
+                    <small class="text-muted mr-1"><i class="icon-clock"></i>&nbsp; 15 минут назад</small>
                 </div>
-                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 10 - 11pm</small>
-                <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
-                <div class="avatars-stack mt-h">
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
+                <div>
+                    <strong>Михаил Андреев</strong>
+                    Новая версия бюджета объекта &laquo;Строительство морского порта&raquo;
+                    <span class="tag tag-warning">ожидание</span>
                 </div>
+                <small class="text-muted mr-1"><i class="icon-control-forward"></i>&nbsp; <a href="#">перейти</a></small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-phone"></i>&nbsp; 8 (245) 245-442</small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-envelope"></i>&nbsp; <a href="#">misha@asdsdg.ru</a></small>
             </div>
             <hr class="mx-1 my-0">
-            <div class="callout callout-success m-0 py-1">
-                <div>
-                    <strong>#10 Startups.Garden</strong>Meetup</div>
-                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-                <!--<small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA</small>-->
-            </div>
-            <hr class="mx-1 my-0">
-            <div class="callout callout-primary m-0 py-1">
-                <div>
-                    <strong>Team meeting</strong>
+            <div class="callout callout-info m-0 py-1">
+                <div class="pull-xs-right">
+                    <small class="text-muted mr-1"><i class="icon-clock"></i>&nbsp; 25 минут назад</small>
                 </div>
-                <small class="text-muted mr-1"><i class="icon-calendar"></i>&nbsp; 4 - 6pm</small>
-                <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ</small>
-                <div class="avatars-stack mt-h">
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
-                    <div class="avatar avatar-xs">
-                        <img src="/img/avatars/8.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    </div>
+                <div>
+                    <strong>Михаил Андреев</strong>
+                    Новая версия бюджета объекта &laquo;Строительство морского порта&raquo;
+                    <span class="tag tag-warning">отказ</span>
                 </div>
+                <small class="text-muted mr-1"><i class="icon-control-forward"></i>&nbsp; <a href="#">перейти</a></small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-phone"></i>&nbsp; 8 (245) 245-442</small>
+                <br />
+                <small class="text-muted mr-1"><i class="icon-envelope"></i>&nbsp; <a href="#">misha@asdsdg.ru</a></small>
             </div>
             <hr class="mx-1 my-0">
         </div>
@@ -500,11 +465,11 @@
                     </div>
                 </div>
                 <div>
-                    <small class="text-muted">Lukasz Holeczek</small>
+                    <small class="text-muted">Иван Петров</small>
                     <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                 </div>
-                <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                <div class="text-truncate font-weight-bold">Модальный динамический эллипсис</div>
+                <small class="text-muted">Как было показано выше, ревер mezzo forte варьирует громкостнoй...</small>
             </div>
             <hr>
             <div class="message">
@@ -515,11 +480,11 @@
                     </div>
                 </div>
                 <div>
-                    <small class="text-muted">Lukasz Holeczek</small>
+                    <small class="text-muted">Василий Иванов</small>
                     <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                 </div>
-                <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                <div class="text-truncate font-weight-bold">Звукорядный рифф</div>
+                <small class="text-muted">Крещендирующее хождение, на первый взгляд, продолжает ритмоформульный шоу-бизнес....</small>
             </div>
             <hr>
             <div class="message">
@@ -530,11 +495,11 @@
                     </div>
                 </div>
                 <div>
-                    <small class="text-muted">Lukasz Holeczek</small>
+                    <small class="text-muted">Мария Кузнецова</small>
                     <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                 </div>
-                <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                <div class="text-truncate font-weight-bold">Музыкальный midi-контроллер</div>
+                <small class="text-muted">Контрапункт контрастных фактур многопланово выстраивает ритмоформульный форшлаг...</small>
             </div>
             <hr>
             <div class="message">
@@ -545,11 +510,11 @@
                     </div>
                 </div>
                 <div>
-                    <small class="text-muted">Lukasz Holeczek</small>
+                    <small class="text-muted">Дарт Вейдер</small>
                     <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                 </div>
-                <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                <div class="text-truncate font-weight-bold">Твердый центр подвеса</div>
+                <small class="text-muted">Отсутствие трения, как следует из системы уравнений, требует перейти к поступательно перемещающейся системе координат...</small>
             </div>
             <hr>
             <div class="message">
@@ -560,49 +525,32 @@
                     </div>
                 </div>
                 <div>
-                    <small class="text-muted">Lukasz Holeczek</small>
+                    <small class="text-muted">Магистр Йода</small>
                     <small class="text-muted float-xs-right mt-q">1:52 PM</small>
                 </div>
-                <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-                <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...</small>
+                <div class="text-truncate font-weight-bold">Почему зависима электромеханическая система?</div>
+                <small class="text-muted">В силу принципа виртуальных скоростей, гирокомпас мал. Гирогоризонт, согласно третьему закону Ньютона, нелинеен...</small>
             </div>
         </div>
         <div class="tab-pane p-1" id="settings" role="tabpanel">
-            <h6>Settings</h6>
-            
+            <h6>Настройка виджетов</h6>
+            <div>
+                <small class="text-muted">Укажите какие разделы вы хотите видеть на главной странице в качестве виджетов.</small>
+            </div>            
             <div class="aside-options">
                 <div class="clearfix mt-2">
-                    <small><b>Option 1</b>
-                    </small>
+                    <small><b>Договоры</b></small>
                     <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
                         <input type="checkbox" class="switch-input" checked="">
                         <span class="switch-label" data-on="On" data-off="Off"></span>
                         <span class="switch-handle"></span>
                     </label>
                 </div>
-                <div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
-                </div>
             </div>
             
             <div class="aside-options">
                 <div class="clearfix mt-1">
-                    <small><b>Option 2</b>
-                    </small>
-                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
-                        <input type="checkbox" class="switch-input">
-                        <span class="switch-label" data-on="On" data-off="Off"></span>
-                        <span class="switch-handle"></span>
-                    </label>
-                </div>
-                <div>
-                    <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
-                </div>
-            </div>
-            
-            <div class="aside-options">
-                <div class="clearfix mt-1">
-                    <small><b>Option 3</b>
+                    <small><b>Заявки на проверку</b>
                     </small>
                     <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
                         <input type="checkbox" class="switch-input">
@@ -614,7 +562,67 @@
             
             <div class="aside-options">
                 <div class="clearfix mt-1">
-                    <small><b>Option 4</b>
+                    <small><b>Бюджеты</b>
+                    </small>
+                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                        <input type="checkbox" class="switch-input">
+                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="aside-options">
+                <div class="clearfix mt-1">
+                    <small><b>Подрядчики</b>
+                    </small>
+                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                        <input type="checkbox" class="switch-input" checked="">
+                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="aside-options">
+                <div class="clearfix mt-1">
+                    <small><b>Объекты строительства</b>
+                    </small>
+                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                        <input type="checkbox" class="switch-input" checked="">
+                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </div>
+            </div>
+
+                                    <div class="aside-options">
+                <div class="clearfix mt-1">
+                    <small><b>Аналитика</b>
+                    </small>
+                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                        <input type="checkbox" class="switch-input" checked="">
+                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="aside-options">
+                <div class="clearfix mt-1">
+                    <small><b>Курсы валют</b>
+                    </small>
+                    <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
+                        <input type="checkbox" class="switch-input" checked="">
+                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                </div>
+            </div>
+
+              <div class="aside-options">
+                <div class="clearfix mt-1">
+                    <small><b>Заявки на оплату</b>
                     </small>
                     <label class="switch switch-text switch-pill switch-success switch-sm float-xs-right">
                         <input type="checkbox" class="switch-input" checked="">
@@ -624,36 +632,8 @@
                 </div>
             </div>
             
-            <hr>
-            <h6>Статистика</h6>
-            
-            <div class="text-uppercase mb-q mt-2">
-                <small><b>CPU Usage</b>
-                </small>
-            </div>
-            <progress class="progress progress-xs progress-info m-0" value="25" max="100">25%</progress>
-            <small class="text-muted">348 Processes. 1/4 Cores.</small>
-            
-            <div class="text-uppercase mb-q mt-h">
-                <small><b>Memory Usage</b>
-                </small>
-            </div>
-            <progress class="progress progress-xs progress-warning m-0" value="70" max="100">70%</progress>
-            <small class="text-muted">11444GB/16384MB</small>
-            
-            <div class="text-uppercase mb-q mt-h">
-                <small><b>SSD 1 Usage</b>
-                </small>
-            </div>
-            <progress class="progress progress-xs progress-danger m-0" value="95" max="100">95%</progress>
-            <small class="text-muted">243GB/256GB</small>
-            
-            <div class="text-uppercase mb-q mt-h">
-                <small><b>SSD 2 Usage</b>
-                </small>
-            </div>
-            <progress class="progress progress-xs progress-success m-0" value="10" max="100">10%</progress>
-            <small class="text-muted">25GB/256GB</small>
+            <hr />
+
         </div>
     </div>
 </aside>
@@ -664,8 +644,6 @@
         </span>
 
 </footer>
-
-  <!-- Bootstrap and necessary plugins -->
   <script src="/vendor/jquery/dist/jquery.min.js"></script>
   <script src="/vendor/tether/dist/js/tether.min.js"></script>
   <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
