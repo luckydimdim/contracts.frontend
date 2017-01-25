@@ -59,7 +59,7 @@ class ContractViewComponent implements OnInit, OnDestroy {
     var options = new GridOptions()
       ..name = 'worksGrid'
       ..columns = columns
-      ..url='http://localhost:5000/api/contract/1/works'
+      ..url=' //cm-ylng-msk-01/cmas-backend/api/contract/1/works'
       ..method='GET';
 
     _worksGrid = new Grid(this._resourcesLoaderService, "#worksGrid", options);
@@ -82,7 +82,7 @@ class ContractViewComponent implements OnInit, OnDestroy {
     var options = new GridOptions()
       ..name = 'materialsGrid'
       ..columns = columns
-      ..url='http://localhost:5000/api/contract/1/materials'
+      ..url=' //cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
       ..method='GET';
 
     _materialsGrid = new Grid(this._resourcesLoaderService, "#materialsGrid", options);
