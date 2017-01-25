@@ -33,7 +33,7 @@
     5. 'footer-fixed'     - Fixed navbar
   -->
 
-<body class="navbar-fixed sidebar-nav">
+<body class="navbar-fixed fixed-nav sidebar-nav">
 <header class="navbar">
     <div class="container-fluid">
         <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
@@ -42,12 +42,13 @@
             <li class="nav-item">
                 <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
             </li>
-            
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Главная</a>
+    
+            <li class="breadcrumb-item">
+                <a  href="#">Главная</a>
             </li>
-            <li class="nav-item px-1">
-                <a class="nav-link" href="#">Отчеты</a>
+    
+            <li class="breadcrumb-item active">
+                Договор
             </li>
         </ul>
         <ul class="nav navbar-nav float-xs-right hidden-md-down">
@@ -348,23 +349,6 @@
 
 <!-- Main content -->
 <main class="main">
-    
-    <!-- Breadcrumb -->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">Главная</li>
-        <!--        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>-->
-        
-        <!-- Breadcrumb Menu-->
-        <li class="breadcrumb-menu">
-         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-           <a class="btn btn-secondary" href="#"><i class="icon-bubbles"></i></a>          
-           <a class="btn btn-secondary" href="#"><i class="icon-list"></i> &nbsp;История действий</a>
-           <a class="btn btn-secondary" href="#"><i class="icon-question"></i> &nbsp;</a>           
-         </div>
-       </li>
-    </ol>
-    
     <div class="container-fluid">
         <contract-view></contract-view>
     </div>

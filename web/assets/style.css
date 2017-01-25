@@ -5521,7 +5521,7 @@ html.sidebar-opened {
 body {
   position: relative;
   min-height: 100vh;
-  padding: 0;
+  padding: 1.5rem 0 0 0;
   margin: 0; }
   body .bd-title.main {
     padding: 0 !important; }
@@ -8353,12 +8353,14 @@ base-chart.chart {
   position: relative;
   background: #fff;
   border: 1px solid #d1d4d7; }
+  .emailApp .nav-wrapper {
+    position: fixed; }
   .emailApp nav {
     position: absolute !important;
     top: 0;
     left: 0;
     width: 240px;
-    height: 100%;
+    height: 100vh;
     border-right: 1px solid #d1d4d7;
     padding: 15px; }
     .emailApp nav .btn-block {

@@ -22,6 +22,18 @@
 
 'use strict';
 
+  function resizeBroadcast() {
+
+    var timesRun = 0;
+    var interval = setInterval(function(){
+      timesRun += 1;
+      if(timesRun === 5){
+        clearInterval(interval);
+      }
+      window.dispatchEvent(new Event('resize'));
+    }, 62.5);
+  }
+
 /****
 * MAIN NAVIGATION
 */
@@ -62,18 +74,6 @@ $(document).ready(function($){
 
 	});
 
-	function resizeBroadcast() {
-
-		var timesRun = 0;
-		var interval = setInterval(function(){
-			timesRun += 1;
-			if(timesRun === 5){
-				clearInterval(interval);
-			}
-			window.dispatchEvent(new Event('resize'));
-		}, 62.5);
-	}
-
 	/* ---------- Main Menu Open/Close, Min/Full ---------- */
 	$('.navbar-toggler').click(function(){
 
@@ -85,9 +85,9 @@ $(document).ready(function($){
 			resizeBroadcast();
 
 		} else if ($(this).hasClass('layout-toggler') && ($('body').hasClass('sidebar-nav') || bodyClass == 'sidebar-nav')) {
-			$('body').toggleClass('sidebar-nav');
-			localStorage.setItem('body-class', 'sidebar-nav');
-			if (bodyClass == 'sidebar-nav') {
+			$('body').toggleClass('compact-nav');
+			localStorage.setItem('body-class', 'compact-nav');
+			if (bodyClass == 'compact-nav') {
 				localStorage.clear();
 			}
 			//resize charts
@@ -113,7 +113,41 @@ $(document).ready(function($){
 		e.preventDefault();
 	});
 
+  init();
+
+    /*var demo = new StickyElement($('#sticky'));*/
 });
+
+/*var StickyElement = function(node){
+    var doc = $(document),
+        fixed = false,
+        anchor = node.find('.sticky-anchor'),
+        content = node.find('.sticky-content');
+
+    var onScroll = function(e){
+        var docTop = doc.scrollTop(),
+            anchorTop = anchor.offset().top;
+
+        console.log('scroll', docTop, anchorTop);
+        if(docTop > anchorTop){
+            if(!fixed){
+                anchor.height(content.outerHeight());
+                content.addClass('fixed');
+                fixed = true;
+            }
+        }  else   {
+            if(fixed){
+                anchor.height(0);
+                content.removeClass('fixed');
+                fixed = false;
+            }
+        }
+    };
+
+    $(window).on('scroll', onScroll);
+};*/
+
+
 
 /****
 * CARDS ACTIONS
@@ -142,7 +176,13 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function init(url) {
+function init() {
+  var bodyClass = localStorage.getItem('body-class');    
+  if ($('body').hasClass('compact-nav') || bodyClass == 'compact-nav') {      
+      $('body').addClass('compact-nav');
+
+      resizeBroadcast();
+  }
 
 	/* ---------- Tooltip ---------- */
 	$('[rel="tooltip"],[data-rel="tooltip"]').tooltip({"placement":"bottom",delay: { show: 400, hide: 200 }});
@@ -155,8 +195,6 @@ function init(url) {
 $(window).bind('resize', smartResize);
 
 function smartResize(e) {
-	// console.log("smartResize");
-
 	var documentHeight = $(document).height()
 	var bodyHeight = $('body').height();
 	var sidebarHeight = $('.sidebar').height();
