@@ -14,7 +14,9 @@ class ContractViewComponent implements AfterViewInit {
 
   final Router _router;
 
-  ContractViewComponent(this._router) {}
+  ContractViewComponent(this._router) {
+    print(this._router);
+  }
 
   @override
   void ngAfterViewInit() {
