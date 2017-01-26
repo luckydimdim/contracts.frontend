@@ -8390,7 +8390,8 @@ base-chart.chart {
         color: #2a2c36;
         border-bottom: 1px solid #d1d4d7; }
   .emailApp main {
-    padding: 15px 15px 15px 255px; }
+    padding: 15px 15px 15px 255px;
+    height: 100vh; }
     .emailApp main .toolbar {
       margin: -15px -15px 15px -15px;
       padding: 15px;
