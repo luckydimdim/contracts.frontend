@@ -1,15 +1,22 @@
-import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:resources_loader/resources_loader.dart';
-import 'package:grid/grid.dart';
+import 'general/contract_general_component.dart';
+import 'doc_settings/contract_doc_settings_component.dart';
+import 'materials/contract_materials_component.dart';
+import 'payments/contract_payments_component.dart';
+import 'works/contract_works_component.dart';
 
 @Component(
-    selector: 'contract-view', templateUrl: 'contract_view_component.html')
-class ContractViewComponent implements OnInit, OnDestroy {
+    selector: 'contract-view',
+    templateUrl: 'contract_view_component.html',
+    directives: const [RouterLink, RouterOutlet])
+@RouteConfig(const [
+  ContractDocSettingsComponent.route,ContractGeneralComponent.route, ContractMaterialsComponent.route, ContractPaymentsComponent.route, ContractWorksComponent.route])
+class ContractViewComponent implements OnInit {
   static const String route_name = "ContractView";
-  static const String route_path = "contractView";
+  static const String route_path = "contract/...";
   static const Route route = const Route(
       path: ContractViewComponent.route_path,
       component: ContractViewComponent,
@@ -18,76 +25,13 @@ class ContractViewComponent implements OnInit, OnDestroy {
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
 
-  Grid _materialsGrid;
-  Grid _worksGrid;
-
   ContractViewComponent(this._router, this._resourcesLoaderService) {
-    print(this._router);
   }
 
   @override
   void ngOnInit() {
-    this._resourcesLoaderService.loadScript('assets/','app.js', true);
-
-    materialsGridInit();
-    WorksGridInit();
+    this._resourcesLoaderService.loadScript('assets/js/','app.js', true);
   }
-
-  @override
-  void ngOnDestroy() {
-    _materialsGrid.Destroy();
-    _worksGrid.Destroy();
-  }
-
-  void WorksGridInit(){
-
-    var columns = new List<Column>();
-
-    columns.add(new Column(field: 'Code', caption: 'Код', size: '100px', frozen: true));
-    columns.add(new Column(field: 'Name', caption: 'Наименование этапа/работы', size: '300px', frozen: true));
-
-    columns.add(new Column(field: 'BeginDate', caption: 'Начало', size: '100px', render: 'date'));
-    columns.add(new Column(field: 'EndDate', caption: 'Окончание', size: '100px', render: 'date'));
-    columns.add(new Column(field: 'Unit', caption: 'Ед. изм.', size: '100px'));
-    columns.add(new Column(field: 'Amount', caption: 'Объем', size: '100px'));
-    columns.add(new Column(field: 'Cost', caption: 'Стоимость', size: '100px'));
-    columns.add(new Column(field: 'Currency', caption: 'Валюта', size: '100px'));
-    columns.add(new Column(field: 'ContractorName', caption: 'Исполнитель', size: '200px'));
-
-    //columns.add(new Column(field: 'ObjectConstruction', caption: 'Объект строительства', size: '200px'));
-
-    var options = new GridOptions()
-      ..name = 'worksGrid'
-      ..columns = columns
-      ..url=' //cm-ylng-msk-01/cmas-backend/api/contract/1/works'
-      ..method='GET';
-
-    _worksGrid = new Grid(this._resourcesLoaderService, "#worksGrid", options);
-  }
-
-  void materialsGridInit(){
-
-    var columns = new List<Column>();
-
-    columns.add(new Column(field: 'Code', caption: 'Код', size: '100px', frozen: true));
-    columns.add(new Column(field: 'Name', caption: 'Наименование материалов', size: '300px', frozen: true));
-
-    columns.add(new Column(field: 'Unit', caption: 'Ед. изм.', size: '100px'));
-    columns.add(new Column(field: 'Amount', caption: 'Количество', size: '100px'));
-    columns.add(new Column(field: 'Currency', caption: 'Валюта', size: '100px'));
-    columns.add(new Column(field: 'ObjectConstruction', caption: 'Объект строительства', size: '200px'));
-    columns.add(new Column(field: 'Cost', caption: 'Стоимость', size: '100px'));
-    columns.add(new Column(field: 'DeliveryDate', caption: 'Дата поставки', size: '150px', render: 'date'));
-
-    var options = new GridOptions()
-      ..name = 'materialsGrid'
-      ..columns = columns
-      ..url=' //cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
-      ..method='GET';
-
-    _materialsGrid = new Grid(this._resourcesLoaderService, "#materialsGrid", options);
-  }
-
 
   onSubmit() {}
 }
