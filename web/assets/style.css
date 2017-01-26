@@ -8391,7 +8391,7 @@ base-chart.chart {
         border-bottom: 1px solid #d1d4d7; }
   .emailApp main {
     padding: 15px 15px 15px 255px;
-    height: 100vh; }
+    height: 100%; }
     .emailApp main .toolbar {
       margin: -15px -15px 15px -15px;
       padding: 15px;
