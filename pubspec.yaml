@@ -24,6 +24,13 @@ dependencies:
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test
     yaml: ^2.1.12                         # A parser for YAML. https://pub.dartlang.org/packages/yaml
+dependency_overrides:
+    alert:
+      git: git@github.com:luckydimdim/alert.frontend.git
+    grid:
+      git: git@github.com:luckydimdim/grid.frontend.git      
+    resources_loader:
+      git: git@github.com:luckydimdim/resources_loader.frontend.git    
 
 # Used to configure dart2js or other transformers
 transformers:
