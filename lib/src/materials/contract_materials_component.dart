@@ -48,8 +48,9 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
     var options = new GridOptions()
       ..name = 'materialsGrid'
       ..columns = columns
-      ..url=' //cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
-      ..method='GET';
+      //..url = ' //cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
+      ..url = 'http://localhost:5000/api/contract/1/materials'      
+      ..method = 'GET';
 
     _materialsGrid = new Grid(this._resourcesLoaderService, "#materialsGrid", options);
   }
