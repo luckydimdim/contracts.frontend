@@ -1,11 +1,14 @@
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:resources_loader/resources_loader.dart';
-import 'package:grid/grid.dart';
+import 'package:grid/JsObjectConverter.dart';
+import 'package:grid/jq_grid.dart';
 
 
-@Component(selector: 'contract-works', templateUrl: 'contract_works_component.html')
+@Component(
+    selector: 'contract-works', templateUrl: 'contract_works_component.html')
 class ContractWorksComponent implements OnInit, OnDestroy {
   static const String route_name = 'ContractWorks';
   static const String route_path = 'works';
@@ -16,7 +19,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
-  Grid _worksGrid;
+  jqGrid _worksGrid;
 
   ContractWorksComponent(this._router, this._resourcesLoaderService) {}
 
@@ -27,35 +30,64 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   @override
   void ngOnDestroy() {
-    if (_worksGrid != null)
-      _worksGrid.Destroy();
+
 
   }
-  void WorksGridInit(){
 
+  Future WorksGridInit() async {
     var columns = new List<Column>();
 
-    columns.add(new Column(field: 'Code', caption: 'Код', size: '100px', frozen: true));
-    columns.add(new Column(field: 'Name', caption: 'Наименование этапа/работы', size: '300px', frozen: true));
+    columns.add(new Column()
+      ..dataField = 'Code'
+      .. text = 'Код'
+      .. width = '100px'
+      .. pinned = true);
+    columns.add(new Column()
+      ..dataField = 'Name'
+      ..text = 'Наименование этапа/работы'
+      ..pinned = true);
 
-    columns.add(new Column(field: 'BeginDate', caption: 'Начало', size: '100px', render: 'date'));
-    columns.add(new Column(field: 'EndDate', caption: 'Окончание', size: '100px', render: 'date'));
-    columns.add(new Column(field: 'Unit', caption: 'Ед. изм.', size: '100px'));
-    columns.add(new Column(field: 'Amount', caption: 'Объем', size: '100px'));
-    columns.add(new Column(field: 'Cost', caption: 'Стоимость', size: '100px'));
-    columns.add(new Column(field: 'Currency', caption: 'Валюта', size: '100px'));
-    columns.add(new Column(field: 'ContractorName', caption: 'Исполнитель', size: '200px'));
+    columns.add(new Column()
+      ..dataField = 'BeginDate'
+      ..cellsFormat = 'd'
+      .. text = 'Начало');
+    columns.add(new Column()
+      ..dataField = 'EndDate'
+      .. text = 'Окончание');
+    columns.add(new Column()
+      ..dataField = 'Unit'
+      .. text = 'Ед. изм.');
+    columns.add(new Column()
+      ..dataField = 'Amount'
+      .. text = 'Объем');
+    columns.add(new Column()
+      ..dataField = 'Cost'
+      .. text = 'Стоимость');
+    columns.add(new Column()
+      ..dataField = 'Currency'
+      .. text = 'Валюта');
+    columns.add(new Column()
+      ..dataField = 'ContractorName'
+      .. text = 'Исполнитель');
 
-    //columns.add(new Column(field: 'ObjectConstruction', caption: 'Объект строительства', size: '200px'));
+    var hierarchy = new Hierarchy()
+      ..root = 'children';
+
+    var source = new SourceOptions()
+      ..url = '//cm-ylng-msk-01/cmas-backend/api/contract/1/works'
+      ..id = 'recid'
+      ..hierarchy = hierarchy
+      ..dataType = 'json';
 
     var options = new GridOptions()
-      ..name = 'worksGrid'
-      ..columns = columns
-      //..url = ' //cm-ylng-msk-01/cmas-backend/api/contract/1/works'
-      ..url = 'http://localhost:5000/api/contract/1/works'      
-      ..method = 'GET';
+      ..checkboxes = false
+      ..source = source
+      ..columns = columns;
 
-    _worksGrid = new Grid(this._resourcesLoaderService, "#worksGrid", options);
+
+    _worksGrid = new jqGrid(this._resourcesLoaderService, "#worksGrid",
+        JsObjectConverter.convert(options));
+    await _worksGrid.Init();
   }
 
 
