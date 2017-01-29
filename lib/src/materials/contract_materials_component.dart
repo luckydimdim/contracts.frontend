@@ -6,7 +6,8 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:grid/JsObjectConverter.dart';
 import 'package:grid/jq_grid.dart';
 
-@Component(selector: 'contract-works',
+@Component(
+    selector: 'contract-works',
     templateUrl: 'contract_materials_component.html')
 class ContractMaterialsComponent implements OnInit, OnDestroy {
   static const String route_name = 'ContractMaterials';
@@ -28,18 +29,16 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
   }
 
   @override
-  void ngOnDestroy() {
-
-  }
+  void ngOnDestroy() {}
 
   Future materialsGridInit() async {
     var columns = new List<Column>();
 
     columns.add(new Column()
       ..dataField = 'Code'
-      .. text = 'Код'
-      .. width = '100px'
-      .. pinned = true);
+      ..text = 'Код'
+      ..width = '100px'
+      ..pinned = true);
     columns.add(new Column()
       ..dataField = 'Name'
       ..text = 'Наименование материалов'
@@ -47,25 +46,24 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
 
     columns.add(new Column()
       ..dataField = 'Unit'
-      .. text = 'Ед. изм.');
+      ..text = 'Ед. изм.');
     columns.add(new Column()
       ..dataField = 'Amount'
-      .. text = 'Количество');
+      ..text = 'Количество');
     columns.add(new Column()
       ..dataField = 'Currency'
-      .. text = 'Валюта');
+      ..text = 'Валюта');
     columns.add(new Column()
       ..dataField = 'ObjectConstruction'
-      .. text = 'Объект строительства');
+      ..text = 'Объект строительства');
     columns.add(new Column()
       ..dataField = 'Cost'
-      .. text = 'Стоимость');
+      ..text = 'Стоимость');
     columns.add(new Column()
       ..dataField = 'DeliveryDate'
-      .. text = 'Дата поставки');
+      ..text = 'Дата поставки');
 
-    var hierarchy = new Hierarchy()
-      ..root = 'children';
+    var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url = '//cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
@@ -78,12 +76,9 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
       ..source = source
       ..columns = columns;
 
-
     _worksGrid = new jqGrid(this._resourcesLoaderService, "#materialsGrid",
         JsObjectConverter.convert(options));
 
     await _worksGrid.Init();
   }
-
-
 }

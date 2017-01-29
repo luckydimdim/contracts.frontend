@@ -6,7 +6,6 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:grid/JsObjectConverter.dart';
 import 'package:grid/jq_grid.dart';
 
-
 @Component(
     selector: 'contract-works', templateUrl: 'contract_works_component.html')
 class ContractWorksComponent implements OnInit, OnDestroy {
@@ -29,19 +28,16 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   }
 
   @override
-  void ngOnDestroy() {
-
-
-  }
+  void ngOnDestroy() {}
 
   Future WorksGridInit() async {
     var columns = new List<Column>();
 
     columns.add(new Column()
       ..dataField = 'Code'
-      .. text = 'Код'
-      .. width = '100px'
-      .. pinned = true);
+      ..text = 'Код'
+      ..width = '100px'
+      ..pinned = true);
     columns.add(new Column()
       ..dataField = 'Name'
       ..text = 'Наименование этапа/работы'
@@ -50,28 +46,27 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     columns.add(new Column()
       ..dataField = 'BeginDate'
       ..cellsFormat = 'd'
-      .. text = 'Начало');
+      ..text = 'Начало');
     columns.add(new Column()
       ..dataField = 'EndDate'
-      .. text = 'Окончание');
+      ..text = 'Окончание');
     columns.add(new Column()
       ..dataField = 'Unit'
-      .. text = 'Ед. изм.');
+      ..text = 'Ед. изм.');
     columns.add(new Column()
       ..dataField = 'Amount'
-      .. text = 'Объем');
+      ..text = 'Объем');
     columns.add(new Column()
       ..dataField = 'Cost'
-      .. text = 'Стоимость');
+      ..text = 'Стоимость');
     columns.add(new Column()
       ..dataField = 'Currency'
-      .. text = 'Валюта');
+      ..text = 'Валюта');
     columns.add(new Column()
       ..dataField = 'ContractorName'
-      .. text = 'Исполнитель');
+      ..text = 'Исполнитель');
 
-    var hierarchy = new Hierarchy()
-      ..root = 'children';
+    var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url = '//cm-ylng-msk-01/cmas-backend/api/contract/1/works'
@@ -84,11 +79,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       ..source = source
       ..columns = columns;
 
-
     _worksGrid = new jqGrid(this._resourcesLoaderService, "#worksGrid",
         JsObjectConverter.convert(options));
     await _worksGrid.Init();
   }
-
-
 }

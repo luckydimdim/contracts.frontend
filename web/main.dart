@@ -11,7 +11,8 @@ import 'package:contract/contract_view_component.dart';
 import 'package:resources_loader/resources_loader.dart';
 
 bool get isDebug =>
-    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) != 'true';
+    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
+    'true';
 
 main() async {
   if (isDebug) {

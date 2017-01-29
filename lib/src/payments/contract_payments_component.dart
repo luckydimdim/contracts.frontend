@@ -1,11 +1,10 @@
-import 'dart:html';
-
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-
-@Component(selector: 'contract-payments', templateUrl: 'contract_payments_component.html')
-class ContractPaymentsComponent  {
+@Component(
+    selector: 'contract-payments',
+    templateUrl: 'contract_payments_component.html')
+class ContractPaymentsComponent implements OnInit {
   static const String route_name = 'ContractPayments';
   static const String route_path = 'payments';
   static const Route route = const Route(
@@ -15,9 +14,8 @@ class ContractPaymentsComponent  {
 
   final Router _router;
 
-
   ContractPaymentsComponent(this._router) {}
 
-
-
+  @override
+  void ngOnInit() {}
 }

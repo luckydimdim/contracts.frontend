@@ -13,7 +13,12 @@ import 'works/contract_works_component.dart';
     templateUrl: 'contract_view_component.html',
     directives: const [RouterLink, RouterOutlet])
 @RouteConfig(const [
-  ContractDocSettingsComponent.route,ContractGeneralComponent.route, ContractMaterialsComponent.route, ContractPaymentsComponent.route, ContractWorksComponent.route])
+  ContractDocSettingsComponent.route,
+  ContractGeneralComponent.route,
+  ContractMaterialsComponent.route,
+  ContractPaymentsComponent.route,
+  ContractWorksComponent.route
+])
 class ContractViewComponent implements OnInit {
   static const String route_name = "ContractView";
   static const String route_path = "contract/...";
@@ -25,12 +30,11 @@ class ContractViewComponent implements OnInit {
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
 
-  ContractViewComponent(this._router, this._resourcesLoaderService) {
-  }
+  ContractViewComponent(this._router, this._resourcesLoaderService) {}
 
   @override
   void ngOnInit() {
-    this._resourcesLoaderService.loadScript('assets/js/','app.js', true);
+    this._resourcesLoaderService.loadScript('assets/js/', 'app.js', true);
   }
 
   onSubmit() {}
