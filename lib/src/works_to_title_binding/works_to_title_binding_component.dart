@@ -11,7 +11,7 @@ import 'package:grid/jq_grid.dart';
     templateUrl: 'works_to_title_binding_component.html')
 class WorksToTitleBindingComponent implements OnInit, OnDestroy {
   static const String route_name = 'WorksToTitleBinding';
-  static const String route_path = 'works/titleBinding';
+  static const String route_path = 'works/title-binding';
   static const Route route = const Route(
       path: WorksToTitleBindingComponent.route_path,
       component: WorksToTitleBindingComponent,

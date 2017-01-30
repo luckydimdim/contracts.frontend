@@ -7,7 +7,7 @@ import 'package:angular2/router.dart';
 import 'package:angular2/src/platform/browser/location/hash_location_strategy.dart';
 import 'package:angular2/platform/common.dart';
 
-import 'package:contract/contract_view_component.dart';
+import 'package:contract/contract_component.dart';
 import 'package:resources_loader/resources_loader.dart';
 
 bool get isDebug =>
@@ -19,7 +19,7 @@ main() async {
     reflector.trackUsage();
   }
 
-  ComponentRef ref = await bootstrap(ContractViewComponent, [
+  ComponentRef ref = await bootstrap(ContractComponent, [
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),

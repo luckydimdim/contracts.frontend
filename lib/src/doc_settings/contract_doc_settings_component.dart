@@ -8,7 +8,7 @@ import 'package:angular2/router.dart';
     templateUrl: 'contract_doc_settings_component.html')
 class ContractDocSettingsComponent {
   static const String route_name = 'ContractDocSettings';
-  static const String route_path = 'docsettings';
+  static const String route_path = 'documents-settings';
   static const Route route = const Route(
       path: ContractDocSettingsComponent.route_path,
       component: ContractDocSettingsComponent,
