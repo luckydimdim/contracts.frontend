@@ -6,6 +6,7 @@ import 'general/contract_general_component.dart';
 import 'doc_settings/contract_doc_settings_component.dart';
 import 'materials/contract_materials_component.dart';
 import 'payments/contract_payments_component.dart';
+import 'payments_schedule/contract_payments_schedule_component.dart';
 import 'works/contract_works_component.dart';
 
 import 'works_to_budget_binding/works_to_budget_binding_component.dart';
@@ -24,6 +25,7 @@ import 'materials_to_title_binding/materials_to_title_binding_component.dart';
   ContractMaterialsComponent.route,
   ContractPaymentsComponent.route,
   WorksToBudgetBindingComponent.route,
+  ContractPaymentsScheduleComponent.route,
   WorksToTitleBindingComponent.route,
   MaterialsToBudgetBindingComponent.route,
   MaterialsToTitleBindingComponent.route,
