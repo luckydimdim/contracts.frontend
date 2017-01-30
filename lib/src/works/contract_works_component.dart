@@ -33,11 +33,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   Future WorksGridInit() async {
     var columns = new List<Column>();
 
-    /*columns.add(new Column()
-      ..dataField = 'Code'
-      ..text = 'Код'
-      ..width = '100px'
-      ..pinned = true);*/
+
     columns.add(new Column()
       ..dataField = 'Name'
       ..text = 'Наименование этапа/работы'
@@ -77,6 +73,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     var options = new GridOptions()
       ..checkboxes = false
       ..source = source
+      ..height = null
       ..columns = columns;
 
     _worksGrid = new jqGrid(this._resourcesLoaderService, "#worksGrid",

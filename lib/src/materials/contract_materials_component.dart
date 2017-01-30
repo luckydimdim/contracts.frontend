@@ -74,6 +74,7 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
     var options = new GridOptions()
       ..checkboxes = false
       ..source = source
+      ..height = null
       ..columns = columns;
 
     _worksGrid = new jqGrid(this._resourcesLoaderService, "#materialsGrid",
