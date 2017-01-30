@@ -7,8 +7,12 @@ import 'doc_settings/contract_doc_settings_component.dart';
 import 'materials/contract_materials_component.dart';
 import 'payments/contract_payments_component.dart';
 import 'works/contract_works_component.dart';
+
 import 'works_to_budget_binding/works_to_budget_binding_component.dart';
 import 'works_to_title_binding/works_to_title_binding_component.dart';
+
+import 'materials_to_budget_binding/materials_to_budget_binding_component.dart';
+import 'materials_to_title_binding/materials_to_title_binding_component.dart';
 
 @Component(
     selector: 'contract-view',
@@ -21,6 +25,8 @@ import 'works_to_title_binding/works_to_title_binding_component.dart';
   ContractPaymentsComponent.route,
   WorksToBudgetBindingComponent.route,
   WorksToTitleBindingComponent.route,
+  MaterialsToBudgetBindingComponent.route,
+  MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route
 ])
 class ContractViewComponent implements OnInit {
