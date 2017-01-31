@@ -49,6 +49,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       ..dataField = 'Unit'
       ..text = 'Ед. изм.');
     columns.add(new Column()
+      ..dataField = 'UnitCost'
+      ..text = 'Cтоимость ед измерения');
+    columns.add(new Column()
       ..dataField = 'Amount'
       ..text = 'Объем');
     columns.add(new Column()
