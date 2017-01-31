@@ -55,7 +55,8 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
     var _class = '';
     var percent = '';
 
-    if (hasProperty(rowData, 'Binded') == true && getProperty(rowData, 'Binded') == 'true') {
+    if (hasProperty(rowData, 'Binded') == true &&
+        getProperty(rowData, 'Binded') == 'true') {
       _class = 'is-hidden';
     }
 
@@ -75,8 +76,7 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
       ..text = 'Наименование этапа/работы'
       ..cellsRenderer = allowInterop(worksRender));
 
-    var hierarchy = new Hierarchy()
-      ..root = 'children';
+    var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url =
@@ -105,8 +105,7 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
       ..cellsRenderer = allowInterop(budgetRender)
       ..text = 'Наименование статьи/подстатьи бюджета');
 
-    var hierarchy = new Hierarchy()
-      ..root = 'children';
+    var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url =

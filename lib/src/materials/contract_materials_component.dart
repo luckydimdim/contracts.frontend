@@ -34,11 +34,6 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
   Future materialsGridInit() async {
     var columns = new List<Column>();
 
-    /*columns.add(new Column()
-      ..dataField = 'Code'
-      ..text = 'Код'
-      ..width = '100px'
-      ..pinned = true);*/
     columns.add(new Column()
       ..dataField = 'Name'
       ..text = 'Наименование материалов'

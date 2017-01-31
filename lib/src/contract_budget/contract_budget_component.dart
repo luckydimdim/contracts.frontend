@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -5,7 +6,8 @@ import 'dart:html';
 
 import 'package:resources_loader/resources_loader.dart';
 
-import 'package:grid/grid.dart';
+import 'package:grid/JsObjectConverter.dart';
+import 'package:grid/jq_grid.dart';
 
 @Component(selector: 'contract-budget')
 @View(
@@ -29,132 +31,136 @@ class ContractBudgetComponent implements OnInit, OnDestroy {
   static const String _domain = "//cm-ylng-msk-01/cmas-backend";
   //static const String _domain = "http://localhost:5000";
 
-  Grid _grid;
   bool budgetExist = true;
 
   ContractBudgetComponent(this._router, this._resourcesLoaderService) {}
 
   @override
   void ngOnInit() {
-    //checkBudgetExisting();
-    showGrid();
+    showGrid(
+        "#grid1", 'packages/contract/src/contract_budget/months_budget1.json');
+    showGrid(
+        "#grid2", 'packages/contract/src/contract_budget/months_budget2.json');
+    showGrid(
+        "#grid3", 'packages/contract/src/contract_budget/months_budget3.json');
   }
 
-  void checkBudgetExisting() {
-    var url = _domain + "/api/contractBudget/1";
-
-    var request = HttpRequest.getString(url).then((_) {
-      budgetExist = true;
-      showGrid();
-    }).catchError((Error error) {
-      budgetExist = false;
-    });
-  }
-
-  void createBudget() {
-    HttpRequest request = new HttpRequest();
-
-    request.onReadyStateChange.listen((_) {
-      if (request.readyState == HttpRequest.DONE &&
-          (request.status == 200 || request.status == 0)) {
-        checkBudgetExisting();
-      }
-    });
-
-    var url = _domain + "/api/contractBudget/1/create";
-    request.open("POST", url, async: false);
-
-    request.send(); // perform the async POST
-  }
-
-  void showGrid() {
+  Future showGrid(String selector, url) async {
     var columns = new List<Column>();
-    columns.add(new Column(
-        field: 'Code', caption: 'Код этапа', size: '100px', frozen: true));
-    columns.add(new Column(
-        field: 'Name',
-        caption: 'Наименование этапа/работы',
-        size: '200px',
-        frozen: true));
+
+    columns.add(new Column()
+      ..dataField = 'Name'
+      ..text = 'Наименование этапа/работы'
+      ..width = '400px'
+      ..pinned = true);
 
     var monthColumnWidth = '100px';
 
-    columns.add(new Column(
-        field: '01_2017', caption: 'Январь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '01_2017', caption: 'Февраль', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '03_2017', caption: 'Март', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '04_2017', caption: 'Апрель', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '05_2017', caption: 'Май', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '06_2017', caption: 'Июнь', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '07_2017', caption: 'Июль', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '08_2017', caption: 'Август', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '09_2017', caption: 'Сентябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '10_2017', caption: 'Октябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '11_2017', caption: 'Ноябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '12_2017', caption: 'Декабрь', size: monthColumnWidth));
+    columns.add(new Column()
+      ..dataField = '01_2017'
+      ..text = 'Январь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
 
-    columns.add(new Column(
-        field: '01_2018', caption: 'Январь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '01_2018', caption: 'Февраль', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '03_2018', caption: 'Март', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '04_2018', caption: 'Апрель', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '05_2018', caption: 'Май', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '06_2018', caption: 'Июнь', size: monthColumnWidth));
-    columns.add(
-        new Column(field: '07_2018', caption: 'Июль', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '08_2018', caption: 'Август', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '09_2018', caption: 'Сентябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '10_2018', caption: 'Октябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '11_2018', caption: 'Ноябрь', size: monthColumnWidth));
-    columns.add(new Column(
-        field: '12_2018', caption: 'Декабрь', size: monthColumnWidth));
+    columns.add(new Column()
+      ..dataField = '02_2017'
+      ..text = 'Февраль'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '03_2017'
+      ..text = 'Март'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '04_2017'
+      ..text = 'Апрель'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '05_2017'
+      ..text = 'Май'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '06_2017'
+      ..text = 'Июнь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '07_2017'
+      ..text = 'Июль'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '08_2017'
+      ..text = 'Август'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '09_2017'
+      ..text = 'Сентябрь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '10_2017'
+      ..text = 'Октябрь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '11_2017'
+      ..text = 'Ноябрь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
+
+    columns.add(new Column()
+      ..dataField = '12_2017'
+      ..text = 'Декабрь'
+      ..columnGroup = '2017'
+      ..width = monthColumnWidth);
 
     var groups = new List<ColumnGroup>();
 
-    groups.add(new ColumnGroup(caption: '', span: 1));
-    groups.add(new ColumnGroup(caption: '', span: 1));
-    groups.add(new ColumnGroup(caption: '2017', span: 12));
-    groups.add(new ColumnGroup(caption: '2018', span: 12));
+    groups.add(new ColumnGroup()
+      ..name = '2017'
+      ..text = '2017'
+      ..align = 'center');
+    groups.add(new ColumnGroup()
+      ..name = '2017'
+      ..text = '2018'
+      ..align = 'center');
+
+    var hierarchy = new Hierarchy()..root = 'children';
+
+    var source = new SourceOptions()
+      //..url = _domain + '/api/contractBudget/1/months'
+      ..url = url
+      ..id = 'recid'
+      ..hierarchy = hierarchy
+      ..dataType = 'json';
 
     var options = new GridOptions()
-      ..name = 'grid'
-      ..columns = columns
+      ..checkboxes = false
+      ..source = source
+      ..height = '65vh'
       ..columnGroups = groups
-      ..url = _domain + '/api/contractBudget/1/months'
-      ..method = 'GET';
+      ..columns = columns;
 
-    if (_grid != null) {
-      _grid.Destroy();
-    }
+    var _worksGrid = new jqGrid(this._resourcesLoaderService, selector,
+        JsObjectConverter.convert(options));
 
-    _grid = new Grid(this._resourcesLoaderService, "#grid", options);
+    await _worksGrid.Init();
   }
 
   @override
-  void ngOnDestroy() {
-    if (_grid != null) {
-      _grid.Destroy();
-      _grid = null;
-    }
-  }
+  void ngOnDestroy() {}
 }

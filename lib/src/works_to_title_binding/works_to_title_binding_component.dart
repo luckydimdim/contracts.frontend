@@ -55,7 +55,8 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
     var _class = '';
     var percent = '';
 
-    if (hasProperty(rowData, 'Binded') == true && getProperty(rowData, 'Binded') == 'true') {
+    if (hasProperty(rowData, 'Binded') == true &&
+        getProperty(rowData, 'Binded') == 'true') {
       _class = 'is-hidden';
     }
 
@@ -78,7 +79,8 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
     var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
-      ..url = 'packages/contract/src/works_to_title_binding/works_to_title_binding_left.json'
+      ..url =
+          'packages/contract/src/works_to_title_binding/works_to_title_binding_left.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
       ..dataType = 'json';
@@ -106,7 +108,8 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
     var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
-      ..url = 'packages/contract/src/works_to_title_binding/works_to_title_binding_right.json'
+      ..url =
+          'packages/contract/src/works_to_title_binding/works_to_title_binding_right.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
       ..dataType = 'json';
