@@ -66,7 +66,7 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
     var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
-      ..url = '//cm-ylng-msk-01/cmas-backend/api/contract/1/materials'
+      ..url = 'packages/contract/src/materials/materials.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
       ..dataType = 'json';

@@ -10,7 +10,8 @@ import 'package:grid/jq_grid.dart';
 @Component(
     selector: 'works-to-budget-binding',
     templateUrl: 'works_to_budget_binding_component.html',
-    styleUrls: const ['works_to_budget_binding_component.css'])
+    styleUrls: const ['works_to_budget_binding_component.css'],
+    encapsulation: ViewEncapsulation.None)
 class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
   static const String route_name = 'WorksToBudgetBinding';
   static const String route_path = 'works/budget-binding';
@@ -37,12 +38,11 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
       dynamic rowData, dynamic cellText) {
     var icon = '';
 
-
     if (getProperty(rowData, 'Type') == 'work')
       icon = '<i class="fa fa-wrench"></i>&nbsp';
 
     var percent = '';
-    if (hasProperty(rowData, 'Percent')) {
+    if (hasProperty(rowData, 'Percent') == true) {
       percent = getProperty(rowData, 'Percent');
       percent = '<span class="text-muted small">($percent%)</span>';
     }
@@ -52,11 +52,10 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
 
   String worksRender(dynamic row, dynamic dataField, dynamic cellValue,
       dynamic rowData, dynamic cellText) {
-
     var _class = '';
     var percent = '';
 
-    if (hasProperty(rowData, 'Binded')){
+    if (hasProperty(rowData, 'Binded') == true && getProperty(rowData, 'Binded') == 'true') {
       _class = 'is-hidden';
     }
 
@@ -74,29 +73,22 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
     columns.add(new Column()
       ..dataField = 'Name'
       ..text = 'Наименование этапа/работы'
-      ..cellsRenderer = allowInterop(worksRender)
-    );
+      ..cellsRenderer = allowInterop(worksRender));
 
     var hierarchy = new Hierarchy()
       ..root = 'children';
 
-    var dataFields = new List<DataField>();
-    dataFields.add(new DataField()
-      ..name = 'Name'
-      ..type = 'string');
-
     var source = new SourceOptions()
-      ..url = 'packages/contract/src/works_to_budget_binding/works_to_budget_binding_left.json'
-    //..url = 'http://localhost:5000/api/contract/budgetbinding/works/left'
-    //..url = '//cm-ylng-msk-01/cmas-backend/api/contract/1/works'
+      ..url =
+          'packages/contract/src/works_to_budget_binding/works_to_budget_binding_left.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
-    //..dataFields = dataFields
       ..dataType = 'json';
 
     var options = new GridOptions()
       ..checkboxes = false
       ..source = source
+      ..editable = false
       ..height = null
       ..columns = columns;
 
@@ -108,36 +100,24 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
   Future BudgetGridInit() async {
     var columns = new List<Column>();
 
-
     columns.add(new Column()
       ..dataField = 'Name'
       ..cellsRenderer = allowInterop(budgetRender)
       ..text = 'Наименование статьи/подстатьи бюджета');
 
-
     var hierarchy = new Hierarchy()
       ..root = 'children';
 
-    var dataFields = new List<DataField>();
-    dataFields.add(new DataField()
-      ..name = 'Name'
-      ..type = 'string');
-    dataFields.add(new DataField()
-      ..name = 'Type'
-      ..type = 'string');
-    dataFields.add(new DataField()
-      ..name = 'recid'
-      ..type = 'number');
-
     var source = new SourceOptions()
-      ..url = 'packages/contract/src/works_to_budget_binding/works_to_budget_binding_right.json'
+      ..url =
+          'packages/contract/src/works_to_budget_binding/works_to_budget_binding_right.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
-    // ..dataFields = dataFields
       ..dataType = 'json';
 
     var options = new GridOptions()
       ..checkboxes = false
+      ..editable = false
       ..source = source
       ..height = null
       ..columns = columns;
