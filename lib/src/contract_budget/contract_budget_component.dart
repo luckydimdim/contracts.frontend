@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import 'dart:html';
+import 'package:js/js_util.dart';
+import 'package:js/js.dart';
 
 import 'package:resources_loader/resources_loader.dart';
 
@@ -13,7 +14,8 @@ import 'package:grid/jq_grid.dart';
 @View(
     templateUrl: 'contract_budget_component.html',
     directives: const [RouterLink])
-class ContractBudgetComponent implements OnInit, OnDestroy {
+class ContractBudgetComponent
+    implements OnInit, OnDestroy {
   static const String route_name = "ContractBudget";
   static const String route_path = "contract-budget";
   static const Route route = const Route(
@@ -29,6 +31,7 @@ class ContractBudgetComponent implements OnInit, OnDestroy {
    * //localhost:5000
    */
   static const String _domain = "//cm-ylng-msk-01/cmas-backend";
+
   //static const String _domain = "http://localhost:5000";
 
   bool budgetExist = true;
@@ -43,6 +46,19 @@ class ContractBudgetComponent implements OnInit, OnDestroy {
         "#grid2", 'packages/contract/src/contract_budget/months_budget2.json');
     showGrid(
         "#grid3", 'packages/contract/src/contract_budget/months_budget3.json');
+
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', allowInterop(render));
+  }
+
+
+  void render(dynamic e) {
+    var target = getProperty(e, 'target');
+    var hash = getProperty(target, 'hash');
+
+    var selector = hash.toString().replaceRange(0, 5, '');
+
+    $("#$selector").jqxTreeGrid('render');
   }
 
   Future showGrid(String selector, url) async {
@@ -139,10 +155,11 @@ class ContractBudgetComponent implements OnInit, OnDestroy {
       ..text = '2018'
       ..align = 'center');
 
-    var hierarchy = new Hierarchy()..root = 'children';
+    var hierarchy = new Hierarchy()
+      ..root = 'children';
 
     var source = new SourceOptions()
-      //..url = _domain + '/api/contractBudget/1/months'
+    //..url = _domain + '/api/contractBudget/1/months'
       ..url = url
       ..id = 'recid'
       ..hierarchy = hierarchy
