@@ -49,7 +49,7 @@ class ContractComponent implements OnInit {
 
   @override
   void ngOnInit() {
-    this._resourcesLoaderService.loadScript('assets/js/', 'app.js', true);
+
   }
 
   onSubmit() {}
