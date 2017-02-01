@@ -144,7 +144,7 @@ class ContractComponent implements OnInit, OnDestroy  {
   @override
   void ngOnDestroy() {
 
-    var historyTab = querySelector('#historyTab') as UListElement;
+    var historyTab = querySelector('#historyTab') as LIElement;
     var historyTabContent = querySelector('#history') as DivElement;
 
     historyTab.remove();
