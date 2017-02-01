@@ -34,7 +34,8 @@ import 'contract_budget/contract_budget_component.dart';
   ContractWorksComponent.route,
   ContractBudgetComponent.route
 ])
-class ContractComponent implements OnInit, OnDestroy  {
+class ContractComponent
+    implements OnInit, OnDestroy {
   static const String route_name = "Contract";
   static const String route_path = "contract/...";
   static const Route route = const Route(
@@ -49,11 +50,10 @@ class ContractComponent implements OnInit, OnDestroy  {
 
   @override
   void ngOnInit() {
-
     createHistoryTab();
   }
 
-  void showHistory(){
+  void showHistory() {
     // TODO: Продумать показ/скрытие меню
     document.body.classes.add('mobile-open');
     document.body.classes.add('aside-menu-open');
@@ -82,23 +82,28 @@ class ContractComponent implements OnInit, OnDestroy  {
     newActivePanel.classes.add('active');
   }
 
-  void createHistoryTab(){
-
+  void createHistoryTab() {
     var navTabs = querySelector('.aside-menu .nav-tabs') as UListElement;
     var navTabContent = querySelector('.aside-menu .tab-content') as DivElement;
 
-    var historyTab = new LIElement()..className= 'nav-item'..id = 'historyTab';
-    var historyAnchor = new AnchorElement(href:'#history')..className = 'nav-link';
+    var historyTab = new LIElement()
+      ..className = 'nav-item'
+      ..id = 'historyTab';
+    var historyAnchor = new AnchorElement(href: '#history')
+      ..className = 'nav-link';
     historyAnchor.setAttribute('data-toggle', 'tab');
     historyAnchor.setAttribute('role', 'tab');
 
-    var historyCursive = new Element.tag('i')..className = 'fa fa-history';
+    var historyCursive = new Element.tag('i')
+      ..className = 'fa fa-history';
 
     historyAnchor.append(historyCursive);
     historyTab.append(historyAnchor);
     navTabs.append(historyTab);
 
-    var historyContentDiv = new DivElement()..className = 'tab-pane'..id = 'history';
+    var historyContentDiv = new DivElement()
+      ..className = 'tab-pane'
+      ..id = 'history';
     historyContentDiv.setAttribute('role', 'tabpanel');
     historyContentDiv.setAttribute('aria-expanded', 'false');
 
@@ -141,24 +146,34 @@ class ContractComponent implements OnInit, OnDestroy  {
     navTabContent.append(historyContentDiv);
   }
 
-  @override
-  void ngOnDestroy() {
-
+  void destroyHistory() {
     var historyTab = querySelector('#historyTab') as LIElement;
     var historyTabContent = querySelector('#history') as DivElement;
 
-    historyTab.remove();
-    historyTabContent.remove();
+    if (historyTab != null)
+      historyTab.remove();
+
+    if (historyTabContent != null)
+      historyTabContent.remove();
 
     var newActiveLink =
-    querySelector('.aside-menu .nav-tabs li a[href="#timeline]')
+    querySelector('.aside-menu .nav-tabs li a')
     as AnchorElement;
-    newActiveLink.classes.add('active');
+
+    if (newActiveLink != null)
+      newActiveLink.classes.add('active');
 
     var newActivePanel =
-    querySelector('.aside-menu .tab-content div[id="timeline"]')
+    querySelector('.aside-menu .tab-content div')
     as DivElement;
-    newActivePanel.classes.add('active');
+
+    if (newActivePanel != null)
+      newActivePanel.classes.add('active');
+  }
+
+  @override
+  void ngOnDestroy() {
+    destroyHistory();
 
   }
 
