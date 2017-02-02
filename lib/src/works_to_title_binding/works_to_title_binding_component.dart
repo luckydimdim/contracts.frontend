@@ -6,6 +6,7 @@ import 'package:js/js.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:grid/JsObjectConverter.dart';
 import 'package:grid/jq_grid.dart';
+import 'dart:html';
 
 @Component(
     selector: 'works-to-title-binding',
@@ -25,8 +26,24 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
 
   WorksToTitleBindingComponent(this._router, this._resourcesLoaderService) {}
 
+  // import 'dart:html';
+  void breadcrumbInit(){
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+
+    if (breadcrumbContent == null)
+      return;
+
+    breadcrumbContent.innerHtml = '''
+            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
+            <li class="breadcrumb-item active">Связи c титулом</li>
+    ''';
+  }
+
   @override
   void ngOnInit() {
+    breadcrumbInit();
     WorksGridInit();
     TitleGridInit();
   }

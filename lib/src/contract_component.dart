@@ -50,7 +50,19 @@ class ContractComponent
 
   @override
   void ngOnInit() {
+    breadcrumbInit();
     createHistoryTab();
+  }
+
+  void breadcrumbInit(){
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+
+    if (breadcrumbContent == null)
+      return;
+
+    breadcrumbContent.innerHtml = '''
+            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
+    ''';
   }
 
   void showHistory() {
@@ -58,9 +70,6 @@ class ContractComponent
     document.body.classes.add('mobile-open');
     document.body.classes.add('aside-menu-open');
 
-    /*var btn = querySelector('#showHistoryBtn') as ButtonElement;
-    btn.classes.add('active');
-*/
 
     // TODO: Сделать более удобным переключение вкладок и показ/скрытие меню
     var oldActiveLink =

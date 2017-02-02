@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-
+import 'dart:html';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:grid/JsObjectConverter.dart';
 import 'package:grid/jq_grid.dart';
@@ -22,8 +22,24 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   ContractWorksComponent(this._router, this._resourcesLoaderService) {}
 
+  // import 'dart:html';
+  void breadcrumbInit(){
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+
+    if (breadcrumbContent == null)
+      return;
+
+    breadcrumbContent.innerHtml = '''
+            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
+            <li class="breadcrumb-item active">Работы</li>
+    ''';
+  }
+
   @override
   void ngOnInit() {
+    breadcrumbInit();
     WorksGridInit();
   }
 

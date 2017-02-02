@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-
+import 'dart:html';
 import 'package:js/js_util.dart';
 import 'package:js/js.dart';
 
@@ -38,8 +38,25 @@ class ContractBudgetComponent
 
   ContractBudgetComponent(this._router, this._resourcesLoaderService) {}
 
+  void breadcrumbInit(){
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+
+    if (breadcrumbContent == null)
+      return;
+
+    breadcrumbContent.innerHtml = '''
+            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
+            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
+            <li class="breadcrumb-item active">Бюджет по договору</li>
+    ''';
+  }
+
   @override
   void ngOnInit() {
+
+    breadcrumbInit();
+
     showGrid(
         "#grid1", 'packages/contract/src/contract_budget/months_budget1.json');
     showGrid(
