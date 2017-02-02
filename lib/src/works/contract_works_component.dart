@@ -76,9 +76,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     columns.add(new Column()
       ..dataField = 'Currency'
       ..text = 'Валюта');
-    columns.add(new Column()
+    /*columns.add(new Column()
       ..dataField = 'ContractorName'
-      ..text = 'Исполнитель');
+      ..text = 'Исполнитель');*/
 
     var hierarchy = new Hierarchy()..root = 'children';
 
