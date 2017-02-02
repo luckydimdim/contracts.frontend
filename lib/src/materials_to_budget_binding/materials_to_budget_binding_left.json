@@ -15,7 +15,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/19/2017"
          },
          {
@@ -27,7 +27,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/25/2017"
          },
          {
@@ -39,7 +39,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/5/2017"
          }
       ]
@@ -58,7 +58,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/20/2017"
          },
          {
@@ -69,7 +69,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"3/1/2017"
          }
       ]
@@ -88,7 +88,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/19/2017"
          },
          {
@@ -99,7 +99,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/25/2017"
          },
          {
@@ -110,7 +110,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/5/2017"
          }
       ]
@@ -129,7 +129,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/20/2017"
          },
          {
@@ -140,7 +140,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"3/1/2017"
          }
       ]
@@ -159,7 +159,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/19/2017"
          },
          {
@@ -170,7 +170,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/25/2017"
          },
          {
@@ -181,7 +181,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/5/2017"
          }
       ]
@@ -200,7 +200,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/20/2017"
          },
          {
@@ -211,7 +211,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"3/1/2017"
          }
       ]
@@ -230,7 +230,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/19/2017"
          },
          {
@@ -241,7 +241,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/25/2017"
          },
          {
@@ -252,7 +252,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/5/2017"
          }
       ]
@@ -271,7 +271,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/20/2017"
          },
          {
@@ -282,7 +282,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"3/1/2017"
          }
       ]
@@ -301,7 +301,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/19/2017"
          },
          {
@@ -312,7 +312,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"1/25/2017"
          },
          {
@@ -323,7 +323,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/5/2017"
          }
       ]
@@ -342,7 +342,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"2/20/2017"
          },
          {
@@ -353,7 +353,7 @@
             "Unit":"штук",
             "Amount":16,
             "Currency":"RUR",
-            "ObjectConstruction":"Жилой дом",
+            "ObjectConstruction":"Объект",
             "DeliveryDate":"3/1/2017"
          }
       ]
