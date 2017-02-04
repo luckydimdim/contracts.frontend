@@ -35,7 +35,7 @@ import 'contract_budget/contract_budget_component.dart';
   ContractBudgetComponent.route
 ])
 class ContractComponent
-    implements OnInit, OnDestroy {
+    implements OnInit, AfterViewInit, OnDestroy {
   static const String route_name = "Contract";
   static const String route_path = "contract/...";
   static const Route route = const Route(
@@ -47,6 +47,16 @@ class ContractComponent
   final ResourcesLoaderService _resourcesLoaderService;
 
   ContractComponent(this._router, this._resourcesLoaderService) {}
+
+  @override
+  void ngAfterViewInit(){
+    window.onScroll.listen((Event e) {
+      var expander = querySelector('[expander]') as DivElement;
+      var scrollSize = window.pageYOffset;
+
+      expander.style.setProperty('height', scrollSize + 'px');
+    });
+  }
 
   @override
   void ngOnInit() {

@@ -1,67 +1,70 @@
 <div class="animated fadeIn">
-	<div class="emailApp">
-		<div class="nav-wrapper">
-			<nav>
-				<ul class="nav">
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractGeneral']"><i class="fa fa-object-group"></i> Общая
-							информация
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractPayments']"><i class="fa fa-money"></i>
-							Условия оплаты</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractDocSettings']"><i class="fa fa-files-o"></i>
-							Документация</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractWorks']"><i class="fa fa-wrench"></i> Работы</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['WorksToBudgetBinding']"><i class="fa fa-link pl-1"></i>
-							Связи c бюджетом</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['WorksToTitleBinding']"><i class="fa fa-link pl-1"></i> Связи
-							c титулом
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractMaterials']"><i class="fa fa-cubes"></i> Материалы
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['MaterialsToBudgetBinding']"><i class="fa fa-link pl-1"></i>
-							Связи c бюджетом
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['MaterialsToTitleBinding']"><i class="fa fa-link pl-1"></i>
-							Связи c титулом
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractPaymentsSchedule']"><i class="fa fa-area-chart"></i>
-							График работ</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" [routerLink]="['ContractBudget']"><i class="fa fa-calculator"></i> Бюджет по
-							договору
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link"><i class="fa fa-files-o"></i> Связанные документы</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" ><i class="fa fa-paperclip pl-1"></i> Прикрепленные файлы</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<main>
-			<div class="toolbar">
+  <div class="emailApp mb-2">
+    <div class="row" style="display: table-row;">
+      <div class="col-md-2 pr-0" style="display: table-cell; float: none; border-right: 1px solid #d1d4d7">
+        <div expander></div>
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractGeneral']"><i class="fa fa-object-group"></i> Общая
+                информация
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractPayments']"><i class="fa fa-money"></i>
+                Условия оплаты</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractDocSettings']"><i class="fa fa-files-o"></i>
+                Документация</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractWorks']"><i class="fa fa-wrench"></i> Работы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['WorksToBudgetBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c бюджетом</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['WorksToTitleBinding']"><i class="fa fa-link pl-1"></i> Связи
+                c титулом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractMaterials']"><i class="fa fa-cubes"></i> Материалы
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['MaterialsToBudgetBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c бюджетом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['MaterialsToTitleBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c титулом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractPaymentsSchedule']"><i class="fa fa-area-chart"></i>
+                График работ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['ContractBudget']"><i class="fa fa-calculator"></i> Бюджет по
+                договору
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-files-o"></i> Связанные документы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-paperclip pl-1"></i> Прикрепленные файлы</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-10 pl-0 align-top" style="display: table-cell; float: none;">
+        <main>
+          <div class="toolbar">
         <span class="btn-group">
           <button class="btn btn-secondary" type="button">
               <span class="fa fa-envelope"></span>
@@ -83,12 +86,12 @@
               <span class="fa fa-history"></span>
           </button>
         </span>
-				
-				<button class="btn btn-secondary" type="button">
-					<span class="fa fa-trash-o"></span>
-				</button>
-				
-				<span class="btn-group pull-right">
+
+            <button class="btn btn-secondary" type="button">
+              <span class="fa fa-trash-o"></span>
+            </button>
+
+            <span class="btn-group pull-right">
           <button class="btn btn-secondary" type="button">
               <span class="fa fa-chevron-left"></span>
           </button>
@@ -96,9 +99,11 @@
               <span class="fa fa-chevron-right"></span>
           </button>
         </span>
-			</div>
-			
-			<router-outlet></router-outlet>
-		</main>
-	</div>
+          </div>
+
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+    </div>
+  </div>
 </div>

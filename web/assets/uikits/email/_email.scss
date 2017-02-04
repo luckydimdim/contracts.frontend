@@ -3,18 +3,13 @@
     background: #fff;
     border: 1px solid $border-color;
 
-    .nav-wrapper {
-        position: fixed;
-        height: 100%;
-    }
-
     nav {
-        position: absolute !important;
-        top: 0;
-        left: 0;
+        /*position: absolute !important;*/
+        /*top: 0;
+        left: 0;*/
         width: 240px;
-        height: 100%;
-        border-right: 1px solid $border-color;
+        /*height: 100%;*/
+        /*border-right: 1px solid $border-color;*/
         padding: 15px;
 
         .btn-block {
@@ -59,8 +54,7 @@
     }
 
     main {
-        padding: 15px 15px 15px 255px;
-        min-height: 100vh;
+        padding: 15px 15px 15px 15px;
 
         .toolbar {
             margin: -15px -15px 15px -15px;

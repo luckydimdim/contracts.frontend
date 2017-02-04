@@ -8986,16 +8986,13 @@ ul.leaders span + span {
   position: relative;
   background: #fff;
   border: 1px solid #d1d4d7; }
-  .emailApp .nav-wrapper {
-    position: fixed;
-    height: 100%; }
   .emailApp nav {
-    position: absolute !important;
-    top: 0;
-    left: 0;
+    /*position: absolute !important;*/
+    /*top: 0;
+    left: 0;*/
     width: 240px;
-    height: 100%;
-    border-right: 1px solid #d1d4d7;
+    /*height: 100%;*/
+    /*border-right: 1px solid $border-color;*/
     padding: 15px; }
     .emailApp nav .btn-block {
       margin-bottom: 15px; }
@@ -9023,8 +9020,7 @@ ul.leaders span + span {
         color: #2a2c36;
         border-bottom: 1px solid #d1d4d7; }
   .emailApp main {
-    padding: 15px 15px 15px 255px;
-    min-height: 100vh; }
+    padding: 15px 15px 15px 15px; }
     .emailApp main .toolbar {
       margin: -15px -15px 15px -15px;
       padding: 15px;
