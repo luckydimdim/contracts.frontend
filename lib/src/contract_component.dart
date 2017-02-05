@@ -80,7 +80,6 @@ class ContractComponent
     document.body.classes.add('mobile-open');
     document.body.classes.add('aside-menu-open');
 
-
     // TODO: Сделать более удобным переключение вкладок и показ/скрытие меню
     var oldActiveLink =
     querySelector('.aside-menu .nav-tabs li a.active') as AnchorElement;

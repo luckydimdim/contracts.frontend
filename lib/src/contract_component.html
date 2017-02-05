@@ -1,5 +1,5 @@
 <div class="animated fadeIn">
-  <div class="emailApp mb-2">
+  <div class="emailApp mb-2" style="display: table; width: 100%">
     <div class="row" style="display: table-row;">
       <div class="col-md-2 pr-0" style="display: table-cell; float: none; border-right: 1px solid #d1d4d7">
         <div expander></div>
@@ -62,43 +62,44 @@
           </ul>
         </nav>
       </div>
-      <div class="col-md-10 pl-0 align-top" style="display: table-cell; float: none;">
+      <div class="col-md-10 pl-0 pr-0 align-top" style="display: table-cell; float: none;">
         <main>
           <div class="toolbar">
-        <span class="btn-group">
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-envelope"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-upload"></span>
-          </button>
+            <span class="btn-group">
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-envelope"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-upload"></span>
+              </button>
 
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-print"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-excel-o"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-pdf-o"></span>
-          </button>
-            <button (click)="showHistory()" class="btn btn-secondary" id="showHistoryBtn" type="button">
-              <span class="fa fa-history"></span>
-          </button>
-        </span>
-
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-print"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-file-excel-o"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-file-pdf-o"></span>
+              </button>
+              <button (click)="showHistory()" class="btn btn-secondary" id="showHistoryBtn" type="button">
+                  <span class="fa fa-history"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-edit"></span>
+              </button>
+            </span>
             <button class="btn btn-secondary" type="button">
               <span class="fa fa-trash-o"></span>
             </button>
-
-            <span class="btn-group pull-right">
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-chevron-left"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-chevron-right"></span>
-          </button>
-        </span>
+              <span class="btn-group pull-right">
+            <button class="btn btn-secondary" type="button">
+                <span class="fa fa-chevron-left"></span>
+            </button>
+            <button class="btn btn-secondary" type="button">
+                <span class="fa fa-chevron-right"></span>
+            </button>
+          </span>
           </div>
 
           <router-outlet></router-outlet>
