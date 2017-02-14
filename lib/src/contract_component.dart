@@ -81,11 +81,11 @@ class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
     // TODO: Сделать более удобным переключение вкладок и показ/скрытие меню
     var oldActiveLink =
     querySelector('.aside-menu .nav-tabs li a.active') as AnchorElement;
+
     oldActiveLink.classes.remove('active');
 
     var newActiveLink =
-    querySelector('.aside-menu .nav-tabs li a[href="#history"]')
-    as AnchorElement;
+    querySelector('.aside-menu .nav-tabs li a[href="#history"]') as AnchorElement;
     newActiveLink.classes.add('active');
 
     var oldActivePanel =
