@@ -17,11 +17,12 @@ class ContractGeneralComponent implements OnInit {
 
   final Router _router;
 
+  ContractGeneralComponent(this._router) {}
+
   @override
   void ngOnInit() {
     breadcrumbInit();
   }
-
 
   void breadcrumbInit(){
     var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
@@ -36,6 +37,4 @@ class ContractGeneralComponent implements OnInit {
             <li class="breadcrumb-item active">Общая информация</li>
     ''';
   }
-
-  ContractGeneralComponent(this._router) {}
 }

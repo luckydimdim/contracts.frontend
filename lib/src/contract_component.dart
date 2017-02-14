@@ -22,8 +22,8 @@ import 'contract_budget/contract_budget_component.dart';
     templateUrl: 'contract_component.html',
     directives: const [RouterLink, RouterOutlet])
 @RouteConfig(const [
-  ContractDocSettingsComponent.route,
   ContractGeneralComponent.route,
+  ContractDocSettingsComponent.route,
   ContractMaterialsComponent.route,
   ContractPaymentsComponent.route,
   WorksToBudgetBindingComponent.route,
@@ -32,12 +32,10 @@ import 'contract_budget/contract_budget_component.dart';
   MaterialsToBudgetBindingComponent.route,
   MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route,
-  ContractBudgetComponent.route
-])
-class ContractComponent
-    implements OnInit, AfterViewInit, OnDestroy {
-  static const String route_name = "Contract";
-  static const String route_path = "contract/...";
+  ContractBudgetComponent.route])
+class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
+  static const String route_name = 'Contract';
+  static const String route_path = 'contract/...';
   static const Route route = const Route(
       path: ContractComponent.route_path,
       component: ContractComponent,
@@ -103,6 +101,9 @@ class ContractComponent
   void createHistoryTab() {
     var navTabs = querySelector('.aside-menu .nav-tabs') as UListElement;
     var navTabContent = querySelector('.aside-menu .tab-content') as DivElement;
+
+    if (navTabs == null || navTabContent == null)
+      return;
 
     var historyTab = new LIElement()
       ..className = 'nav-item'
@@ -192,8 +193,5 @@ class ContractComponent
   @override
   void ngOnDestroy() {
     destroyHistory();
-
   }
-
-  onSubmit() {}
 }
