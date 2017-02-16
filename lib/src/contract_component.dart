@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'dart:html';
@@ -50,9 +51,14 @@ class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
   void ngAfterViewInit(){
     window.onScroll.listen((Event e) {
       var expander = querySelector('[expander]') as DivElement;
-      var scrollSize = window.pageYOffset;
 
-      expander.style.setProperty('height', scrollSize + 'px');
+      var e = window.pageYOffset,
+        t = 40,
+        n = window.innerHeight,
+        i = t - e,
+        r = min(n, i) - 50;
+
+      expander.style.setProperty('height', r*-1 + 'px');
     });
   }
 
