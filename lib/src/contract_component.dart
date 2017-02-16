@@ -50,7 +50,7 @@ class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
   @override
   void ngAfterViewInit(){
     window.onScroll.listen((Event e) {
-      var expander = querySelector('[expander]') as DivElement;
+      var nav = querySelector('[sticky]') as HtmlElement;
 
       var e = window.pageYOffset,
         t = 40,
@@ -58,7 +58,7 @@ class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
         i = t - e,
         r = min(n, i) - 50;
 
-      expander.style.setProperty('height', r*-1 + 'px');
+      nav.style.setProperty('height', r*-1 + 'px');
     });
   }
 
