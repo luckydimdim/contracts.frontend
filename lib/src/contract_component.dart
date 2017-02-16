@@ -34,7 +34,7 @@ import 'contract_budget/contract_budget_component.dart';
   MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route,
   ContractBudgetComponent.route])
-class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
+class ContractComponent implements OnInit, OnDestroy {
   static const String route_name = 'Contract';
   static const String route_path = 'contract/...';
   static const Route route = const Route(
@@ -46,21 +46,6 @@ class ContractComponent implements OnInit, AfterViewInit, OnDestroy {
   final ResourcesLoaderService _resourcesLoaderService;
 
   ContractComponent(this._router, this._resourcesLoaderService) {}
-
-  @override
-  void ngAfterViewInit(){
-    window.onScroll.listen((Event e) {
-      var nav = querySelector('[sticky]') as HtmlElement;
-
-      var e = window.pageYOffset,
-        t = 40,
-        n = window.innerHeight,
-        i = t - e,
-        r = min(n, i) - 50;
-
-      nav.style.setProperty('height', r*-1 + 'px');
-    });
-  }
 
   @override
   void ngOnInit() {
