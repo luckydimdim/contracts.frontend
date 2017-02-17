@@ -1,0 +1,109 @@
+<div class="animated fadeIn">
+  <div class="emailApp mb-2 d-table w-100">
+    <div class="row d-table-row">
+      <div class="col-md-2 pr-0 d-table-cell float-md-none" style="border-right: 1px solid #d1d4d7">
+        <nav>
+          <ul class="nav pos-f">
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractGeneral']"><i class="fa fa-object-group"></i> Общая
+                информация
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractPayments']"><i class="fa fa-money"></i>
+                Условия оплаты</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractDocSettings']"><i class="fa fa-files-o"></i>
+                Документация</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractWorks']"><i class="fa fa-wrench"></i> Работы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['WorksToBudgetBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c бюджетом</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['WorksToTitleBinding']"><i class="fa fa-link pl-1"></i> Связи
+                c титулом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractMaterials']"><i class="fa fa-cubes"></i> Материалы
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['MaterialsToBudgetBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c бюджетом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['MaterialsToTitleBinding']"><i class="fa fa-link pl-1"></i>
+                Связи c титулом
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractPaymentsSchedule']"><i class="fa fa-area-chart"></i>
+                График работ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [cmRouterLink]="['ContractBudget']"><i class="fa fa-calculator"></i> Бюджет по
+                договору
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-files-o"></i> Связанные документы</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-paperclip pl-1"></i> Прикрепленные файлы</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-10 pl-0 pr-0 d-100vh-va-top float-md-none">
+        <main>
+          <div class="toolbar">
+            <span class="btn-group">
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-envelope"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-upload"></span>
+              </button>
+
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-print"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-file-excel-o"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-file-pdf-o"></span>
+              </button>
+              <button (click)="showHistory()" class="btn btn-secondary" id="showHistoryBtn" type="button">
+                  <span class="fa fa-history"></span>
+              </button>
+              <button class="btn btn-secondary" type="button">
+                  <span class="fa fa-edit"></span>
+              </button>
+            </span>
+            <button class="btn btn-secondary" type="button">
+              <span class="fa fa-trash-o"></span>
+            </button>
+            <span class="btn-group pull-right">
+            <button class="btn btn-secondary" type="button">
+                <span class="fa fa-chevron-left"></span>
+            </button>
+            <button class="btn btn-secondary" type="button">
+                <span class="fa fa-chevron-right"></span>
+            </button>
+          </span>
+          </div>
+
+          <ng-content></ng-content>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
