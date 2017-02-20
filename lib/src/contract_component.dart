@@ -33,7 +33,7 @@ import 'contract_layout/contract_layout_component.dart';
   MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route,
   ContractBudgetComponent.route])
-class ContractComponent implements OnInit, OnDestroy {
+class ContractComponent implements OnInit {
   static const String route_name = 'Contract';
   static const String route_path = 'contract/...';
   static const Route route = const Route(
