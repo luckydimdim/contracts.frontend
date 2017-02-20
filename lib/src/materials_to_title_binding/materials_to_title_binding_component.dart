@@ -36,7 +36,7 @@ class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
 
   // import 'dart:html';
   void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
     if (breadcrumbContent == null)
       return;

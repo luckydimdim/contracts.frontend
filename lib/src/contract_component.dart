@@ -53,7 +53,7 @@ class ContractComponent implements OnInit, OnDestroy {
   }
 
   void breadcrumbInit() {
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
     if (breadcrumbContent == null)
       return;

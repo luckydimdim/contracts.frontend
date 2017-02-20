@@ -39,7 +39,7 @@ class ContractBudgetComponent
   ContractBudgetComponent(this._router, this._resourcesLoaderService) {}
 
   void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
     if (breadcrumbContent == null)
       return;

@@ -25,7 +25,7 @@ class ContractGeneralComponent implements OnInit {
   }
 
   void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as DivElement;
+    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
     if (breadcrumbContent == null)
       return;
