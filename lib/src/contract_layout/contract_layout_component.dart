@@ -165,8 +165,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       newActiveLink.classes.add('active');
 
     var newActivePanel =
-    querySelector('.aside-menu .tab-content div')
-    as DivElement;
+      querySelector('.aside-menu .tab-content div') as DivElement;
 
     if (newActivePanel != null)
       newActivePanel.classes.add('active');
