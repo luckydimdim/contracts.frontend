@@ -31,17 +31,7 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
 
   // import 'dart:html';
   void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
-    if (breadcrumbContent == null)
-      return;
-
-    breadcrumbContent.innerHtml = '''
-            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
-            <li class="breadcrumb-item active">Материалы</li>
-    ''';
   }
 
   @override

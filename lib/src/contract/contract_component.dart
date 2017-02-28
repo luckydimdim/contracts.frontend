@@ -33,32 +33,22 @@ import 'contract_layout/contract_layout_component.dart';
   MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route,
   ContractBudgetComponent.route])
+
 class ContractComponent implements OnInit {
-  static const String route_name = 'Contract';
-  static const String route_path = 'contract/...';
-  static const Route route = const Route(
-      path: ContractComponent.route_path,
-      component: ContractComponent,
-      name: ContractComponent.route_name);
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
+  static const DisplayName = const {'displayName': 'Договор'};
 
   ContractComponent(this._router, this._resourcesLoaderService) {}
 
   @override
   void ngOnInit() {
+
     breadcrumbInit();
   }
 
   void breadcrumbInit() {
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
-    if (breadcrumbContent == null)
-      return;
-
-    breadcrumbContent.innerHtml = '''
-            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
-    ''';
   }
 }

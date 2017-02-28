@@ -1,1 +1,1 @@
-export 'src/contract_component.dart';
+export 'src/contract/contract_component.dart';

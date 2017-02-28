@@ -3,61 +3,50 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:js/js_util.dart';
 import 'package:js/js.dart';
-import 'dart:html';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:grid/JsObjectConverter.dart';
 import 'package:grid/jq_grid.dart';
+import 'dart:html';
 
 @Component(
-    selector: 'materials-to-title-binding',
-    templateUrl: 'materials_to_title_binding_component.html',
-    styleUrls: const ['materials_to_title_binding_component.css'],
+    selector: 'works-to-budget-binding',
+    templateUrl: 'works_to_budget_binding_component.html',
+    styleUrls: const ['works_to_budget_binding_component.css'],
     encapsulation: ViewEncapsulation.None)
-class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
-  static const String route_name = 'MaterialsToTitleBinding';
-  static const String route_path = 'materials/titleBinding';
+class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
+  static const String route_name = 'WorksToBudgetBinding';
+  static const String route_path = 'works/budget-binding';
   static const Route route = const Route(
-      path: MaterialsToTitleBindingComponent.route_path,
-      component: MaterialsToTitleBindingComponent,
-      name: MaterialsToTitleBindingComponent.route_name);
+      path: WorksToBudgetBindingComponent.route_path,
+      component: WorksToBudgetBindingComponent,
+      name: WorksToBudgetBindingComponent.route_name);
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
 
-  MaterialsToTitleBindingComponent(
-      this._router, this._resourcesLoaderService) {}
+  WorksToBudgetBindingComponent(this._router, this._resourcesLoaderService) {}
+
+  // import 'dart:html';
+  void breadcrumbInit(){
+
+  }
 
   @override
   void ngOnInit() {
     breadcrumbInit();
-    MaterialsGridInit();
-    TitleGridInit();
-  }
-
-  // import 'dart:html';
-  void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
-
-    if (breadcrumbContent == null)
-      return;
-
-    breadcrumbContent.innerHtml = '''
-            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
-            <li class="breadcrumb-item active">Связи c титулом</li>
-    ''';
+    WorksGridInit();
+    BudgetGridInit();
   }
 
   @override
   void ngOnDestroy() {}
 
-  String titleRender(dynamic row, dynamic dataField, dynamic cellValue,
+  String budgetRender(dynamic row, dynamic dataField, dynamic cellValue,
       dynamic rowData, dynamic cellText) {
     var icon = '';
 
-    if (getProperty(rowData, 'Type') == 'material')
-      icon = '<i class="fa fa-cubes"></i>&nbsp';
+    if (getProperty(rowData, 'Type') == 'work')
+      icon = '<i class="fa fa-wrench"></i>&nbsp';
 
     var percent = '';
     if (hasProperty(rowData, 'Percent') == true) {
@@ -68,7 +57,7 @@ class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
     return '$icon $cellValue $percent';
   }
 
-  String materialsRender(dynamic row, dynamic dataField, dynamic cellValue,
+  String worksRender(dynamic row, dynamic dataField, dynamic cellValue,
       dynamic rowData, dynamic cellText) {
     var _class = '';
     var percent = '';
@@ -86,19 +75,19 @@ class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
     return '<span class="$_class">$cellValue $percent</span>';
   }
 
-  Future MaterialsGridInit() async {
+  Future WorksGridInit() async {
     var columns = new List<Column>();
 
     columns.add(new Column()
       ..dataField = 'Name'
-      ..cellsRenderer = allowInterop(materialsRender)
-      ..text = 'Наименование этапа/работы');
+      ..text = 'Наименование этапа/работы'
+      ..cellsRenderer = allowInterop(worksRender));
 
     var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url =
-          'packages/contract/src/materials_to_title_binding/materials_to_title_binding_left.json'
+          'packages/contract/src/works_to_budget_binding/works_to_budget_binding_left.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
       ..dataType = 'json';
@@ -110,36 +99,36 @@ class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
       ..height = null
       ..columns = columns;
 
-    var grid = new jqGrid(this._resourcesLoaderService, "#materialsGrid",
+    var grid = new jqGrid(this._resourcesLoaderService, "#worksGrid",
         JsObjectConverter.convert(options));
     await grid.Init();
   }
 
-  Future TitleGridInit() async {
+  Future BudgetGridInit() async {
     var columns = new List<Column>();
 
     columns.add(new Column()
       ..dataField = 'Name'
-      ..cellsRenderer = allowInterop(titleRender)
-      ..text = 'Наименование статьи/подстатьи титульного списка');
+      ..cellsRenderer = allowInterop(budgetRender)
+      ..text = 'Наименование статьи/подстатьи бюджета');
 
     var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
       ..url =
-          'packages/contract/src/materials_to_title_binding/materials_to_title_binding_right.json'
+          'packages/contract/src/works_to_budget_binding/works_to_budget_binding_right.json'
       ..id = 'recid'
       ..hierarchy = hierarchy
       ..dataType = 'json';
 
     var options = new GridOptions()
       ..checkboxes = false
+      ..editable = false
       ..source = source
       ..height = null
-      ..editable = false
       ..columns = columns;
 
-    var grid = new jqGrid(this._resourcesLoaderService, "#titleGrid",
+    var grid = new jqGrid(this._resourcesLoaderService, "#bidgetGrid",
         JsObjectConverter.convert(options));
     await grid.Init();
   }

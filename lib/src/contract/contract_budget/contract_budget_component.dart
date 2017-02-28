@@ -39,17 +39,7 @@ class ContractBudgetComponent
   ContractBudgetComponent(this._router, this._resourcesLoaderService) {}
 
   void breadcrumbInit(){
-    var  breadcrumbContent = querySelector('#breadcrumbContent') as OListElement;
 
-    if (breadcrumbContent == null)
-      return;
-
-    breadcrumbContent.innerHtml = '''
-            <li class="breadcrumb-item"><a href="#/master/dashboard">Главная</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contractList">Список договоров</a></li>
-            <li class="breadcrumb-item"><a href="#/master/contract">Договор 644/15-ЯСПГ</a></li>
-            <li class="breadcrumb-item active">Бюджет по договору</li>
-    ''';
   }
 
   @override

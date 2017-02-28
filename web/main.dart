@@ -7,47 +7,30 @@ import 'package:angular2/router.dart';
 import 'package:angular2/src/platform/browser/location/hash_location_strategy.dart';
 import 'package:angular2/platform/common.dart';
 
+import 'package:alert/alert_service.dart';
 import 'package:angular_utils/cm_router_link.dart';
-import 'package:contract/contract_component.dart';
-import 'package:contract/src/contract_budget/contract_budget_component.dart';
-import 'package:contract/src/doc_settings/contract_doc_settings_component.dart';
-import 'package:contract/src/general/contract_general_component.dart';
-import 'package:contract/src/materials/contract_materials_component.dart';
-import 'package:contract/src/materials_to_budget_binding/materials_to_budget_binding_component.dart';
-import 'package:contract/src/materials_to_title_binding/materials_to_title_binding_component.dart';
-import 'package:contract/src/payments/contract_payments_component.dart';
-import 'package:contract/src/payments_schedule/contract_payments_schedule_component.dart';
-import 'package:contract/src/works/contract_works_component.dart';
-import 'package:contract/src/works_to_budget_binding/works_to_budget_binding_component.dart';
-import 'package:contract/src/works_to_title_binding/works_to_title_binding_component.dart';
 import 'package:resources_loader/resources_loader.dart';
 
 import 'package:master_layout/master_layout_component.dart';
+import 'package:contracts/contracts_component.dart';
 
 bool get isDebug =>
-    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) != 'true';
+    (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
+        'true';
 
 @Component(
-  selector: 'app',
-  providers: const [
-    ROUTER_PROVIDERS,
-    const Provider(LocationStrategy, useClass: HashLocationStrategy)])
+    selector: 'app',
+    providers: const [
+      ROUTER_PROVIDERS,
+      const Provider(LocationStrategy, useClass: HashLocationStrategy)
+    ])
 @View(
-  template: '<master-layout><contract></contract></master-layout>',
-  directives: const [MasterLayoutComponent, ContractComponent, RouterOutlet, CmRouterLink])
-@RouteConfig(const [
-  ContractComponent.route,
-  ContractGeneralComponent.route,
-  ContractDocSettingsComponent.route,
-  ContractMaterialsComponent.route,
-  ContractPaymentsComponent.route,
-  WorksToBudgetBindingComponent.route,
-  ContractPaymentsScheduleComponent.route,
-  WorksToTitleBindingComponent.route,
-  MaterialsToBudgetBindingComponent.route,
-  MaterialsToTitleBindingComponent.route,
-  ContractWorksComponent.route,
-  ContractBudgetComponent.route])
+    template: '<master-layout><contracts></contracts></master-layout>',
+    directives: const [
+      MasterLayoutComponent, ContractsComponent, RouterOutlet, CmRouterLink])
+@RouteConfig(const [const Route(
+    path: '...', component: ContractsComponent, name: 'Contracts', useAsDefault: true)
+])
 class AppComponent {}
 
 main() async {
@@ -58,7 +41,9 @@ main() async {
   ComponentRef ref = await bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
-    const Provider(ResourcesLoaderService)]);
+    const Provider(ResourcesLoaderService),
+    const Provider(AlertService)
+  ]);
 
   if (isDebug) {
     print('Application in DebugMode');
