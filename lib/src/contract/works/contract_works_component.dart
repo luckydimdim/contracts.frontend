@@ -23,9 +23,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   ContractWorksComponent(this._router, this._resourcesLoaderService) {}
 
   // import 'dart:html';
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {

@@ -14,8 +14,7 @@ import 'package:grid/jq_grid.dart';
 @View(
     templateUrl: 'contract_budget_component.html',
     directives: const [RouterLink])
-class ContractBudgetComponent
-    implements OnInit, OnDestroy {
+class ContractBudgetComponent implements OnInit, OnDestroy {
   static const String route_name = "ContractBudget";
   static const String route_path = "contract-budget";
   static const Route route = const Route(
@@ -38,13 +37,10 @@ class ContractBudgetComponent
 
   ContractBudgetComponent(this._router, this._resourcesLoaderService) {}
 
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {
-
     breadcrumbInit();
 
     showGrid(
@@ -54,10 +50,8 @@ class ContractBudgetComponent
     showGrid(
         "#grid3", 'packages/contract/src/contract_budget/months_budget3.json');
 
-
     $('a[data-toggle="tab"]').on('shown.bs.tab', allowInterop(render));
   }
-
 
   void render(dynamic e) {
     var target = getProperty(e, 'target');
@@ -162,11 +156,10 @@ class ContractBudgetComponent
       ..text = '2018'
       ..align = 'center');
 
-    var hierarchy = new Hierarchy()
-      ..root = 'children';
+    var hierarchy = new Hierarchy()..root = 'children';
 
     var source = new SourceOptions()
-    //..url = _domain + '/api/contractBudget/1/months'
+      //..url = _domain + '/api/contractBudget/1/months'
       ..url = url
       ..id = 'recid'
       ..hierarchy = hierarchy

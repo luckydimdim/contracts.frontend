@@ -24,6 +24,5 @@ class ContractGeneralComponent implements OnInit {
     breadcrumbInit();
   }
 
-  void breadcrumbInit(){
-  }
+  void breadcrumbInit() {}
 }

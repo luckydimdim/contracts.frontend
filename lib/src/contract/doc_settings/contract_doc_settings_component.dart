@@ -23,7 +23,5 @@ class ContractDocSettingsComponent implements OnInit {
     breadcrumbInit();
   }
 
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 }

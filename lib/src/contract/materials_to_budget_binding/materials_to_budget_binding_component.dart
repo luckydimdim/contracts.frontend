@@ -35,9 +35,7 @@ class MaterialsToBudgetBindingComponent implements OnInit, OnDestroy {
   }
 
   // import 'dart:html';
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnDestroy() {}

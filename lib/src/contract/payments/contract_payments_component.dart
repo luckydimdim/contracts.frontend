@@ -18,9 +18,7 @@ class ContractPaymentsComponent implements OnInit {
   ContractPaymentsComponent(this._router) {}
 
   // import 'dart:html';
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {

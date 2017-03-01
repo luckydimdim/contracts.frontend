@@ -27,9 +27,7 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
   WorksToBudgetBindingComponent(this._router, this._resourcesLoaderService) {}
 
   // import 'dart:html';
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {

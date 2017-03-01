@@ -13,23 +13,30 @@ import 'package:resources_loader/resources_loader.dart';
 
 import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
+import 'package:logger/logger_service.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
-        'true';
+    'true';
 
-@Component(
-    selector: 'app',
-    providers: const [
-      ROUTER_PROVIDERS,
-      const Provider(LocationStrategy, useClass: HashLocationStrategy)
-    ])
+@Component(selector: 'app', providers: const [
+  ROUTER_PROVIDERS,
+  const Provider(LocationStrategy, useClass: HashLocationStrategy)
+])
 @View(
     template: '<master-layout><contracts></contracts></master-layout>',
     directives: const [
-      MasterLayoutComponent, ContractsComponent, RouterOutlet, CmRouterLink])
-@RouteConfig(const [const Route(
-    path: '...', component: ContractsComponent, name: 'Contracts', useAsDefault: true)
+      MasterLayoutComponent,
+      ContractsComponent,
+      RouterOutlet,
+      CmRouterLink
+    ])
+@RouteConfig(const [
+  const Route(
+      path: '...',
+      component: ContractsComponent,
+      name: 'Contracts',
+      useAsDefault: true)
 ])
 class AppComponent {}
 
@@ -42,7 +49,8 @@ main() async {
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),
-    const Provider(AlertService)
+    const Provider(AlertService),
+    const Provider(LoggerService)
   ]);
 
   if (isDebug) {

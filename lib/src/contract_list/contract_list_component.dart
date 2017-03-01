@@ -18,12 +18,10 @@ class ContractListComponent implements OnInit {
   ContractListComponent(
       this._router, this._alertService, this._resourcesLoaderService) {}
 
-  void breadcrumbInit(){
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {
-
     breadcrumbInit();
 
     var table = querySelector('[table-click]') as TableElement;

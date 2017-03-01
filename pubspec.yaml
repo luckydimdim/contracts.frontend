@@ -23,6 +23,8 @@ dependencies:
       git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
     angular_utils:
       git: http://cm-ylng-msk-04/git/angular_utils.frontend.git
+    logger:
+      git: http://cm-ylng-msk-04/git/logger.frontend.git
 
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test

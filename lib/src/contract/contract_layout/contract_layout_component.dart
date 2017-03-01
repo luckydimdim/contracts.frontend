@@ -5,8 +5,8 @@ import 'package:angular_utils/directives.dart';
 
 @Component(selector: 'contract-layout')
 @View(
-  templateUrl: 'contract_layout_component.html',
-  directives: const [CmRouterLink])
+    templateUrl: 'contract_layout_component.html',
+    directives: const [CmRouterLink])
 class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   @override
   void ngOnInit() {
@@ -29,8 +29,16 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     window.onResize.listen((Event e) {
       width = querySelector('[sticky]').parent.clientWidth;
 
-      var paddingLeft = querySelector('[sticky]').parent.getComputedStyle().paddingLeft.replaceAll('px', '');
-      var paddingRight = querySelector('[sticky]').parent.getComputedStyle().paddingRight.replaceAll('px', '');
+      var paddingLeft = querySelector('[sticky]')
+          .parent
+          .getComputedStyle()
+          .paddingLeft
+          .replaceAll('px', '');
+      var paddingRight = querySelector('[sticky]')
+          .parent
+          .getComputedStyle()
+          .paddingRight
+          .replaceAll('px', '');
 
       var pl = int.parse(paddingLeft);
       var pr = int.parse(paddingRight);
@@ -42,8 +50,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // При прокрутке окна устанавливается position: fixed
     window.onScroll.listen((Event e) {
-      if (window.pageXOffset > 0)
-        return;
+      if (window.pageXOffset > 0) return;
 
       var div = querySelector('[sticky]') as HtmlElement;
       if (window.pageYOffset > 0) {
@@ -62,21 +69,22 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // TODO: Сделать более удобным переключение вкладок и показ/скрытие меню
     var oldActiveLink =
-    querySelector('.aside-menu .nav-tabs li a.active') as AnchorElement;
+        querySelector('.aside-menu .nav-tabs li a.active') as AnchorElement;
 
     oldActiveLink.classes.remove('active');
 
     var newActiveLink =
-    querySelector('.aside-menu .nav-tabs li a[href="#history"]') as AnchorElement;
+        querySelector('.aside-menu .nav-tabs li a[href="#history"]')
+            as AnchorElement;
     newActiveLink.classes.add('active');
 
     var oldActivePanel =
-    querySelector('.aside-menu .tab-content div.active') as DivElement;
+        querySelector('.aside-menu .tab-content div.active') as DivElement;
     oldActivePanel.classes.remove('active');
 
     var newActivePanel =
-    querySelector('.aside-menu .tab-content div[id="history"]')
-    as DivElement;
+        querySelector('.aside-menu .tab-content div[id="history"]')
+            as DivElement;
     newActivePanel.classes.add('active');
   }
 
@@ -84,8 +92,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     var navTabs = querySelector('.aside-menu .nav-tabs') as UListElement;
     var navTabContent = querySelector('.aside-menu .tab-content') as DivElement;
 
-    if (navTabs == null || navTabContent == null)
-      return;
+    if (navTabs == null || navTabContent == null) return;
 
     var historyTab = new LIElement()
       ..className = 'nav-item'
@@ -95,8 +102,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     historyAnchor.setAttribute('data-toggle', 'tab');
     historyAnchor.setAttribute('role', 'tab');
 
-    var historyCursive = new Element.tag('i')
-      ..className = 'fa fa-history';
+    var historyCursive = new Element.tag('i')..className = 'fa fa-history';
 
     historyAnchor.append(historyCursive);
     historyTab.append(historyAnchor);
@@ -151,24 +157,19 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     var historyTab = querySelector('#historyTab') as LIElement;
     var historyTabContent = querySelector('#history') as DivElement;
 
-    if (historyTab != null)
-      historyTab.remove();
+    if (historyTab != null) historyTab.remove();
 
-    if (historyTabContent != null)
-      historyTabContent.remove();
+    if (historyTabContent != null) historyTabContent.remove();
 
     var newActiveLink =
-    querySelector('.aside-menu .nav-tabs li a')
-    as AnchorElement;
+        querySelector('.aside-menu .nav-tabs li a') as AnchorElement;
 
-    if (newActiveLink != null)
-      newActiveLink.classes.add('active');
+    if (newActiveLink != null) newActiveLink.classes.add('active');
 
     var newActivePanel =
-      querySelector('.aside-menu .tab-content div') as DivElement;
+        querySelector('.aside-menu .tab-content div') as DivElement;
 
-    if (newActivePanel != null)
-      newActivePanel.classes.add('active');
+    if (newActivePanel != null) newActivePanel.classes.add('active');
   }
 
   @override

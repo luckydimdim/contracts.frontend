@@ -32,10 +32,9 @@ import 'contract_layout/contract_layout_component.dart';
   MaterialsToBudgetBindingComponent.route,
   MaterialsToTitleBindingComponent.route,
   ContractWorksComponent.route,
-  ContractBudgetComponent.route])
-
+  ContractBudgetComponent.route
+])
 class ContractComponent implements OnInit {
-
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
   static const DisplayName = const {'displayName': 'Договор'};
@@ -44,11 +43,8 @@ class ContractComponent implements OnInit {
 
   @override
   void ngOnInit() {
-
     breadcrumbInit();
   }
 
-  void breadcrumbInit() {
-
-  }
+  void breadcrumbInit() {}
 }

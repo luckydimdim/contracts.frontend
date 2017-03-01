@@ -27,9 +27,7 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
   WorksToTitleBindingComponent(this._router, this._resourcesLoaderService) {}
 
   // import 'dart:html';
-  void breadcrumbInit(){
-
-  }
+  void breadcrumbInit() {}
 
   @override
   void ngOnInit() {
