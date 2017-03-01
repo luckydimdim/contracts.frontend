@@ -14,6 +14,8 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
+import 'package:config/config_service.dart';
+import 'package:http/browser_client.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
@@ -50,7 +52,9 @@ main() async {
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),
     const Provider(AlertService),
-    const Provider(LoggerService)
+    const Provider(LoggerService),
+    const Provider(ConfigService),
+    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: [])
   ]);
 
   if (isDebug) {

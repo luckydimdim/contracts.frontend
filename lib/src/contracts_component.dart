@@ -17,10 +17,10 @@ import 'package:contracts/contract_create_component.dart';
       useAsDefault: true,
       data: ContractListComponent.DisplayName),
   const Route(
-    path: '/create',
-    component: ContractCreateComponent,
-    name: 'ContractCreate',
-    data: ContractCreateComponent.DisplayName),
+      path: '/create',
+      component: ContractCreateComponent,
+      name: 'ContractCreate',
+      data: ContractCreateComponent.DisplayName),
   const Route(
       path: '/:id/...',
       component: ContractComponent,
