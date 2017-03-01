@@ -26,24 +26,29 @@ class ContractCreateViewModel {
   String constructionObjectTitleCode;
   String description;
 
-  ContractCreateViewModel(
-      [this.name,
-      this.number,
-      this.startDate,
-      this.finishDate,
-      this.contractorName,
-      this.currency,
-      this.amount,
-      this.vatIncluded,
-      this.constructionObjectName,
-      this.constructionObjectTitleName,
-      this.constructionObjectTitleCode,
-      this.description]);
+  ContractCreateViewModel();
+
+  String toJsonString() {
+    var map = new Map();
+
+    map['name'] = name;
+    map['number'] = number;
+    map['startDate'] = startDate;
+    map['finishDate'] = finishDate;
+    map['contractorName'] = contractorName;
+    map['currency'] = currency;
+    map['amount'] = amount;
+    map['vatIncluded'] = vatIncluded;
+    map['constructionObjectName'] = constructionObjectName;
+    map['constructionObjectTitleName'] = constructionObjectTitleName;
+    map['constructionObjectTitleCode'] = constructionObjectTitleCode;
+    map['description'] = description;
+
+    return JSON.encode(map);
+  }
 }
 
-@Component(
-  selector: 'contract-create',
-  providers: const [BrowserClient])
+@Component(selector: 'contract-create', providers: const [BrowserClient])
 @View(
     templateUrl: 'contract_create_component.html',
     directives: const [RouterLink])
@@ -53,33 +58,20 @@ class ContractCreateComponent {
   BrowserClient _http;
   ConfigService _config;
   LoggerService _logger;
-  String _backendUrl;
 
   ContractCreateComponent(this._http, this._config, this._logger) {}
 
   Future onSubmit() async {
-    _logger.trace('Creating contract ${model.name}');
+    _logger.trace('Creating contract ${model.toJsonString()}');
+    print(model.toJsonString());
 
-    String _backendUrl = await _config.Get<String>('backend_url', 'http://localhost:5000');
+    String _backendUrl =
+        await _config.Get<String>('backend_url', 'http://localhost:5000');
 
     try {
-      // TODO: научиться преобразовывать объекты к json
       await _http.post(_backendUrl,
-        /*headers: {'Content-Type': 'application/json'},*/
-        body: {
-          "name": "${model.name}",
-          "number": "${model.number}",
-          "startDate": "${model.startDate}",
-          "finishDate": "${model.finishDate}",
-          "contractorName": "${model.contractorName}",
-          "currency": "${model.currency}",
-          "amount": "${model.amount}",
-          "vatIncluded": "${model.vatIncluded}",
-          "constructionObjectName": "${model.constructionObjectName}",
-          "constructionObjectTitleName": "${model.constructionObjectTitleName}",
-          "constructionObjectTitleCode": "${model.constructionObjectTitleCode}",
-          "description": "${model.description}"
-        });
+          headers: {'Content-Type': 'application/json'},
+          body: model.toJsonString());
       _logger.trace('Contract ${model.name} created');
 
       return null;
