@@ -10,12 +10,12 @@ import 'package:angular2/platform/common.dart';
 import 'package:alert/alert_service.dart';
 import 'package:angular_utils/cm_router_link.dart';
 import 'package:resources_loader/resources_loader.dart';
+import 'package:http/browser_client.dart';
 
 import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
-import 'package:http/browser_client.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
