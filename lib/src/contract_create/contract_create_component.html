@@ -1,7 +1,125 @@
 <div class="animated fadeIn">
 	<div class="row">
-		<div class="col-xl-12">
-			test
+		<div class="col-xl-6">
+
+				<div class="card">
+					<div class="card-header">
+						<strong>Создание договора</strong>
+					</div>
+					<div class="card-block">
+						<div class="form-group">
+							<label for="number">Номер</label>
+							<input type="text" class="form-control" id="number" placeholder="Укажите номер договора">
+						</div>
+
+						<div class="form-group">
+							<label for="name">Название</label>
+							<input type="text" class="form-control" id="name" placeholder="Укажите название договора">
+						</div>
+
+						<div class="row">
+
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <label for="start-date">Дата заключения</label>
+                  <input type="text" class="form-control" id="start-date" placeholder="Укажите дату заключения договора">
+                </div>
+              </div>
+              <!-- /col -->
+
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <label for="finish-date">Дата окончания</label>
+                  <input type="text" class="form-control" id="finish-date" placeholder="Укажите дату окончания договора">
+                </div>
+              </div>
+              <!-- /col -->
+
+						</div>
+						<!--/row-->
+
+						<div class="form-group">
+							<label for="contractor">Подрядчик</label>
+							<input type="text" class="form-control" id="contractor" placeholder="Укажите наименование подрядчика">
+						</div>
+
+            <div class="row">
+
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <label for="amount">Стоимость</label>
+                  <input type="text" class="form-control" id="amount" placeholder="Укажите стоимость договора">
+                </div>
+              </div>
+              <!-- /col -->
+
+              <div class="col-xl-6">
+                <div class="form-group">
+                  <label for="amount">Валюта</label>
+                  <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора">
+                </div>
+              </div>
+              <!-- /col -->
+
+            </div>
+            <!--/row-->
+
+            <div class="form-group">
+              <label class="switch switch-default switch-primary">
+                <input type="checkbox" class="switch-input" checked="">
+                <span class="switch-label"></span>
+                <span class="switch-handle"></span>
+              </label>
+              <span class="pl-1">НДС включен в стоимость договора</span>
+            </div>
+
+            <div class="row">
+
+              <div class="col-xl-4">
+                <div class="form-group">
+                  <label for="construction-object-name">Объект строительства</label>
+                  <input type="text" class="form-control" id="construction-object-name" placeholder="Укажите название объекта строительства">
+                </div>
+              </div>
+              <!-- /col -->
+
+              <div class="col-xl-4">
+                <div class="form-group">
+                  <label for="construction-object-title-code">Код по титульному списку</label>
+                  <input type="text" class="form-control" id="construction-object-title-code" placeholder="Укажите код объекта по титульному списку">
+                </div>
+              </div>
+              <!-- /col -->
+
+              <div class="col-xl-4">
+                <div class="form-group">
+                  <label for="construction-object-title-name">Наименование по титуьному списку</label>
+                  <input type="text" class="form-control" id="construction-object-title-name" placeholder="Укажите наименование объекта по титуьному списку">
+                </div>
+              </div>
+              <!-- /col -->
+
+            </div>
+            <!--/row-->
+
+            <div class="form-group">
+              <label for="description">Описание</label>
+              <textarea id="description" name="description" rows="9" class="form-control" placeholder="Введите описание договора..."></textarea>
+            </div>
+
+					</div>
+          <!-- /card-block -->
+
+          <div class="card-footer">
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Очистить форму</button>
+            <button type="submit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-file-text-o"></i> Создать договор</button>
+          </div>
+          <!-- /card-footer -->
+				</div>
+        <!-- /card -->
+
 		</div>
+		<!-- /col -->
 	</div>
+	<!-- /row -->
 </div>
