@@ -7,6 +7,7 @@ import 'package:angular2/router.dart';
 import 'package:http/browser_client.dart';
 
 import 'package:config/config_service.dart';
+import 'package:logger/logger_service.dart';
 
 /**
  * Модель представления договора
@@ -51,16 +52,19 @@ class ContractCreateComponent {
   ContractCreateViewModel model = new ContractCreateViewModel();
   BrowserClient _http;
   ConfigService _config;
+  LoggerService _logger;
   String _backendUrl;
 
-  ContractCreateComponent(this._http, this._config) {}
+  ContractCreateComponent(this._http, this._config, this._logger) {}
 
   Future onSubmit() async {
+    _logger.trace('Creating contract ${model.name}');
+
     String _backendUrl = await _config.Get<String>('backend_url', 'http://localhost:5000');
 
     try {
       // TODO: научиться преобразовывать объекты к json
-      return await _http.post(_backendUrl,
+      await _http.post(_backendUrl,
         /*headers: {'Content-Type': 'application/json'},*/
         body: {
           "name": "${model.name}",
@@ -76,8 +80,12 @@ class ContractCreateComponent {
           "constructionObjectTitleCode": "${model.constructionObjectTitleCode}",
           "description": "${model.description}"
         });
+      _logger.trace('Contract ${model.name} created');
+
+      return null;
     } catch (e) {
       print('Failed to create contract: $e');
+      _logger.error('Failed to create contract: $e');
 
       return new Exception('Failed to create contract. Cause: $e');
     }
