@@ -1,6 +1,6 @@
-name: contracts
-version: 0.0.4
-description: contracts
+name: contract_create
+version: 0.0.1
+description: creation of contracts
 author: yamal lng
 homepage: http://yamallng.ru/
 
@@ -17,24 +17,12 @@ dependencies:
     http: ^0.11.1+9
     alert:
       git: http://cm-ylng-msk-04/git/alert.frontend.git
-    grid:
-      git: http://cm-ylng-msk-04/git/grid.frontend.git
-    resources_loader:
-      git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
-    angular_utils:
-      git: http://cm-ylng-msk-04/git/angular_utils.frontend.git
     logger:
       git: http://cm-ylng-msk-04/git/logger.frontend.git
     config:
       git: http://cm-ylng-msk-04/git/config.frontend.git
-    contract_view:
-      path: lib/src/contract_view.frontend
-    contract_list:
-      path: lib/src/contract_list.frontend
-    contract_create:
-      path: lib/src/contract_create.frontend
     contract_layout:
-      path: lib/src/contract_layout.frontend
+      path: ../contract_layout.frontend
 
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test

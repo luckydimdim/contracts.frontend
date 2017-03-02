@@ -1,9 +1,12 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import 'package:contracts/contract_list_component.dart';
-import 'package:contracts/contract_component.dart';
-import 'package:contracts/contract_create_component.dart';
+/*import 'package:contract_list/contract_list_component.dart';*/
+/*import 'package:contract_view/contract_view_component.dart';*/
+/*import 'package:contract_create/contract_create_component.dart';*/
+import 'contract_list.frontend/contract_list_component.dart';
+import 'contract_view.frontend/contract_view_component.dart';
+import 'contract_create.frontend/contract_create_component.dart';
 
 @Component(
     selector: 'contracts',
@@ -23,8 +26,8 @@ import 'package:contracts/contract_create_component.dart';
       data: ContractCreateComponent.DisplayName),
   const Route(
       path: '/:id/...',
-      component: ContractComponent,
+      component: ContractViewComponent,
       name: 'Contract',
-      data: ContractComponent.DisplayName)
+      data: ContractViewComponent.DisplayName)
 ])
 class ContractsComponent {}

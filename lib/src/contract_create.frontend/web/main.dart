@@ -7,13 +7,11 @@ import 'package:angular2/router.dart';
 import 'package:angular2/src/platform/browser/location/hash_location_strategy.dart';
 import 'package:angular2/platform/common.dart';
 
-import 'package:http/browser_client.dart';
-
 import 'package:alert/alert_service.dart';
 import 'package:angular_utils/cm_router_link.dart';
-import 'package:resources_loader/resources_loader.dart';
+import 'package:http/browser_client.dart';
+
 import 'package:master_layout/master_layout_component.dart';
-import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
 
@@ -29,17 +27,9 @@ bool get isDebug =>
     template: '<master-layout><contracts></contracts></master-layout>',
     directives: const [
       MasterLayoutComponent,
-      ContractsComponent,
       RouterOutlet,
       CmRouterLink
     ])
-@RouteConfig(const [
-  const Route(
-      path: '...',
-      component: ContractsComponent,
-      name: 'Contracts',
-      useAsDefault: true)
-])
 class AppComponent {}
 
 main() async {
@@ -50,7 +40,6 @@ main() async {
   ComponentRef ref = await bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
-    const Provider(ResourcesLoaderService),
     const Provider(AlertService),
     const Provider(LoggerService),
     const Provider(ConfigService),
