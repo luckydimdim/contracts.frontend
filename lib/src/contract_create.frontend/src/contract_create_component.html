@@ -10,21 +10,24 @@
               <div class="row">
 
                 <div class="col-md-4">
-                  <div class="form-group">
+                  <div class="form-group" [class.has-danger]="!name.valid && (name.dirty || name.touched)">
                     <label for="number">Номер</label>
-                    <input type="text" class="form-control" id="number" placeholder="Укажите номер договора"
+                    <input type="text" class="form-control form-control-danger" id="number" placeholder="Укажите номер договора" required minlength="4" maxlength="24"
                            [(ngModel)]="model.number"
-                           ngControl="number"/>
+                           ngControl="number"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
+                    <em *ngIf="!name.valid && (name.dirty || name.touched)" id="number-error" class="error form-control-feedback">Укажите номер договора в правильном формате</em>
                   </div>
                 </div>
                 <!-- /col -->
 
                 <div class="col-md-8">
-                  <div class="form-group">
+                  <div class="form-group has-success">
                     <label for="name">Название</label>
-                    <input type="text" class="form-control" id="name" placeholder="Укажите название договора"
+                    <input type="text" class="form-control form-control-success" id="name" placeholder="Укажите название договора"
                            [(ngModel)]="model.name"
-                           ngControl="name"/>
+                           ngControl="name"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -37,21 +40,30 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="start-date">Дата заключения</label>
-                    <input type="text" class="form-control" id="start-date"
-                           placeholder="Укажите дату заключения договора"
-                           [(ngModel)]="model.startDate"
-                           ngControl="startDate"/>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      <input date-range-picker type="text" class="form-control" id="start-date"
+                             placeholder="Укажите дату заключения договора"
+                             [(ngModel)]="model.startDate"
+                             ngControl="startDate"
+                             #name="ngForm" [ngClass]="controlStateClasses(name)"/>
+                    </div>
                   </div>
                 </div>
+
                 <!-- /col -->
 
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="finish-date">Дата окончания</label>
-                    <input type="text" class="form-control" id="finish-date"
-                           placeholder="Укажите дату окончания договора"
-                           [(ngModel)]="model.finishDate"
-                           ngControl="finishDate"/>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                      <input date-range-picker type="text" class="form-control" id="finish-date"
+                             placeholder="Укажите дату окончания договора"
+                             [(ngModel)]="model.finishDate"
+                             ngControl="finishDate"
+                             #name="ngForm" [ngClass]="controlStateClasses(name)"/>
+                    </div>
                   </div>
                 </div>
                 <!-- /col -->
@@ -63,7 +75,8 @@
                 <label for="contractor">Подрядчик</label>
                 <input type="text" class="form-control" id="contractor" placeholder="Укажите наименование подрядчика"
                        [(ngModel)]="model.contractorName"
-                       ngControl="contractorName"/>
+                       ngControl="contractorName"
+                       #name="ngForm" [ngClass]="controlStateClasses(name)"/>
               </div>
 
               <div class="row">
@@ -73,7 +86,8 @@
                     <label for="amount">Стоимость</label>
                     <input type="text" class="form-control" id="amount" placeholder="Укажите стоимость договора"
                            [(ngModel)]="model.amount"
-                           ngControl="amount"/>
+                           ngControl="amount"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -83,7 +97,8 @@
                     <label for="amount">Валюта</label>
                     <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора"
                            [(ngModel)]="model.currency"
-                           ngControl="currency"/>
+                           ngControl="currency"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -95,7 +110,8 @@
                 <label class="switch switch-default switch-primary switch-sm">
                   <input type="checkbox" class="switch-input"
                          [(ngModel)]="model.vatIncluded"
-                         ngControl="vatIncluded"/>
+                         ngControl="vatIncluded"
+                         #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   <span class="switch-label"></span>
                   <span class="switch-handle"></span>
                 </label>
@@ -110,7 +126,8 @@
                     <input type="text" class="form-control" id="construction-object-name"
                            placeholder="Укажите название объекта строительства"
                            [(ngModel)]="model.constructionObjectName"
-                           ngControl="constructionObjectName"/>
+                           ngControl="constructionObjectName"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -121,7 +138,8 @@
                     <input type="text" class="form-control" id="construction-object-title-code"
                            placeholder="Укажите код объекта по титульному списку"
                            [(ngModel)]="model.constructionObjectTitleCode"
-                           ngControl="constructionObjectTitleCode"/>
+                           ngControl="constructionObjectTitleCode"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -132,7 +150,8 @@
                     <input type="text" class="form-control" id="construction-object-title-name"
                            placeholder="Укажите наименование объекта по титуьному списку"
                            [(ngModel)]="model.constructionObjectTitleName"
-                           ngControl="constructionObjectTitleName"/>
+                           ngControl="constructionObjectTitleName"
+                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
                   </div>
                 </div>
                 <!-- /col -->
@@ -145,7 +164,8 @@
                 <textarea id="description" name="description" rows="5" class="form-control"
                           placeholder="Введите описание договора..."
                           [(ngModel)]="model.description"
-                          ngControl="description"></textarea>
+                          ngControl="description"
+                          #name="ngForm" [ngClass]="controlStateClasses(name)"></textarea>
               </div>
 
             </div>
@@ -153,7 +173,7 @@
 
             <div class="card-footer">
               <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Очистить форму</button>
-              <button type="submit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-file-text-o"></i> Создать
+              <button type="submit" [disabled]="!contractCreateForm.form.valid" class="btn btn-sm btn-primary pull-right"><i class="fa fa-file-text-o"></i> Создать
                 договор
               </button>
             </div>

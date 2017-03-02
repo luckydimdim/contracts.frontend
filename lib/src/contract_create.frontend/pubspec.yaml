@@ -23,6 +23,10 @@ dependencies:
       git: http://cm-ylng-msk-04/git/config.frontend.git
     contract_layout:
       path: ../contract_layout.frontend
+    resources_loader:
+      git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
+    daterangepicker:
+      git: http://cm-ylng-msk-04/git/daterangepicker.frontend.git
 
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test

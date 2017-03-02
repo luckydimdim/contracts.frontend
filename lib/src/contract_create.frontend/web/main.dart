@@ -14,6 +14,7 @@ import 'package:http/browser_client.dart';
 import 'package:master_layout/master_layout_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
+import 'package:resources_loader/resources_loader.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
@@ -40,6 +41,7 @@ main() async {
   ComponentRef ref = await bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
+    const Provider(ResourcesLoaderService),
     const Provider(AlertService),
     const Provider(LoggerService),
     const Provider(ConfigService),

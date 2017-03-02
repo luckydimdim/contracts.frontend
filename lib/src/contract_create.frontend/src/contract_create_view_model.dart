@@ -9,7 +9,6 @@ class ContractCreateViewModel {
   String startDate;
   String finishDate;
   String contractorName;
-  /*Map<String, String> currency;*/
   String currency;
   String amount;
   bool vatIncluded;
@@ -18,10 +17,7 @@ class ContractCreateViewModel {
   String constructionObjectTitleCode;
   String description;
 
-  ContractCreateViewModel() {
-    /*currency = getCurrencies();
-    currency.forEach((k, v) => print('$k => $v'));*/
-  }
+  ContractCreateViewModel() { }
 
   String toJsonString() {
     var map = new Map();
