@@ -65,15 +65,8 @@ class ContractCreateComponent {
     _logger.trace('Creating contract ${model.toJsonString()}');
     print(model.toJsonString());
 
-    // TODO: вынести в отдельный метод
-    String backendScheme = await _config.Get<String>('backend_scheme');
-    String backendBaseUrl = await _config.Get<String>('backend_base_url');
-    String backendPort = await _config.Get<String>('backend_port');
-    String backendContracts = await _config.Get<String>('backend_contracts');
-    String backendUrl = '$backendScheme://$backendBaseUrl:$backendPort/$backendContracts';
-
     try {
-      await _http.post(backendUrl,
+      await _http.post(_config.helper.contractsUrl,
           headers: {'Content-Type': 'application/json'},
           body: model.toJsonString());
       _logger.trace('Contract ${model.name} created');
