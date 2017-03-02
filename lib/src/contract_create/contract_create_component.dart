@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -10,45 +9,8 @@ import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 
 import '../contract/contract_layout/contract_layout_component.dart';
+import 'contract_create_view_model.dart';
 
-/**
- * Модель представления договора
- */
-class ContractCreateViewModel {
-  String name;
-  String number;
-  String startDate;
-  String finishDate;
-  String contractorName;
-  String currency;
-  String amount;
-  bool vatIncluded;
-  String constructionObjectName;
-  String constructionObjectTitleName;
-  String constructionObjectTitleCode;
-  String description;
-
-  ContractCreateViewModel();
-
-  String toJsonString() {
-    var map = new Map();
-
-    map['name'] = name;
-    map['number'] = number;
-    map['startDate'] = startDate;
-    map['finishDate'] = finishDate;
-    map['contractorName'] = contractorName;
-    map['currency'] = currency;
-    map['amount'] = amount;
-    map['vatIncluded'] = vatIncluded;
-    map['constructionObjectName'] = constructionObjectName;
-    map['constructionObjectTitleName'] = constructionObjectTitleName;
-    map['constructionObjectTitleCode'] = constructionObjectTitleCode;
-    map['description'] = description;
-
-    return JSON.encode(map);
-  }
-}
 
 @Component(selector: 'contract-create', providers: const [BrowserClient])
 @View(
