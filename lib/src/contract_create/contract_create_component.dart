@@ -9,6 +9,8 @@ import 'package:http/browser_client.dart';
 import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 
+import '../contract/contract_layout/contract_layout_component.dart';
+
 /**
  * Модель представления договора
  */
@@ -51,7 +53,7 @@ class ContractCreateViewModel {
 @Component(selector: 'contract-create', providers: const [BrowserClient])
 @View(
     templateUrl: 'contract_create_component.html',
-    directives: const [RouterLink])
+    directives: const [RouterLink, ContractLayoutComponent])
 class ContractCreateComponent {
   static const DisplayName = const {'displayName': 'Создание договора'};
   ContractCreateViewModel model = new ContractCreateViewModel();
