@@ -44,10 +44,21 @@ class ContractListComponent implements OnInit, AfterViewInit {
   }
 
   @override
-  Future ngAfterViewInit() async {
+  ngAfterViewInit() async {
     _logger.trace('Requesting contracts. Url: ${_config.helper.contractsUrl}');
-    String response = await HttpRequest.getString(_config.helper.contractsUrl);
+
+    String response = null;
+
+    try {
+      response = await HttpRequest.getString(_config.helper.contractsUrl);
+    } catch (e) {
+      _logger.error('Failed to get contract list: $e');
+
+      throw new Exception('Failed to get contract list. Cause: $e');
+    }
+
     _logger.trace('Contracts requested: $response.');
+
     contracts = JSON.decode(response);
 
     var contract = new JsonObject();

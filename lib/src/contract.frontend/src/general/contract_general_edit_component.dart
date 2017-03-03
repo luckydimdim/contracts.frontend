@@ -45,7 +45,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
 
   ContractGeneralEditComponent(this._http, this._config, this._logger, this._resourcesLoader) {}
 
-  Future onSubmit() async {
+  onSubmit() async {
     _logger.trace('Editing contract ${model.toJsonString()}');
 
     print(model.toJsonString());
@@ -55,12 +55,10 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
       _logger.trace('Contract ${model.name} edited');
-
-      return null;
     } catch (e) {
       _logger.error('Failed to edit contract: $e');
 
-      return new Exception('Failed to edit contract. Cause: $e');
+      throw new Exception('Failed to edit contract. Cause: $e');
     }
   }
 

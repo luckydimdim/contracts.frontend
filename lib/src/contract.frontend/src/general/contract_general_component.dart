@@ -40,9 +40,17 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
   @override
   ngAfterViewInit() async {
     String contractId = _routeParams.get('id');
+    String response = null;
 
     /*_logger.trace('Requesting contract. Url: ${_config.helper.contractsUrl}/$contractId');
-    String response = await HttpRequest.getString('${_config.helper.contractsUrl}/$contractId');
+    try {
+      response = await HttpRequest.getString('${_config.helper.contractsUrl}/$contractId');
+    } catch (e) {
+      _logger.error('Failed to get contract general: $e');
+
+      throw new Exception('Failed to get contract general. Cause: $e');
+    }
+
     _logger.trace('Contract requested: $response.');
 
     contract = JSON.decode(response);*/
