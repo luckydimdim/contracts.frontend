@@ -12,6 +12,9 @@ import 'package:http/browser_client.dart';
 
 import 'package:master_layout/master_layout_component.dart';
 
+import 'package:config/config_service.dart';
+import 'package:logger/logger_service.dart';
+
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
     'true';
@@ -37,7 +40,9 @@ main() async {
   ComponentRef ref = await bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
-    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: [])
+    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: []),
+    const Provider(LoggerService),
+    const Provider(ConfigService),
   ]);
 
   if (isDebug) {
