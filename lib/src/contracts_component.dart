@@ -1,12 +1,9 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-/*import 'package:contract_list/contract_list_component.dart';*/
-/*import 'package:contract_view/contract_view_component.dart';*/
-/*import 'package:contract_create/contract_create_component.dart';*/
 import 'contract_list.frontend/contract_list_component.dart';
-import 'contract_view.frontend/contract_view_component.dart';
-import 'contract_create.frontend/contract_create_component.dart';
+import 'contract.frontend/contract_component.dart';
+import 'contract.frontend/src/general/contract_general_create_component.dart';
 
 @Component(
     selector: 'contracts',
@@ -20,14 +17,14 @@ import 'contract_create.frontend/contract_create_component.dart';
       useAsDefault: true,
       data: ContractListComponent.DisplayName),
   const Route(
-      path: '/create',
-      component: ContractCreateComponent,
-      name: 'ContractCreate',
-      data: ContractCreateComponent.DisplayName),
-  const Route(
       path: '/:id/...',
-      component: ContractViewComponent,
+      component: ContractComponent,
       name: 'Contract',
-      data: ContractViewComponent.DisplayName)
+      data: ContractComponent.DisplayName),
+ const Route(
+      path: '/create/',
+      component: ContractGeneralCreateComponent,
+      name: 'ContractCreate',
+      data: ContractComponent.DisplayName)
 ])
 class ContractsComponent {}

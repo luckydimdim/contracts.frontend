@@ -3,7 +3,7 @@ import 'dart:convert';
 /**
  * Модель представления договора
  */
-class ContractCreateViewModel {
+class ContractGeneralCreateViewModel {
   String name;
   String number;
   String startDate;
@@ -17,7 +17,7 @@ class ContractCreateViewModel {
   String constructionObjectTitleCode;
   String description;
 
-  ContractCreateViewModel() { }
+  ContractGeneralCreateViewModel() { }
 
   String toJsonString() {
     var map = new Map();

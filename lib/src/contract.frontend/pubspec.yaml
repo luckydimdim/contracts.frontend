@@ -1,4 +1,4 @@
-name: contract_view
+name: contract
 version: 0.0.1
 description: details of contract
 author: yamal lng
@@ -27,8 +27,8 @@ dependencies:
       git: http://cm-ylng-msk-04/git/logger.frontend.git
     config:
       git: http://cm-ylng-msk-04/git/config.frontend.git
-    contract_layout:
-      path: ../contract_layout.frontend
+    daterangepicker:
+      git: http://cm-ylng-msk-04/git/daterangepicker.frontend.git
 
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test

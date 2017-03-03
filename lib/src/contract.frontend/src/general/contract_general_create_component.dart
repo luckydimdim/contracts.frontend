@@ -11,20 +11,25 @@ import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
+import 'contract_general_create_view_model.dart';
+import '../contract_layout/contract_layout_component.dart';
 
-/*import 'package:contract_layout/contract_layout_component.dart';*/
-import '../../contract_layout.frontend/contract_layout_component.dart';
-import 'contract_create_view_model.dart';
-
-@Component(selector: 'contract-create',
+@Component(selector: 'contract-general-create',
   providers: const [BrowserClient, ResourcesLoaderService])
 @View(
-  templateUrl: 'contract_create_component.html',
-  directives: const [RouterLink, ContractLayoutComponent])
-class ContractCreateComponent
-  implements AfterViewInit {
+  templateUrl: 'contract_general_create_component.html',
+  directives: const [ContractLayoutComponent])
+class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
   static const DisplayName = const {'displayName': 'Создание договора'};
-  ContractCreateViewModel model = new ContractCreateViewModel();
+  static const String route_name = 'ContractGeneralCreate';
+  static const String route_path = 'general-create';
+  static const Route route = const Route(
+    path: ContractGeneralCreateComponent.route_path,
+    component: ContractGeneralCreateComponent,
+    name: ContractGeneralCreateComponent.route_name,
+    useAsDefault: true);
+
+  ContractGeneralCreateViewModel model = new ContractGeneralCreateViewModel();
   BrowserClient _http;
   ConfigService _config;
   LoggerService _logger;
@@ -39,7 +44,7 @@ class ContractCreateComponent
     'ng-invalid': control.valid == false
   };
 
-  ContractCreateComponent(this._http, this._config, this._logger, this._resourcesLoader) {}
+  ContractGeneralCreateComponent(this._http, this._config, this._logger, this._resourcesLoader) {}
 
   Future onSubmit() async {
     _logger.trace('Creating contract ${model.toJsonString()}');
@@ -60,6 +65,13 @@ class ContractCreateComponent
       return new Exception('Failed to create contract. Cause: $e');
     }
   }
+
+  @override
+  void ngOnInit() {
+    breadcrumbInit();
+  }
+
+  void breadcrumbInit() {}
 
   @override
   ngAfterViewInit() {
