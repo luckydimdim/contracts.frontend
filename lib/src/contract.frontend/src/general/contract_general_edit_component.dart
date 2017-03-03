@@ -51,7 +51,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
     print(model.toJsonString());
 
     try {
-      await _http.post(_config.helper.contractsUrl,
+      await _http.put(_config.helper.contractsUrl,
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
       _logger.trace('Contract ${model.name} created');

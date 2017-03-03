@@ -4,6 +4,7 @@ import 'dart:convert';
  * Модель представления договора
  */
 class ContractGeneralEditViewModel {
+  int id;
   String name;
   String number;
   String startDate;
@@ -22,6 +23,7 @@ class ContractGeneralEditViewModel {
   String toJsonString() {
     var map = new Map();
 
+    map['id'] = id;
     map['name'] = name;
     map['number'] = number;
     map['startDate'] = startDate;
