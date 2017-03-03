@@ -5,6 +5,7 @@ import 'package:resources_loader/resources_loader.dart';
 
 import 'contract_layout/contract_layout_component.dart';
 import 'general/contract_general_component.dart';
+import 'general/contract_general_edit_component.dart';
 import 'doc_settings/contract_doc_settings_component.dart';
 import 'materials/contract_materials_component.dart';
 import 'payments/contract_payments_component.dart';
@@ -22,6 +23,7 @@ import 'contract_budget/contract_budget_component.dart';
     directives: const [RouterOutlet, ContractLayoutComponent])
 @RouteConfig(const [
   ContractGeneralComponent.route,
+  ContractGeneralEditComponent.route,
   ContractDocSettingsComponent.route,
   ContractMaterialsComponent.route,
   ContractPaymentsComponent.route,

@@ -1,13 +1,20 @@
 import 'dart:html';
 import 'package:angular2/core.dart';
+import 'package:angular2/router.dart';
 
 import 'package:angular_utils/directives.dart';
 
-@Component(selector: 'contract-layout')
+@Component(
+  selector: 'contract-layout')
 @View(
     templateUrl: 'contract_layout_component.html',
     directives: const [CmRouterLink])
 class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
+  final Router _router;
+  final RouteParams _routeParams;
+
+  ContractLayoutComponent(this._router, this._routeParams);
+
   @override
   void ngOnInit() {
     createHistoryTab();
@@ -16,6 +23,12 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   @override
   ngAfterViewInit() {
     sticky();
+  }
+
+  generalEdit() {
+    /*String contractId = _routeParams.get('id');*/
+
+    _router.navigate(['ContractGeneralEdit']);
   }
 
   /**
