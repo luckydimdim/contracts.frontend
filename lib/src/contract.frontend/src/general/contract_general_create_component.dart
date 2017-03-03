@@ -13,9 +13,10 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
 import 'contract_general_create_view_model.dart';
 import '../contract_layout/contract_layout_component.dart';
+import '../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-general-create',
-  providers: const [BrowserClient, ResourcesLoaderService])
+  providers: const [ResourcesLoaderService, ContractsService])
 @View(
   templateUrl: 'contract_general_create_component.html',
   directives: const [ContractLayoutComponent])
@@ -30,7 +31,7 @@ class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
     useAsDefault: true);
 
   ContractGeneralCreateViewModel model = new ContractGeneralCreateViewModel();
-  BrowserClient _http;
+  ContractsService _db;
   ConfigService _config;
   LoggerService _logger;
   ResourcesLoaderService _resourcesLoader;
@@ -44,25 +45,10 @@ class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralCreateComponent(this._http, this._config, this._logger, this._resourcesLoader) {}
+  ContractGeneralCreateComponent(this._config, this._logger, this._resourcesLoader, this._db) {}
 
   Future onSubmit() async {
-    _logger.trace('Creating contract ${model.toJsonString()}');
-
-    print(model.toJsonString());
-
-    try {
-      await _http.post(_config.helper.contractsUrl,
-        headers: {'Content-Type': 'application/json'},
-        body: model.toJsonString());
-      _logger.trace('Contract ${model.name} created');
-
-      return null;
-    } catch (e) {
-      print('Failed to create contract: $e');
-
-      return new Exception('Failed to create contract. Cause: $e');
-    }
+    await _db.createContract(model);
   }
 
   @override

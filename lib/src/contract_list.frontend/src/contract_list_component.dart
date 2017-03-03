@@ -9,10 +9,12 @@ import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 
 import 'package:json_object/json_object.dart';
+import '../../contract.frontend/src/contracts_service/contracts_service.dart';
+
 
 @Component(
   selector: 'contract-list',
-  providers: const [LoggerService, ConfigService])
+  providers: const [LoggerService, ConfigService, ContractsService])
 @View(
   templateUrl: 'contract_list_component.html',
   directives: const [RouterLink])
@@ -20,11 +22,12 @@ class ContractListComponent implements OnInit, AfterViewInit {
   final Router _router;
   final LoggerService _logger;
   final ConfigService _config;
+  final ContractsService _db;
   static const DisplayName = const {'displayName': 'Список договоров'};
 
   List<JsonObject> contracts = new List<JsonObject>();
 
-  ContractListComponent(this._router, this._logger, this._config) {}
+  ContractListComponent(this._router, this._logger, this._config, this._db) {}
 
   void breadcrumbInit() {}
 
@@ -45,23 +48,9 @@ class ContractListComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() async {
-    _logger.trace('Requesting contracts. Url: ${_config.helper.contractsUrl}');
+    contracts = await _db.getContracts();
 
-    String response = null;
-
-    try {
-      response = await HttpRequest.getString(_config.helper.contractsUrl);
-    } catch (e) {
-      _logger.error('Failed to get contract list: $e');
-
-      throw new Exception('Failed to get contract list. Cause: $e');
-    }
-
-    _logger.trace('Contracts requested: $response.');
-
-    contracts = JSON.decode(response);
-
-    var contract = new JsonObject();
+    /*var contract = new JsonObject();
     contract.name = '1';
     contract.number = '2';
     contract.startDate = '3';
@@ -75,6 +64,6 @@ class ContractListComponent implements OnInit, AfterViewInit {
     contract.constructionObjectTitleCode = '11';
     contract.description = '12';
 
-    contracts.add(contract);
+    contracts.add(contract);*/
   }
 }

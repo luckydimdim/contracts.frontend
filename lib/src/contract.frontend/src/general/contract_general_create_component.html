@@ -24,7 +24,7 @@
                 <div class="col-md-8">
                   <div class="form-group has-success">
                     <label for="name">Название</label>
-                    <input type="text" class="form-control form-control-success" id="name" placeholder="Укажите название договора"
+                    <input type="text" class="form-control form-control-success" id="name" placeholder="Укажите название договора" ng-minlength="2" ng-maxlength="4"
                            [(ngModel)]="model.name"
                            ngControl="name"
                            #name="ngForm" [ngClass]="controlStateClasses(name)"/>

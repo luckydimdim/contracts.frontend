@@ -22,17 +22,17 @@
 							</thead>
 							<tbody>
 								<tr data-href="/master/contract" *ngFor="let contract of contracts; let i=index">
-                  <td><a [routerLink]="['Contract', {id:i}]">{{contract.name}}</a></td>
-									<td>{{contract.startDate}}</td>
-									<td>{{contract.finishDate}}</td>
+                  <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
+									<td>{{contract['startDate']}}</td>
+									<td>{{contract['finishDate']}}</td>
 									<td>СМР</td>
-									<td>{{contract.number}}</td>
-									<td>{{contract.contractorName}}</td>
-									<td>{{contract.constructionObjectName}}</td>
-									<td>{{contract.amount}} <i class="fa fa-rub"></i></td>
+									<td>{{contract['number']}}</td>
+									<td>{{contract['contractorName']}}</td>
+									<td>{{contract['constructionObjectName']}}</td>
+									<td>{{contract['amount']}} <i class="fa fa-rub"></i></td>
 								</tr>
 
-								<tr data-href="/master/contract">
+								<!--<tr data-href="/master/contract">
 									<td><a [routerLink]="['Contract', {id:1}]">Строительство объекта</a></td>
 									<td>10.10.2015</td>
 									<td>15.12.2016</td>
@@ -195,7 +195,7 @@
 									<td>Подрядчик пять</td>
 									<td>Объект шесть</td>
 									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
+								</tr>-->
 						</tbody>
 					</table>
 					<nav>

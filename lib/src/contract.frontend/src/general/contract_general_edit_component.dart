@@ -13,9 +13,10 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
 import 'contract_general_edit_view_model.dart';
 import '../contract_layout/contract_layout_component.dart';
+import '../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-general-edit',
-  providers: const [BrowserClient, ResourcesLoaderService])
+  providers: const [BrowserClient, ResourcesLoaderService, ContractsService])
 @View(
   templateUrl: 'contract_general_edit_component.html',
   directives: const [ContractLayoutComponent])
@@ -29,7 +30,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
     name: ContractGeneralEditComponent.route_name);
 
   ContractGeneralEditViewModel model = new ContractGeneralEditViewModel();
-  BrowserClient _http;
+  ContractsService _db;
   ConfigService _config;
   LoggerService _logger;
   ResourcesLoaderService _resourcesLoader;
@@ -43,23 +44,10 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralEditComponent(this._http, this._config, this._logger, this._resourcesLoader) {}
+  ContractGeneralEditComponent(this._db, this._config, this._logger, this._resourcesLoader) {}
 
   onSubmit() async {
-    _logger.trace('Editing contract ${model.toJsonString()}');
-
-    print(model.toJsonString());
-
-    try {
-      await _http.put(_config.helper.contractsUrl,
-        headers: {'Content-Type': 'application/json'},
-        body: model.toJsonString());
-      _logger.trace('Contract ${model.name} edited');
-    } catch (e) {
-      _logger.error('Failed to edit contract: $e');
-
-      throw new Exception('Failed to edit contract. Cause: $e');
-    }
+    await _db.editContract(model);
   }
 
   @override
