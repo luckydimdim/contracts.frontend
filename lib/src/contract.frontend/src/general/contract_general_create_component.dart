@@ -60,7 +60,6 @@ class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
       return null;
     } catch (e) {
       print('Failed to create contract: $e');
-      _logger.error('Failed to create contract: $e');
 
       return new Exception('Failed to create contract. Cause: $e');
     }
