@@ -16,11 +16,10 @@ import '../general/contract_general_edit_view_model.dart';
 @Injectable()
 class ContractsService {
   final Client _http;
-  ConfigService _config;
+  final ConfigService _config;
   LoggerService _logger;
 
-  ContractsService(this._http) {
-    _config = new ConfigService();
+  ContractsService(this._http, this._config) {
     _logger = new LoggerService(_config);
   }
 
@@ -34,8 +33,12 @@ class ContractsService {
 
     try {
       print(123123);
+      print(_config);
+      print(_config.helper);
+      print(_config.helper.contractsUrl);
       response = await _http.get(
-        /*'http://test/test/test'*/_config.helper.contractsUrl,
+        'http://localhost:5000/contracts',
+        /*_config.helper.contractsUrl,*/
         headers: {'Content-Type': 'application/json'});
       print(234234);
     } catch (e) {
@@ -58,8 +61,8 @@ class ContractsService {
     _logger.trace('Requesting contract. Url: ${_config.helper.contractsUrl}/$contractId');
     try {
       response = await _http.get(
-        /*'http://test/test/test/$contractId'*/'${_config.helper.contractsUrl}/$contractId',
-        /*'${_config.helper.contractsUrl}/$contractId',*/
+        /*${_config.helper.contractsUrl}/$contractId',*/
+        'http://localhost:5000/contracts',
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract general: $e');
@@ -81,7 +84,9 @@ class ContractsService {
     print(model.toJsonString());
 
     try {
-      await _http.post(_config.helper.contractsUrl,
+      await _http.post(
+        /*_config.helper.contractsUrl,*/
+        'http://localhost:5000/contracts',
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
 
@@ -103,7 +108,9 @@ class ContractsService {
     print(model.toJsonString());
 
     try {
-      await _http.put(_config.helper.contractsUrl,
+      await _http.put(
+        /*_config.helper.contractsUrl,*/
+        'http://localhost:5000/contracts',
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
       _logger.trace('Contract ${model.name} edited');

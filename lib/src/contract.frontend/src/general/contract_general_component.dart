@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 import 'package:json_object/json_object.dart';
 
-import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 
 import '../contracts_service/contracts_service.dart';
@@ -11,7 +9,7 @@ import '../contracts_service/contracts_service.dart';
 @Component(
   selector: 'contract-general',
   templateUrl: 'contract_general_component.html',
-  providers: const [ConfigService, LoggerService, ContractsService, RouteParams])
+  providers: const [LoggerService, ContractsService, RouteParams])
 class ContractGeneralComponent implements OnInit, AfterViewInit {
   static const String route_name = 'ContractGeneral';
   static const String route_path = 'general';
@@ -21,14 +19,13 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
       name: ContractGeneralComponent.route_name,
       useAsDefault: true);
 
-  final ConfigService _config;
   final LoggerService _logger;
   final RouteParams _routeParams;
   final ContractsService _db;
 
   JsonObject contract = new JsonObject();
 
-  ContractGeneralComponent(this._config, this._logger, this._routeParams, this._db) {}
+  ContractGeneralComponent(this._logger, this._routeParams, this._db) {}
 
   @override
   void ngOnInit() {
