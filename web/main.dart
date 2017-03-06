@@ -1,4 +1,3 @@
-import '../lib/src/contract.frontend/src/contracts_service/in_memory_data_service.dart';
 import 'dart:core';
 
 import 'package:angular2/platform/browser.dart';
@@ -18,7 +17,8 @@ import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
-//import '../lib/src/contract.frontend/src/contract.frontend/contracts_service/contracts_service.dart';
+
+import 'package:contracts/contracts_component.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
@@ -57,10 +57,10 @@ main() async {
     const Provider(AlertService),
     const Provider(LoggerService),
     const Provider(ConfigService),
-    provide(Client, useClass: InMemoryDataService)
+    //provide(Client, useClass: InMemoryDataService)
     // Using a real back end?
     // Import browser_client.dart and change the above to:
-    // [provide(Client, useFactory: () => new BrowserClient(), deps: [])]
+    provide(Client, useFactory: () => new BrowserClient(), deps: [])
   ]);
 
   if (isDebug) {
