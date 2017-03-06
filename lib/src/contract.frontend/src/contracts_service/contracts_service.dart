@@ -35,7 +35,7 @@ class ContractsService {
     try {
       print(123123);
       response = await _http.get(
-        'http://test/test/test'/*_config.helper.contractsUrl*/,
+        /*'http://test/test/test'*/_config.helper.contractsUrl,
         headers: {'Content-Type': 'application/json'});
       print(234234);
     } catch (e) {
@@ -58,7 +58,7 @@ class ContractsService {
     _logger.trace('Requesting contract. Url: ${_config.helper.contractsUrl}/$contractId');
     try {
       response = await _http.get(
-        'http://test/test/test/$contractId',
+        /*'http://test/test/test/$contractId'*/'${_config.helper.contractsUrl}/$contractId',
         /*'${_config.helper.contractsUrl}/$contractId',*/
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
