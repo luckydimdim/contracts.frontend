@@ -73,10 +73,11 @@ class ContractsService {
 
     Response response = null;
 
-    _logger.trace('Requesting contract. Url: ${_config.helper.contractsUrl}/$contractId');
+    _logger.trace('Requesting contract. Url: $_backendUrl/$contractId');
+
     try {
       response = await _http.get(
-        _backendUrl,
+        '$_backendUrl/$contractId',
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract general: $e');
@@ -86,7 +87,7 @@ class ContractsService {
 
     _logger.trace('Contract requested: $response.');
 
-    return JSON.decode(response.body);
+    return JSON.decode(response.body)['result'];
   }
 
   /**

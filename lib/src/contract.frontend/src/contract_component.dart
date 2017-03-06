@@ -18,9 +18,9 @@ import 'materials_to_title_binding/materials_to_title_binding_component.dart';
 import 'contract_budget/contract_budget_component.dart';
 
 @Component(
-    selector: 'contract',
-    templateUrl: 'contract_component.html',
-    directives: const [RouterOutlet, ContractLayoutComponent])
+  selector: 'contract',
+  templateUrl: 'contract_component.html',
+  directives: const [RouterOutlet, ContractLayoutComponent])
 @RouteConfig(const [
   ContractGeneralComponent.route,
   ContractGeneralEditComponent.route,
@@ -38,8 +38,9 @@ class ContractComponent implements OnInit {
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
   static const DisplayName = const {'displayName': 'Договор'};
+  final RouteParams _routeParams;
 
-  ContractComponent(this._router, this._resourcesLoaderService) {}
+  ContractComponent(this._router, this._resourcesLoaderService, this._routeParams) {}
 
   @override
   void ngOnInit() {

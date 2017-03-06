@@ -24,7 +24,7 @@ import '../contracts_service/contracts_service.dart';
 class ContractGeneralEditComponent implements OnInit, AfterViewInit {
   static const DisplayName = const {'displayName': 'Редактирование договора'};
   static const String route_name = 'ContractGeneralEdit';
-  static const String route_path = 'general-edit';
+  static const String route_path = '/:id/general-edit';
   static const Route route = const Route(
     path: ContractGeneralEditComponent.route_path,
     component: ContractGeneralEditComponent,
@@ -54,6 +54,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
 
     String contractId = _routeParams.get('id');
     JsonObject contract = await _db.getContract(contractId);
+
     model.id = contract.id;
     model.name = contract.id;
     model.number = contract.id;

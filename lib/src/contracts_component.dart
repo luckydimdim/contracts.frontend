@@ -8,7 +8,8 @@ import 'contract.frontend/src/general/contract_general_create_component.dart';
 @Component(
     selector: 'contracts',
     templateUrl: 'contracts_component.html',
-    directives: const [RouterOutlet])
+    directives: const [RouterOutlet],
+    providers: const[RouteParams])
 @RouteConfig(const [
   const Route(
       path: '',
