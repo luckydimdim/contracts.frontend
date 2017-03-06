@@ -26,9 +26,9 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   generalEdit() {
-    /*String contractId = _routeParams.get('id');*/
+    String contractId = _routeParams.get('id');
 
-    _router.navigate(['ContractGeneralEdit']);
+    _router.navigate(['ContractGeneralEdit', {'id': contractId}]);
   }
 
   /**
