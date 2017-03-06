@@ -67,7 +67,6 @@ class ContractsService {
   /**
    * Получение договора по его id
    */
-  /*Future<JsonObject> getContract(int contractId) async {*/
   Future<JsonObject> getContract(String contractId) async {
     if (!_initialized)
       await _init();
@@ -77,8 +76,6 @@ class ContractsService {
     _logger.trace('Requesting contract. Url: ${_config.helper.contractsUrl}/$contractId');
     try {
       response = await _http.get(
-        /*${_config.helper.contractsUrl}/$contractId',*/
-        /*'http://localhost:5000/contracts',*/
         _backendUrl,
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
@@ -105,8 +102,6 @@ class ContractsService {
 
     try {
       await _http.post(
-        /*_config.helper.contractsUrl,*/
-        /*'http://localhost:5000/contracts',*/
         _backendUrl,
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
@@ -133,8 +128,6 @@ class ContractsService {
 
     try {
       await _http.put(
-        /*_config.helper.contractsUrl,*/
-        /*'http://localhost:5000/contracts',*/
         _backendUrl,
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());

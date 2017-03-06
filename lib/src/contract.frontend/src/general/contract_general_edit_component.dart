@@ -8,6 +8,7 @@ import 'package:angular2/router.dart';
 import 'package:http/browser_client.dart';
 
 import 'package:config/config_service.dart';
+import 'package:json_object/json_object.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
@@ -34,6 +35,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
   ConfigService _config;
   LoggerService _logger;
   ResourcesLoaderService _resourcesLoader;
+  RouteParams _routeParams;
 
   Map<String, bool> controlStateClasses(NgControl control) => {
     'ng-dirty': control.dirty ?? false,
@@ -44,15 +46,33 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralEditComponent(this._db, this._config, this._logger, this._resourcesLoader) {}
-
-  onSubmit() async {
-    await _db.editContract(model);
-  }
+  ContractGeneralEditComponent(this._db, this._config, this._logger, this._resourcesLoader, this._routeParams) {}
 
   @override
-  void ngOnInit() {
+  Future ngOnInit() async {
     breadcrumbInit();
+
+    String contractId = _routeParams.get('id');
+    JsonObject contract = await _db.getContract(contractId);
+    model.id = contract.id;
+    model.name = contract.id;
+    model.number = contract.id;
+    model.startDate = contract.id;
+    model.finishDate = contract.id;
+    model.contractorName = contract.id;
+    model.currency = contract.id;
+    model.amount = contract.id;
+    model.vatIncluded = contract.id;
+    model.constructionObjectName = contract.id;
+    model.constructionObjectTitleName = contract.id;
+    model.constructionObjectTitleCode = contract.id;
+    model.description = contract.id;
+
+    return null;
+  }
+
+  Future onSubmit() async {
+    await _db.editContract(model);
   }
 
   void breadcrumbInit() {}
@@ -90,7 +110,7 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
 
     new DateRangePicker(_resourcesLoader, '[date-range-picker]', options);
 
-    model.name = '1';
+    /*model.name = '1';
     model.number = '2';
     model.startDate = '3';
     model.finishDate = '4';
@@ -101,6 +121,6 @@ class ContractGeneralEditComponent implements OnInit, AfterViewInit {
     model.constructionObjectName = '9';
     model.constructionObjectTitleName = '10';
     model.constructionObjectTitleCode = '11';
-    model.description = '12';
+    model.description = '12';*/
   }
 }
