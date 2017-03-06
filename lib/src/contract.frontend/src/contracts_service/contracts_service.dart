@@ -61,7 +61,7 @@ class ContractsService {
 
     _logger.trace('Contracts requested: $response.');
 
-    return JSON.decode(response.body)['data'];
+    return JSON.decode(response.body);
   }
 
   /**
@@ -88,7 +88,7 @@ class ContractsService {
 
     _logger.trace('Contract requested: $response.');
 
-    return JSON.decode(response.body)['data'];
+    return JSON.decode(response.body);
   }
 
   /**

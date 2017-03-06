@@ -1,3 +1,4 @@
+import '../lib/src/contract.frontend/src/contracts_service/in_memory_data_service.dart';
 import 'dart:core';
 
 import 'package:angular2/platform/browser.dart';
@@ -17,8 +18,7 @@ import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
-
-import '../lib/src/contract.frontend/src/contracts_service/in_memory_data_service.dart';
+//import '../lib/src/contract.frontend/src/contract.frontend/contracts_service/contracts_service.dart';
 
 bool get isDebug =>
     (const String.fromEnvironment('PRODUCTION', defaultValue: 'false')) !=
