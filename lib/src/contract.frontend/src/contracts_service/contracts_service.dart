@@ -67,7 +67,8 @@ class ContractsService {
   /**
    * Получение договора по его id
    */
-  Future<JsonObject> getContract(int contractId) async {
+  /*Future<JsonObject> getContract(int contractId) async {*/
+  Future<JsonObject> getContract(String contractId) async {
     if (!_initialized)
       await _init();
 

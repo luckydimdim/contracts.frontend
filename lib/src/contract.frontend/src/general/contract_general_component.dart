@@ -36,7 +36,8 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() async {
-    int contractId = int.parse(_routeParams.get('id'));
+    /*int contractId = int.parse(_routeParams.get('id'));*/
+    String contractId = _routeParams.get('id');
 
     contract = await _db.getContract(contractId);
   }
