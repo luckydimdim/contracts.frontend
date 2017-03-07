@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xl-8 col-md-12">
 
-    <h4>Общая информация</h4>
+    <h4>{{contractName.value}} {{number.value !== '' ? '№'+ number.value : ''}}</h4>
     <div class="card mt-1">
       <form (change)="onChange()" #contractCreateForm="ngForm">
         <div class="card-block">
@@ -11,6 +11,7 @@
               <div class="form-group" [class.has-danger]="!name.valid && (name.dirty || name.touched)">
                 <label for="number">Номер</label>
                 <input type="text" class="form-control form-control-danger" id="number"
+                       #number
                        placeholder="Укажите номер договора" required minlength="4" maxlength="24"
                        [(ngModel)]="model.number"
                        ngControl="number"
@@ -25,6 +26,7 @@
               <div class="form-group">
                 <label for="name">Название</label>
                 <input type="text" class="form-control" id="name"
+                       #contractName
                        placeholder="Укажите название договора"
                        [(ngModel)]="model.name"
                        ngControl="name"

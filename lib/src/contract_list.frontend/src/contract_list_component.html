@@ -13,7 +13,6 @@
 								<th>Название</th>
 								<th>Дата заключения</th>
 								<th>Дата завершения</th>
-								<th>Вид</th>
 								<th>№ договора</th>
 								<th>Подрядчик</th>
 								<th>Объект</th>
@@ -25,177 +24,11 @@
                   <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
 									<td>{{contract['startDate']}}</td>
 									<td>{{contract['finishDate']}}</td>
-									<td>СМР</td>
 									<td>{{contract['number']}}</td>
 									<td>{{contract['contractorName']}}</td>
 									<td>{{contract['constructionObjectName']}}</td>
 									<td>{{contract['amount']}} <i class="fa fa-rub"></i></td>
 								</tr>
-
-								<!--<tr data-href="/master/contract">
-									<td><a [routerLink]="['Contract', {id:1}]">Строительство объекта</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>155/15-ЯСПГ</td>
-									<td>Подрядчик один</td>
-									<td>Объект один</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство электросетей</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>403/25-ЯСПГ</td>
-									<td>Подрядчик два</td>
-									<td>Объект два</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство трубопровода</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>10/389-ЯСПГ</td>
-									<td>Подрядчик три</td>
-									<td>Объект три</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство газопровода</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>985/22-ЯСПГ</td>
-									<td>Подрядчик четыре</td>
-									<td>Объект один</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство подсобных помещений</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>119/55-ЯСПГ</td>
-									<td>Подрядчик пять</td>
-									<td>Объект два</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Налоговое консультирование</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>69/20-ЯСПГ</td>
-									<td>Подрядчик шесть</td>
-									<td>Объект три</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Бухгалтерское консультирование</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>110/91-ЯСПГ</td>
-									<td>Подрядчик один</td>
-									<td>Объект семь</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Возведение ограждений</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>97/445-ЯСПГ</td>
-									<td>Подрядчик один</td>
-									<td>Объект девять</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Закладка фундамента</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>232/40-ЯСПГ</td>
-									<td>Подрядчик один</td>
-									<td>Объект один</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Транспортировка щебня</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>90/877-ЯСПГ</td>
-									<td>Подрядчик десять</td>
-									<td>Объект один</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство объекта</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>155/15-ЯСПГ</td>
-									<td>Подрядчик один</td>
-									<td>Объект три</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство электросетей</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>403/25-ЯСПГ</td>
-									<td>Подрядчик два</td>
-									<td>Объект четыре</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство трубопровода</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>10/389-ЯСПГ</td>
-									<td>Подрядчик три</td>
-									<td>Объект восемь</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство газопровода</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>СМР</td>
-									<td>985/22-ЯСПГ</td>
-									<td>Подрядчик четыре</td>
-									<td>Объект два</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>
-								<tr data-href="/master/contract">
-									
-									<td><a href="#/master/contract">Строительство подсобных помещений</a></td>
-									<td>10.10.2015</td>
-									<td>15.12.2016</td>
-									<td>МТР</td>
-									<td>119/55-ЯСПГ</td>
-									<td>Подрядчик пять</td>
-									<td>Объект шесть</td>
-									<td>100 000 000 <i class="fa fa-rub"></i></td>
-								</tr>-->
 						</tbody>
 					</table>
 					<nav>
