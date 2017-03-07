@@ -1,9 +1,12 @@
 import 'dart:convert';
 
+import 'package:json_object/json_object.dart';
+
 /**
  * Модель представления договора
  */
-class ContractGeneralCreateViewModel {
+class ContractGeneralModel {
+  String id;
   String name;
   String number;
   String startDate;
@@ -17,11 +20,29 @@ class ContractGeneralCreateViewModel {
   String constructionObjectTitleCode;
   String description;
 
-  ContractGeneralCreateViewModel() { }
+  ContractGeneralModel();
+
+  factory ContractGeneralModel.fromJson(JsonObject json) {
+    return new ContractGeneralModel()
+      ..id = json.id
+      ..name = json.name
+      ..number = json.number
+      ..startDate = json.startDate
+      ..finishDate = json.finishDate
+      ..contractorName = json.contractorName
+      ..currency = json.currency
+      ..amount = json.amount
+      ..vatIncluded = json.vatIncluded
+      ..constructionObjectName = json.constructionObjectName
+      ..constructionObjectTitleName = json.constructionObjectTitleName
+      ..constructionObjectTitleCode = json.constructionObjectTitleCode
+      ..description = json.description;
+  }
 
   String toJsonString() {
     var map = new Map();
 
+    map['id'] = id;
     map['name'] = name;
     map['number'] = number;
     map['startDate'] = startDate;

@@ -7,8 +7,7 @@ import 'package:config/config_service.dart';
 import 'package:json_object/json_object.dart';
 import 'package:logger/logger_service.dart';
 
-import '../general/contract_general_create_view_model.dart';
-import '../general/contract_general_edit_view_model.dart';
+import '../general/contract_general_model.dart';
 
 /**
  * Работа с БД для раздела "Договоры"
@@ -61,13 +60,13 @@ class ContractsService {
 
     _logger.trace('Contracts requested: $response.');
 
-    return JSON.decode(response.body);
+    return JSON.decode(response.body)['result'];
   }
 
   /**
    * Получение договора по его id
    */
-  Future<JsonObject> getContract(String contractId) async {
+  Future<ContractGeneralModel> getContract(String contractId) async {
     if (!_initialized)
       await _init();
 
@@ -87,13 +86,15 @@ class ContractsService {
 
     _logger.trace('Contract requested: $response.');
 
-    return JSON.decode(response.body)['result'];
+    JsonObject result = JSON.decode(response.body)['result'];
+
+    return new ContractGeneralModel.fromJson(result);
   }
 
   /**
    * Создание нового договора
    */
-  createContract(ContractGeneralCreateViewModel model) async {
+  createContract(ContractGeneralModel model) async {
     if (!_initialized)
       await _init();
 
@@ -119,7 +120,7 @@ class ContractsService {
   /**
    * Изменение данных договора
    */
-  editContract(ContractGeneralEditViewModel model) async {
+  editContract(ContractGeneralModel model) async {
     if (!_initialized)
       await _init();
 

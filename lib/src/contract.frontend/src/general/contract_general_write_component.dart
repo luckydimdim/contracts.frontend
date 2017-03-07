@@ -8,33 +8,25 @@ import 'package:angular2/router.dart';
 import 'package:http/browser_client.dart';
 
 import 'package:config/config_service.dart';
+import 'package:json_object/json_object.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
-import 'contract_general_create_view_model.dart';
-import '../contract_layout/contract_layout_component.dart';
+import 'contract_general_model.dart';
 import '../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-general-create',
-  providers: const [ResourcesLoaderService, ContractsService])
+@Component(selector: 'contract-general-edit',
+  providers: const [BrowserClient, ResourcesLoaderService, ContractsService])
 @View(
-  templateUrl: 'contract_general_create_component.html',
-  directives: const [ContractLayoutComponent])
-class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
-  static const DisplayName = const {'displayName': 'Создание договора'};
-  static const String route_name = 'ContractGeneralCreate';
-  static const String route_path = 'general-create';
-  static const Route route = const Route(
-    path: ContractGeneralCreateComponent.route_path,
-    component: ContractGeneralCreateComponent,
-    name: ContractGeneralCreateComponent.route_name,
-    useAsDefault: true);
-
-  ContractGeneralCreateViewModel model = new ContractGeneralCreateViewModel();
-  ContractsService _db;
-  ConfigService _config;
-  LoggerService _logger;
-  ResourcesLoaderService _resourcesLoader;
+  templateUrl: 'contract_general_write_component.html')
+class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
+  ContractGeneralModel model = new ContractGeneralModel();
+  final ContractsService _db;
+  final ConfigService _config;
+  final LoggerService _logger;
+  final ResourcesLoaderService _resourcesLoader;
+  final RouteParams _routeParams;
+  final Router _router;
 
   Map<String, bool> controlStateClasses(NgControl control) => {
     'ng-dirty': control.dirty ?? false,
@@ -45,15 +37,20 @@ class ContractGeneralCreateComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralCreateComponent(this._config, this._logger, this._resourcesLoader, this._db) {}
-
-  Future onSubmit() async {
-    await _db.createContract(model);
-  }
+  ContractGeneralWriteComponent(this._db, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router);
 
   @override
-  void ngOnInit() {
+  Future ngOnInit() async {
     breadcrumbInit();
+
+    String contractId = _routeParams.get('id');
+    model = await _db.getContract(contractId);
+
+    return null;
+  }
+
+  Future onSubmit() async {
+    await _db.editContract(model);
   }
 
   void breadcrumbInit() {}

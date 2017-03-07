@@ -86,7 +86,6 @@ class InMemoryDataService extends MockClient {
         throw 'Unimplemented HTTP method ${request.method}';
     }
 
-    /*return new Response(JSON.encode({'data': data}), 200, headers: {'content-type': 'application/json'});*/
-    return new Response(JSON.encode(data), 200, headers: {'content-type': 'application/json'});
+    return new Response(JSON.encode({'result': data}), 200, headers: {'content-type': 'application/json'});
   }
 }

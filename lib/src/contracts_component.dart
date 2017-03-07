@@ -3,7 +3,6 @@ import 'package:angular2/router.dart';
 
 import 'contract_list.frontend/contract_list_component.dart';
 import 'contract.frontend/contract_component.dart';
-import 'contract.frontend/src/general/contract_general_create_component.dart';
 
 @Component(
     selector: 'contracts',
@@ -21,11 +20,6 @@ import 'contract.frontend/src/general/contract_general_create_component.dart';
       path: '/:id/...',
       component: ContractComponent,
       name: 'Contract',
-      data: ContractComponent.DisplayName),
- const Route(
-      path: '/create/',
-      component: ContractGeneralCreateComponent,
-      name: 'ContractCreate',
       data: ContractComponent.DisplayName)
 ])
 class ContractsComponent {}
