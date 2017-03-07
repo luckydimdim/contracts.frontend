@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'dart:html';
+import 'package:alert/alert_service.dart';
 import 'package:angular2/common.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -24,6 +25,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
   final ResourcesLoaderService _resourcesLoader;
   final RouteParams _routeParams;
   final Router _router;
+  final AlertService _alert;
 
   @Input()
   ContractGeneralModel model = new ContractGeneralModel();
@@ -37,7 +39,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralWriteComponent(this._service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router);
+  ContractGeneralWriteComponent(this._service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router, this._alert);
 
   @override
   ngOnInit() {
@@ -46,6 +48,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
 
   onChange() async {
     await _service.general.updateContract(model);
+    _alert.Info('Месседж!');
   }
 
   void breadcrumbInit() {}
