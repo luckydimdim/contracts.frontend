@@ -1,17 +1,16 @@
+import 'contract_general_model.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:json_object/json_object.dart';
 
 import 'package:logger/logger_service.dart';
 
-import '../contracts_service/contracts_service.dart';
 import 'contract_general_write_component.dart';
 import 'contract_general_read_component.dart';
+import '../../../contracts_service/contracts_service.dart';
 
 @Component(
   selector: 'contract-general',
   templateUrl: 'contract_general_component.html',
-  providers: const [LoggerService, ContractsService],
   directives: const[ContractGeneralWriteComponent, ContractGeneralReadComponent])
 class ContractGeneralComponent implements OnInit, AfterViewInit {
   static const String route_name = 'ContractGeneral';
@@ -24,23 +23,29 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
 
   final LoggerService _logger;
   final RouteParams _routeParams;
-  final ContractsService _db;
+  final ContractsService service;
   final Router _router;
+  ContractGeneralModel model = new ContractGeneralModel();
 
-  JsonObject contract = new JsonObject();
-
-  bool writeEnabled = false;
-
-  ContractGeneralComponent(this._logger, this._routeParams, this._db, this._router);
+  ContractGeneralComponent(this._logger, this._routeParams, this.service, this._router);
 
   @override
   ngOnInit() async {
     breadcrumbInit();
+
+    Instruction ci = _router.parent.parent.currentInstruction;
+    String contractId = ci.component.params['id'];
+
+    model = await service.general.getContract(contractId);
   }
 
   void breadcrumbInit() {}
 
   @override
-  ngAfterViewInit() async {
+  ngAfterViewInit() {
+  }
+
+  generalEdit() {
+    service.writeEnabled = !service.writeEnabled;
   }
 }

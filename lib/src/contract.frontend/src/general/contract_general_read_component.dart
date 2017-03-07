@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'dart:html';
 import 'package:angular2/common.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -12,20 +9,20 @@ import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
 import 'contract_general_model.dart';
-import '../contract_layout/contract_layout_component.dart';
-import '../contracts_service/contracts_service.dart';
+import '../../../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-general-read',
-  providers: const [ResourcesLoaderService, ContractsService])
+@Component(selector: 'contract-general-read')
 @View(
   templateUrl: 'contract_general_read_component.html')
 class ContractGeneralReadComponent implements OnInit, AfterViewInit {
-  ContractGeneralModel model = new ContractGeneralModel();
   final ContractsService _db;
   final ConfigService _config;
   final LoggerService _logger;
   final ResourcesLoaderService _resourcesLoader;
   final Router _router;
+
+  @Input()
+  ContractGeneralModel model = new ContractGeneralModel();
 
   Map<String, bool> controlStateClasses(NgControl control) => {
     'ng-dirty': control.dirty ?? false,
@@ -41,11 +38,6 @@ class ContractGeneralReadComponent implements OnInit, AfterViewInit {
   @override
   ngOnInit() async {
     breadcrumbInit();
-
-    Instruction ci = _router.parent.parent.currentInstruction;
-    String contractId = ci.component.params['id'];
-
-    model = await _db.getContract(contractId);
   }
 
   void breadcrumbInit() {}

@@ -25,13 +25,6 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     sticky();
   }
 
-  generalEdit() {
-    Instruction ci = _router.parent.currentInstruction;
-    String contractId = ci.component.params['id'];
-
-    _router.navigate(['ContractGeneralEdit', {'id': contractId}]);
-  }
-
   /**
    * Фиксация боковой панели
    */

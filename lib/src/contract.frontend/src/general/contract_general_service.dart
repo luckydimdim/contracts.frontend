@@ -10,17 +10,17 @@ import 'package:logger/logger_service.dart';
 import '../general/contract_general_model.dart';
 
 /**
- * Работа с БД для раздела "Договоры"
+ * Работа с БД для раздела "Договоры / Общая информация"
  */
 @Injectable()
-class ContractsService {
+class ContractGeneralService {
   final Client _http;
   final ConfigService _config;
   LoggerService _logger;
   String _backendUrl = null;
   bool _initialized = false;
 
-  ContractsService(this._http, this._config) {
+  ContractGeneralService(this._http, this._config) {
     _logger = new LoggerService(_config);
   }
 
@@ -60,7 +60,7 @@ class ContractsService {
 
     _logger.trace('Contracts requested: $response.');
 
-    return JSON.decode(response.body)['result'];
+    return JSON.decode(response.body);
   }
 
   /**
@@ -86,9 +86,9 @@ class ContractsService {
 
     _logger.trace('Contract requested: $response.');
 
-    JsonObject result = JSON.decode(response.body)['result'];
+    dynamic json = JSON.decode(response.body)['result'];
 
-    return new ContractGeneralModel.fromJson(result);
+    return new ContractGeneralModel.fromJson(json);
   }
 
   /**

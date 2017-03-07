@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'dart:convert';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
@@ -9,8 +7,7 @@ import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 
 import 'package:json_object/json_object.dart';
-import '../../contract.frontend/src/contracts_service/contracts_service.dart';
-
+import '../../contracts_service/contracts_service.dart';
 
 @Component(
   selector: 'contract-list',
@@ -22,12 +19,12 @@ class ContractListComponent implements OnInit, AfterViewInit {
   final Router _router;
   final LoggerService _logger;
   final ConfigService _config;
-  final ContractsService _db;
+  final ContractsService _service;
   static const DisplayName = const {'displayName': 'Список договоров'};
 
   List<JsonObject> contracts = new List<JsonObject>();
 
-  ContractListComponent(this._router, this._logger, this._config, this._db) {}
+  ContractListComponent(this._router, this._logger, this._config, this._service) {}
 
   void breadcrumbInit() {}
 
@@ -48,7 +45,7 @@ class ContractListComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() async {
-    contracts = await _db.getContracts();
+    contracts = await _service.general.getContracts();
 
     /*var contract = new JsonObject();
     contract.name = '1';

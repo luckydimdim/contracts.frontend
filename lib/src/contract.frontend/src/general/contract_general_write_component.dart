@@ -8,25 +8,25 @@ import 'package:angular2/router.dart';
 import 'package:http/browser_client.dart';
 
 import 'package:config/config_service.dart';
-import 'package:json_object/json_object.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
 import 'contract_general_model.dart';
-import '../contracts_service/contracts_service.dart';
+import '../../../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-general-edit',
-  providers: const [BrowserClient, ResourcesLoaderService, ContractsService])
-@View(
-  templateUrl: 'contract_general_write_component.html')
+
+@Component(selector: 'contract-general-write')
+@View(templateUrl: 'contract_general_write_component.html')
 class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
-  ContractGeneralModel model = new ContractGeneralModel();
-  final ContractsService _db;
+  final ContractsService _service;
   final ConfigService _config;
   final LoggerService _logger;
   final ResourcesLoaderService _resourcesLoader;
   final RouteParams _routeParams;
   final Router _router;
+
+  @Input()
+  ContractGeneralModel model = new ContractGeneralModel();
 
   Map<String, bool> controlStateClasses(NgControl control) => {
     'ng-dirty': control.dirty ?? false,
@@ -37,26 +37,21 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralWriteComponent(this._db, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router);
+  ContractGeneralWriteComponent(this._service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router);
 
   @override
-  Future ngOnInit() async {
+  ngOnInit() {
     breadcrumbInit();
-
-    String contractId = _routeParams.get('id');
-    model = await _db.getContract(contractId);
-
-    return null;
   }
 
   Future onSubmit() async {
-    await _db.editContract(model);
+    await _service.general.editContract(model);
   }
 
   void breadcrumbInit() {}
 
   @override
-  ngAfterViewInit() {
+  Future ngAfterViewInit() async {
     var locale = new DateRangePickerLocale()
       ..format = 'DD.MM.YYYY'
       ..separator = ' - '
@@ -87,5 +82,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
       ..locale = locale;
 
     new DateRangePicker(_resourcesLoader, '[date-range-picker]', options);
+
+    return null;
   }
 }

@@ -22,21 +22,21 @@ class ContractGeneralModel {
 
   ContractGeneralModel();
 
-  factory ContractGeneralModel.fromJson(JsonObject json) {
+  factory ContractGeneralModel.fromJson(dynamic json) {
     return new ContractGeneralModel()
-      ..id = json.id
-      ..name = json.name
-      ..number = json.number
-      ..startDate = json.startDate
-      ..finishDate = json.finishDate
-      ..contractorName = json.contractorName
-      ..currency = json.currency
-      ..amount = json.amount
-      ..vatIncluded = json.vatIncluded
-      ..constructionObjectName = json.constructionObjectName
-      ..constructionObjectTitleName = json.constructionObjectTitleName
-      ..constructionObjectTitleCode = json.constructionObjectTitleCode
-      ..description = json.description;
+      ..id = json['id']
+      ..name = json['name']
+      ..number = json['number']
+      ..startDate = json['startDate']
+      ..finishDate = json['finishDate']
+      ..contractorName = json['contractorName']
+      ..currency = json['currency']
+      ..amount = json['amount']
+      ..vatIncluded = json['vatIncluded']
+      ..constructionObjectName = json['constructionObjectName']
+      ..constructionObjectTitleName = json['constructionObjectTitleName']
+      ..constructionObjectTitleCode = json['constructionObjectTitleCode']
+      ..description = json['description'];
   }
 
   String toJsonString() {
