@@ -82,6 +82,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
 
     var options = new DateRangePickerOptions()
       ..singleDatePicker = true
+      ..autoApply = true
       ..locale = locale;
 
     new DateRangePicker(_resourcesLoader, '[date-range-picker]', options);
