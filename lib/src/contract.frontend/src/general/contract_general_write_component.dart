@@ -44,8 +44,8 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
     breadcrumbInit();
   }
 
-  Future onSubmit() async {
-    await _service.general.editContract(model);
+  onChange() async {
+    await _service.general.updateContract(model);
   }
 
   void breadcrumbInit() {}

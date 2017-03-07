@@ -3,7 +3,7 @@
 
     <h4>Общая информация</h4>
     <div class="card mt-1">
-      <form (ngSubmit)="onSubmit()" #contractCreateForm="ngForm">
+      <form (change)="onChange()" #contractCreateForm="ngForm">
         <div class="card-block">
           <div class="row">
 
@@ -22,9 +22,9 @@
             <!-- /col -->
 
             <div class="col-md-8">
-              <div class="form-group has-success">
+              <div class="form-group">
                 <label for="name">Название</label>
-                <input type="text" class="form-control form-control-success" id="name"
+                <input type="text" class="form-control" id="name"
                        placeholder="Укажите название договора"
                        [(ngModel)]="model.name"
                        ngControl="name"
@@ -172,13 +172,13 @@
         </div>
         <!-- /card-block -->
 
-        <div class="card-footer">
+        <!--<div class="card-footer">
           <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Очистить форму</button>
           <button type="submit" [disabled]="!contractCreateForm.form.valid" class="btn btn-sm btn-primary pull-right">
             <i class="fa fa-file-text-o"></i> Сохранить
             договор
           </button>
-        </div>
+        </div>-->
         <!-- /card-footer -->
       </form>
     </div>

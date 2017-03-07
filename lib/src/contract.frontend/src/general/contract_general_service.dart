@@ -86,7 +86,7 @@ class ContractGeneralService {
 
     _logger.trace('Contract requested: $response.');
 
-    dynamic json = JSON.decode(response.body)['result'];
+    dynamic json = JSON.decode(response.body);
 
     return new ContractGeneralModel.fromJson(json);
   }
@@ -94,39 +94,38 @@ class ContractGeneralService {
   /**
    * Создание нового договора
    */
-  createContract(ContractGeneralModel model) async {
+  Future<String> createContract() async {
     if (!_initialized)
       await _init();
 
-    _logger.trace('Creating contract ${model.toJsonString()}');
+    Response response = null;
 
-    print(model.toJsonString());
+    _logger.trace('Creating contract');
 
     try {
-      await _http.post(
+      response = await _http.post(
         _backendUrl,
-        headers: {'Content-Type': 'application/json'},
-        body: model.toJsonString());
+        headers: {'Content-Type': 'application/json'});
 
-      _logger.trace('Contract ${model.name} created');
+      _logger.trace('Contract created');
 
     } catch (e) {
       print('Failed to create contract: $e');
 
       throw new Exception('Failed to create contract. Cause: $e');
     }
+
+    return response.body;
   }
 
   /**
    * Изменение данных договора
    */
-  editContract(ContractGeneralModel model) async {
+  updateContract(ContractGeneralModel model) async {
     if (!_initialized)
       await _init();
 
     _logger.trace('Editing contract ${model.toJsonString()}');
-
-    print(model.toJsonString());
 
     try {
       await _http.put(

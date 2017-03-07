@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
@@ -10,8 +11,7 @@ import 'package:json_object/json_object.dart';
 import '../../contracts_service/contracts_service.dart';
 
 @Component(
-  selector: 'contract-list',
-  providers: const [LoggerService, ConfigService, ContractsService])
+  selector: 'contract-list')
 @View(
   templateUrl: 'contract_list_component.html',
   directives: const [RouterLink])
@@ -62,5 +62,17 @@ class ContractListComponent implements OnInit, AfterViewInit {
     contract.description = '12';
 
     contracts.add(contract);*/
+  }
+
+  Future createContract() async {
+    //Instruction ci = _router.parent.parent.currentInstruction;
+    //String contractId = ci.component.params['id'];
+
+    String contractId = await _service.general.createContract();
+
+    _service.writeEnabled = true;
+    _router.parent.navigate(['Contract', {'id': contractId}]);
+
+    return null;
   }
 }
