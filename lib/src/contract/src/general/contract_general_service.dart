@@ -139,4 +139,25 @@ class ContractGeneralService {
       throw new Exception('Failed to edit contract. Cause: $e');
     }
   }
+
+  /**
+   * Удаление договора
+   */
+  deleteContract(String contractId) async {
+    if (!_initialized)
+      await _init();
+
+    _logger.trace('Removing contract. Url: $_backendUrl/$contractId');
+
+    try {
+      await _http.delete(
+        '$_backendUrl/$contractId',
+        headers: {'Content-Type': 'application/json'});
+      _logger.trace('Contract $contractId removed');
+    } catch (e) {
+      _logger.error('Failed to remove contract: $e');
+
+      throw new Exception('Failed to remove contract. Cause: $e');
+    }
+  }
 }

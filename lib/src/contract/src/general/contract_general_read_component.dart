@@ -15,7 +15,7 @@ import '../../../contracts_service/contracts_service.dart';
 @View(
   templateUrl: 'contract_general_read_component.html')
 class ContractGeneralReadComponent implements OnInit, AfterViewInit {
-  final ContractsService _db;
+  final ContractsService service;
   final ConfigService _config;
   final LoggerService _logger;
   final ResourcesLoaderService _resourcesLoader;
@@ -33,11 +33,15 @@ class ContractGeneralReadComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralReadComponent(this._config, this._logger, this._resourcesLoader, this._db, this._router);
+  ContractGeneralReadComponent(this._config, this._logger, this._resourcesLoader, this.service, this._router);
 
   @override
   ngOnInit() async {
     breadcrumbInit();
+  }
+
+  generalEdit() {
+    service.writeEnabled = !service.writeEnabled;
   }
 
   void breadcrumbInit() {}

@@ -1,4 +1,5 @@
 import 'contract_general_model.dart';
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
@@ -42,10 +43,11 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
   void breadcrumbInit() {}
 
   @override
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
-  generalEdit() {
-    service.writeEnabled = !service.writeEnabled;
+  Future removeContract() async {
+    await service.general.deleteContract(model.id);
+
+    return null;
   }
 }

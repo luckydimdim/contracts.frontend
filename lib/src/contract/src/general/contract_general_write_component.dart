@@ -19,7 +19,7 @@ import '../../../contracts_service/contracts_service.dart';
 @Component(selector: 'contract-general-write')
 @View(templateUrl: 'contract_general_write_component.html')
 class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
-  final ContractsService _service;
+  final ContractsService service;
   final ConfigService _config;
   final LoggerService _logger;
   final ResourcesLoaderService _resourcesLoader;
@@ -39,7 +39,11 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
     'ng-invalid': control.valid == false
   };
 
-  ContractGeneralWriteComponent(this._service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router, this._alert);
+  ContractGeneralWriteComponent(this.service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router, this._alert);
+
+  generalEdit() {
+    service.writeEnabled = !service.writeEnabled;
+  }
 
   @override
   ngOnInit() {
@@ -47,7 +51,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
   }
 
   onChange() async {
-    await _service.general.updateContract(model);
+    await service.general.updateContract(model);
     _alert.Info('Месседж!');
   }
 
