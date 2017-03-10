@@ -36,22 +36,6 @@ class ContractListComponent implements OnInit, AfterViewInit {
   @override
   ngAfterViewInit() async {
     contracts = await _service.general.getContracts();
-
-    /*var contract = new JsonObject();
-    contract.name = '1';
-    contract.number = '2';
-    contract.startDate = '3';
-    contract.finishDate = '4';
-    contract.contractorName = '5';
-    contract.currency = '6';
-    contract.amount = '7';
-    contract.vatIncluded = '8';
-    contract.constructionObjectName = '9';
-    contract.constructionObjectTitleName = '10';
-    contract.constructionObjectTitleCode = '11';
-    contract.description = '12';
-
-    contracts.add(contract);*/
   }
 
   Future createContract() async {
