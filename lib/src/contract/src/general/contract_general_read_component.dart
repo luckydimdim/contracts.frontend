@@ -43,6 +43,8 @@ class ContractGeneralReadComponent implements OnInit {
   }
 
   Future deleteContract() async {
+    print(model.id);
+
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);
