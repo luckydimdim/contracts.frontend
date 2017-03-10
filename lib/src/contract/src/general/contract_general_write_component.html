@@ -79,11 +79,14 @@
                   <label for="start-date">Дата заключения</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input date-range-picker type="text" class="form-control" id="start-date"
+                    <input daterangepicker type="text" class="form-control" id="start-date"
                            placeholder="Укажите дату заключения договора"
                            [(ngModel)]="model.startDate"
                            ngControl="startDate"
-                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
+                           #name="ngForm"
+                           [ngClass]="controlStateClasses(name)"
+                           [options]="dateRangePickerOptions"
+                           (selected)="dateSelected($event)" />
                   </div>
                 </div>
               </div>
@@ -95,11 +98,14 @@
                   <label for="finish-date">Дата окончания</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input date-range-picker type="text" class="form-control" id="finish-date"
-                           placeholder="Укажите дату окончания договора"
+                    <input daterangepicker type="text" class="form-control" id="finish-date"
+                           placeholder="Укажите дату заключения договора"
                            [(ngModel)]="model.finishDate"
                            ngControl="finishDate"
-                           #name="ngForm" [ngClass]="controlStateClasses(name)"/>
+                           #name="ngForm"
+                           [ngClass]="controlStateClasses(name)"
+                           [options]="dateRangePickerOptions"
+                           (selected)="dateSelected($event)" />
                   </div>
                 </div>
               </div>

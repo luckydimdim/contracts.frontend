@@ -8,14 +8,13 @@ import 'package:http/browser_client.dart';
 import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
-import 'package:daterangepicker/daterangepicker.dart';
 import 'contract_general_model.dart';
 import '../../../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-general-read')
 @View(
   templateUrl: 'contract_general_read_component.html')
-class ContractGeneralReadComponent implements OnInit, AfterViewInit {
+class ContractGeneralReadComponent implements OnInit {
   final ContractsService service;
   final ConfigService _config;
   final LoggerService _logger;
@@ -54,38 +53,4 @@ class ContractGeneralReadComponent implements OnInit, AfterViewInit {
   }
 
   void breadcrumbInit() {}
-
-  @override
-  ngAfterViewInit() {
-    var locale = new DateRangePickerLocale()
-      ..format = 'DD.MM.YYYY'
-      ..separator = ' - '
-      ..applyLabel = 'Применить'
-      ..cancelLabel = 'Отменить'
-      ..fromLabel = 'С'
-      ..toLabel = 'По'
-      ..customRangeLabel = 'Custom'
-      ..weekLabel = 'W'
-      ..firstDay = 1
-      ..daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-      ..monthNames = [
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь'];
-
-    var options = new DateRangePickerOptions()
-      ..singleDatePicker = true
-      ..locale = locale;
-
-    new DateRangePicker(_resourcesLoader, '[date-range-picker]', options);
-  }
 }
