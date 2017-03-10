@@ -16,7 +16,9 @@ import 'contract_general_model.dart';
 import '../../../contracts_service/contracts_service.dart';
 
 
-@Component(selector: 'contract-general-write')
+@Component(
+  selector: 'contract-general-write'
+)
 @View(templateUrl: 'contract_general_write_component.html')
 class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
   final ContractsService service;
@@ -45,6 +47,14 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
     service.writeEnabled = !service.writeEnabled;
   }
 
+  Future removeContract() async {
+    await service.general.deleteContract(model.id);
+
+    _router.parent.parent.navigate(['ContractList']);
+
+    return null;
+  }
+
   @override
   ngOnInit() {
     breadcrumbInit();
@@ -52,7 +62,7 @@ class ContractGeneralWriteComponent implements OnInit, AfterViewInit {
 
   onChange() async {
     await service.general.updateContract(model);
-    _alert.Info('Месседж!');
+    //_alert.Info('Месседж!');
   }
 
   void breadcrumbInit() {}

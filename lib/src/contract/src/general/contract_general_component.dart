@@ -44,10 +44,4 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() {}
-
-  Future removeContract() async {
-    await service.general.deleteContract(model.id);
-
-    return null;
-  }
 }
