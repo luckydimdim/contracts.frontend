@@ -19,8 +19,7 @@ import '../../../contracts_service/contracts_service.dart';
 
 
 @Component(
-  selector: 'contract-general-write'
-)
+  selector: 'contract-general-write')
 @View(
   templateUrl: 'contract_general_write_component.html',
   directives: const [DateRangePickerDirective])
@@ -57,34 +56,21 @@ class ContractGeneralWriteComponent implements OnInit {
       ..toLabel = 'По'
       ..customRangeLabel = 'Custom'
       ..weekLabel = 'W'
+      ..firstDay = 1
       ..daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-      ..monthNames = [
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь'
-      ]
-      ..firstDay = 1;
+      ..monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
     dateRangePickerOptions = new DateRangePickerOptions()
       ..singleDatePicker = true
-      //..startDate = '02.03.2017'
       ..locale = locale;
   }
 
-  generalEdit() {
+  toggleWriteMode() {
     service.writeEnabled = !service.writeEnabled;
   }
 
-  Future removeContract() async {
+  Future deleteContract() async {
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);
@@ -104,12 +90,24 @@ class ContractGeneralWriteComponent implements OnInit {
 
   void breadcrumbInit() {}
 
-  Future dateSelected(Map<String, DateTime> dates) async {
+  Future startDateSelected(Map<String, DateTime> dates) async {
 
     var formatter = new DateFormat('dd.MM.yyyy');
     String formatted = formatter.format(dates['start']);
 
     model.startDate = formatted;
+
+    await onChange();
+
+    return null;
+  }
+
+  Future finishDateSelected(Map<String, DateTime> dates) async {
+
+    var formatter = new DateFormat('dd.MM.yyyy');
+    String formatted = formatter.format(dates['start']);
+
+    model.finishDate = formatted;
 
     await onChange();
 

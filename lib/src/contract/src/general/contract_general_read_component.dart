@@ -40,11 +40,11 @@ class ContractGeneralReadComponent implements OnInit {
     breadcrumbInit();
   }
 
-  generalEdit() {
+  toggleWriteMode() {
     service.writeEnabled = !service.writeEnabled;
   }
 
-  Future removeContract() async {
+  Future deleteContract() async {
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);

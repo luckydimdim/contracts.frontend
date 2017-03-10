@@ -5,7 +5,7 @@
         <nav>
           <ul class="nav" sticky>
             <li class="nav-item">
-              <a class="nav-link" [cmRouterLink]="['ContractGeneral']"><i class="fa fa-object-group"></i> Общая
+              <a class="nav-link" (click)="service.writeEnabled = false" [cmRouterLink]="['ContractGeneral']"><i class="fa fa-object-group"></i> Общая
                 информация
               </a>
             </li>

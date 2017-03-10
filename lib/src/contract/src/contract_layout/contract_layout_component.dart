@@ -3,6 +3,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:angular_utils/directives.dart';
+import 'package:contracts/contracts_service.dart';
 
 @Component(
   selector: 'contract-layout')
@@ -12,8 +13,9 @@ import 'package:angular_utils/directives.dart';
 class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   final Router _router;
   final RouteParams _routeParams;
+  final ContractsService service;
 
-  ContractLayoutComponent(this._router, this._routeParams);
+  ContractLayoutComponent(this._router, this._routeParams, this.service);
 
   @override
   void ngOnInit() {
@@ -29,7 +31,11 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
    * Фиксация боковой панели
    */
   void sticky() {
-    var width = querySelector('[sticky]').getComputedStyle().width;
+    var pane = querySelector('[sticky]');
+    if (pane == null)
+      return;
+
+    var width = pane.getComputedStyle().width;
 
     // При ресайзе окна ширина панели
     // подстраивается под ширину родительского элемента
