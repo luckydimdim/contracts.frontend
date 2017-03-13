@@ -37,7 +37,7 @@
 
       <h4>{{contractName.value}}&nbsp;{{contractNumber.value !== '' ? '№'+ contractNumber.value : ''}}</h4>
       <div class="card mt-1">
-        <form (change)="onChange()" #contractCreateForm="ngForm">
+        <form (change)="onChange(contractCreateForm)" #contractCreateForm="ngForm">
           <div class="card-block">
             <div class="row">
 

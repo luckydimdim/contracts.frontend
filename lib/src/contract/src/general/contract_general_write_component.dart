@@ -83,9 +83,11 @@ class ContractGeneralWriteComponent implements OnInit {
     breadcrumbInit();
   }
 
-  onChange() async {
-    await service.general.updateContract(model);
-    //_alert.Info('Месседж!');
+  onChange(NgForm ngForm) async {
+
+    if (ngForm == null || ngForm.form.status == 'VALID') {
+      await service.general.updateContract(model);
+    }
   }
 
   void breadcrumbInit() {}
@@ -97,7 +99,7 @@ class ContractGeneralWriteComponent implements OnInit {
 
     model.startDate = formatted;
 
-    await onChange();
+    await onChange(null);
 
     return null;
   }
@@ -109,7 +111,7 @@ class ContractGeneralWriteComponent implements OnInit {
 
     model.finishDate = formatted;
 
-    await onChange();
+    await onChange(null);
 
     return null;
   }
