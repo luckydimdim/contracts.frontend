@@ -1,10 +1,6 @@
-import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'dart:html';
 import 'package:resources_loader/resources_loader.dart';
-import 'package:grid/JsObjectConverter.dart';
-import 'package:grid/jq_grid.dart';
 
 @Component(
     selector: 'contract-works',
@@ -19,14 +15,12 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
-  jqGrid _worksGrid;
 
   ContractMaterialsComponent(this._router, this._resourcesLoaderService) {}
 
   @override
   void ngOnInit() {
     breadcrumbInit();
-    materialsGridInit();
   }
 
   // import 'dart:html';
@@ -34,51 +28,4 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
 
   @override
   void ngOnDestroy() {}
-
-  Future materialsGridInit() async {
-    var columns = new List<Column>();
-
-    columns.add(new Column()
-      ..dataField = 'Name'
-      ..text = 'Наименование материалов'
-      ..pinned = true);
-
-    columns.add(new Column()
-      ..dataField = 'Unit'
-      ..text = 'Ед. изм.');
-    columns.add(new Column()
-      ..dataField = 'Amount'
-      ..text = 'Количество');
-    columns.add(new Column()
-      ..dataField = 'Currency'
-      ..text = 'Валюта');
-    columns.add(new Column()
-      ..dataField = 'Cost'
-      ..text = 'Стоимость');
-    columns.add(new Column()
-      ..dataField = 'UnitCost'
-      ..text = 'Стоимость ед измерения');
-    columns.add(new Column()
-      ..dataField = 'DeliveryDate'
-      ..text = 'Дата поставки');
-
-    var hierarchy = new Hierarchy()..root = 'children';
-
-    var source = new SourceOptions()
-      ..url = 'packages/contract/src/materials/materials.json'
-      ..id = 'recid'
-      ..hierarchy = hierarchy
-      ..dataType = 'json';
-
-    var options = new GridOptions()
-      ..checkboxes = false
-      ..source = source
-      ..height = null
-      ..columns = columns;
-
-    _worksGrid = new jqGrid(this._resourcesLoaderService, "#materialsGrid",
-        JsObjectConverter.convert(options));
-
-    await _worksGrid.Init();
-  }
 }

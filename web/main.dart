@@ -15,7 +15,6 @@ import 'package:angular_utils/cm_router_link.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:master_layout/master_layout_component.dart';
 import 'package:contracts/contracts_component.dart';
-import 'package:contracts/src/contracts_service/in_memory_data_service.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
 

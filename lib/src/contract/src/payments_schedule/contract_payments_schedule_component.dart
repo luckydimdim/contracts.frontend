@@ -1,6 +1,5 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'dart:html';
 
 @Component(
     selector: 'contract-payments-schedule',

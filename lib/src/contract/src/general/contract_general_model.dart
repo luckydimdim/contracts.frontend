@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:json_object/json_object.dart';
-
 /**
  * Модель представления договора
  */

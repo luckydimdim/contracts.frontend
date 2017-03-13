@@ -3,8 +3,6 @@ import 'package:angular2/common.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import 'package:http/browser_client.dart';
-
 import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
 import 'package:resources_loader/resources_loader.dart';
