@@ -50,8 +50,7 @@
                          autocomplete="off"
                          #contractNumber
 
-                         #numberControl="ngForm"
-                         [ngClass]="controlStateClasses(numberControl)"
+                         #numberControl="ngForm"                         
                          required
                          maxlength="10"
                          [class.form-control-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
@@ -204,7 +203,7 @@
                 <div class="form-group"
                      [class.has-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
                      [class.has-success]="currencyControl.valid && currencyControl.touched">
-                  <label for="amount">Валюта</label>
+                  <label for="currency">Валюта</label>
                   <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора"
                          autocomplete="off"
                          [(ngModel)]="model.currency"

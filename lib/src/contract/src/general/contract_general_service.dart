@@ -10,7 +10,7 @@ import 'package:logger/logger_service.dart';
 import '../general/contract_general_model.dart';
 
 /**
- * Работа с БД для раздела "Договоры / Общая информация"
+ * Работа с web-сервисом. Раздел "Договоры / Общая информация"
  */
 @Injectable()
 class ContractGeneralService {
@@ -48,9 +48,7 @@ class ContractGeneralService {
 
     try {
       response = await _http.get(
-        /*'http://localhost:5000/contracts',*/
         _backendUrl,
-        /*_config.helper.contractsUrl,*/
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract list: $e');
@@ -64,19 +62,19 @@ class ContractGeneralService {
   }
 
   /**
-   * Получение договора по его id
+   * Получение одного договора по его id
    */
-  Future<ContractGeneralModel> getContract(String contractId) async {
+  Future<ContractGeneralModel> getContract(String id) async {
     if (!_initialized)
       await _init();
 
     Response response = null;
 
-    _logger.trace('Requesting contract. Url: $_backendUrl/$contractId');
+    _logger.trace('Requesting contract. Url: $_backendUrl/$id');
 
     try {
       response = await _http.get(
-        '$_backendUrl/$contractId',
+        '$_backendUrl/$id',
         headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract general: $e');
@@ -125,35 +123,35 @@ class ContractGeneralService {
     if (!_initialized)
       await _init();
 
-    _logger.trace('Editing contract ${model.toJsonString()}');
+    _logger.trace('Updating contract ${model.toJsonString()}');
 
     try {
       await _http.put(
         _backendUrl,
         headers: {'Content-Type': 'application/json'},
         body: model.toJsonString());
-      _logger.trace('Contract ${model.name} edited');
+      _logger.trace('Contract ${model.name} successfuly updated');
     } catch (e) {
-      _logger.error('Failed to edit contract: $e');
+      _logger.error('Failed to update contract: $e');
 
-      throw new Exception('Failed to edit contract. Cause: $e');
+      throw new Exception('Failed to update contract. Cause: $e');
     }
   }
 
   /**
    * Удаление договора
    */
-  deleteContract(String contractId) async {
+  deleteContract(String id) async {
     if (!_initialized)
       await _init();
 
-    _logger.trace('Removing contract. Url: $_backendUrl/$contractId');
+    _logger.trace('Removing contract. Url: $_backendUrl/$id');
 
     try {
       await _http.delete(
-        '$_backendUrl/$contractId',
+        '$_backendUrl/$id',
         headers: {'Content-Type': 'application/json'});
-      _logger.trace('Contract $contractId removed');
+      _logger.trace('Contract $id removed');
     } catch (e) {
       _logger.error('Failed to remove contract: $e');
 
