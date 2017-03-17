@@ -21,6 +21,7 @@ dependencies:
       git: http://cm-ylng-msk-04/git/alert.frontend.git
     grid:
       git: http://cm-ylng-msk-04/git/grid.frontend.git
+      path: ../grid.frontend
     resources_loader:
       git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
     angular_utils:
@@ -31,7 +32,8 @@ dependencies:
       git: http://cm-ylng-msk-04/git/config.frontend.git
     daterangepicker:
       git: http://cm-ylng-msk-04/git/daterangepicker.frontend.git
-
+    call_off_order:
+      git:  http://cm-ylng-msk-04/git/call_off_order.frontend.git
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test
     yaml: ^2.1.12                         # A parser for YAML. https://pub.dartlang.org/packages/yaml

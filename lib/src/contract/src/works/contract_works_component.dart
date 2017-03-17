@@ -1,8 +1,24 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
+
 import 'package:resources_loader/resources_loader.dart';
+import 'package:call_off_order/call_off_service.dart';
+import 'package:call_off_order/call_off_order_component.dart';
+import 'package:grid/datasource.dart';
+import 'package:grid/grid_component.dart';
+import 'package:grid/column_component.dart';
+import 'package:grid/grid_template_directive.dart';
+
+
 @Component(
-    selector: 'contract-works', templateUrl: 'contract_works_component.html')
+    selector: 'contract-works',
+    templateUrl: 'contract_works_component.html',
+    providers: const[CallOffService],
+directives: const [CallOffOrderComponent, GridComponent, GridTemplateDirective, ColumnComponent]
+)
 class ContractWorksComponent implements OnInit, OnDestroy {
   static const String route_name = 'ContractWorks';
   static const String route_path = 'works';
@@ -13,17 +29,53 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
+  final CallOffService _callOffService;
 
-  ContractWorksComponent(this._router, this._resourcesLoaderService) {}
+  @ViewChild(GridComponent)
+  GridComponent grid;
+
+  DataSource worksDataSource = new DataSource(new List());
+
+  ContractWorksComponent(this._router, this._resourcesLoaderService,
+      this._callOffService) {}
 
   void breadcrumbInit() {}
 
   @override
-  void ngOnInit() {
+  Future ngOnInit() async {
     breadcrumbInit();
+
+    await loadCallOffOrders();
   }
 
   @override
   void ngOnDestroy() {}
 
- }
+  Future loadCallOffOrders() async {
+    var orders = await _callOffService.getCallOfOrders();
+
+    var result = new List<dynamic>();
+
+    for (var order in orders) {
+      result.add(order.toMap());
+    }
+
+    worksDataSource = new DataSource(result);
+  }
+
+  Future createWork() async {
+
+    String id = await _callOffService.createCallOffOrder();
+
+    var createdCallOff = await _callOffService.getCallOffOrder(id);
+
+    var rowData = createdCallOff.toMap();
+
+    worksDataSource.data.insert(0, rowData);
+
+    grid.toggleRow(rowData);
+
+    return null;
+  }
+
+}
