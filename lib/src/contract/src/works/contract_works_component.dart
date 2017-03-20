@@ -34,7 +34,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   @ViewChild(GridComponent)
   GridComponent grid;
 
-  DataSource worksDataSource = new DataSource(new List());
+  var worksDataSource = new DataSource(new List());
 
   ContractWorksComponent(this._router, this._resourcesLoaderService,
       this._callOffService) {}
@@ -60,7 +60,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       result.add(order.toMap());
     }
 
-    worksDataSource = new DataSource(result);
+    worksDataSource = new DataSource(result)
+      ..primaryField = 'id';
   }
 
   Future createWork() async {
