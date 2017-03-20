@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
-	<h4>Работы</h4>
- 
-	<button type="button" class="btn btn-outline-success pull-right" (click)="createWork()"><i class="fa fa-magic"></i>&nbsp; Создать</button>
+	<h4 class="float-xs-left">Работы</h4>
+
+	<span class="btn btn-sm btn-info float-xs-right" (click)="createWork()"> Добавить наряд-заказ <i class="fa fa-plus-circle"></i></span>
 	<div>
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]='true'>
 			<grid-column [expander]='true'></grid-column>

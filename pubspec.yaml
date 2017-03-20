@@ -20,7 +20,7 @@ dependencies:
     alert:
       git: http://cm-ylng-msk-04/git/alert.frontend.git
     grid:
-      git: http://cm-ylng-msk-04/git/grid.frontend.git
+      #git: http://cm-ylng-msk-04/git/grid.frontend.git
       path: ../grid.frontend
     resources_loader:
       git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
