@@ -31,6 +31,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   final ResourcesLoaderService _resourcesLoaderService;
   final CallOffService _callOffService;
 
+  String contractId;
+
   @ViewChild(GridComponent)
   GridComponent grid;
 
@@ -45,6 +47,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   Future ngOnInit() async {
     breadcrumbInit();
 
+    Instruction ci = _router.parent.parent.currentInstruction;
+    contractId = ci.component.params['id'];
+
     await loadCallOffOrders();
   }
 
@@ -52,7 +57,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   void ngOnDestroy() {}
 
   Future loadCallOffOrders() async {
-    var orders = await _callOffService.getCallOfOrders();
+    var orders = await _callOffService.getCallOffOrders(contractId);
 
     var result = new List<dynamic>();
 
@@ -65,6 +70,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   }
 
   Future createWork() async {
+
+    await loadCallOffOrders();
 
     String id = await _callOffService.createCallOffOrder();
 

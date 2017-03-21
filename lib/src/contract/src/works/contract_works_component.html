@@ -4,12 +4,18 @@
 	<span class="btn btn-sm btn-info float-xs-right" (click)="createWork()"> Добавить наряд-заказ <i class="fa fa-plus-circle"></i></span>
 	<div>
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]='true'>
-			<grid-column [expander]='true'></grid-column>
-			<grid-column header='test col 1' field='id'></grid-column>
-			<grid-column header='test col 2' field='name'></grid-column>
+			<grid-column [expander]='true' width="1%"></grid-column>
+			<grid-column header='Номер' field='number' width="10%"></grid-column>
+			<grid-column header='ФИО'  width="50%"></grid-column>
+			<grid-column header='Наименование' field='name' width="20%"></grid-column>
+			<grid-column header='Период' width="19%">
+				<template let-col="column" let-callOff="rowData" grid-template="body">
+					<span>01.01.2000 - 01.02.2001</span>
+				</template>
+			</grid-column>
 			
-			<template let-i="index" let-rowApi="rowApi" let-rowData="rowData" grid-template="rowexpansion" >
-				<call-off-order [id]="rowData['id']" (callOfChanged)="rowApi.update($event)"></call-off-order>
+			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion" >
+				<call-off-order [id]="callOff['id']" [contractId]="contractId" (callOfChanged)="rowApi.update($event)"></call-off-order>
 			</template>
 		</grid>
 	</div>
