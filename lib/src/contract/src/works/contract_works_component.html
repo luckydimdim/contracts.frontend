@@ -6,7 +6,7 @@
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]='true'>
 			<grid-column [expander]='true' width="1%"></grid-column>
 			<grid-column header='Номер' field='number' width="10%"></grid-column>
-			<grid-column header='ФИО'  width="50%"></grid-column>
+			<grid-column header='ФИО' field='assignee' width="50%"></grid-column>
 			<grid-column header='Наименование' field='name' width="20%"></grid-column>
 			<grid-column header='Период' width="19%">
 				<template let-col="column" let-callOff="rowData" grid-template="body">

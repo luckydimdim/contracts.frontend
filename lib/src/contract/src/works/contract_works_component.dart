@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
+import 'package:call_off_order/src/call_off_order.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
@@ -57,11 +58,11 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   void ngOnDestroy() {}
 
   Future loadCallOffOrders() async {
-    var orders = await _callOffService.getCallOffOrders(contractId);
+    List<CallOffOrder> orders = await _callOffService.getCallOffOrders(contractId);
 
     var result = new List<dynamic>();
 
-    for (var order in orders) {
+    for (CallOffOrder order in orders) {
       result.add(order.toMap());
     }
 
