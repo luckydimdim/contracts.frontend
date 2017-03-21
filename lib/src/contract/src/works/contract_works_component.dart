@@ -52,6 +52,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     contractId = ci.component.params['id'];
 
     await loadCallOffOrders();
+
+    return null;
   }
 
   @override
@@ -59,6 +61,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   Future loadCallOffOrders() async {
     List<CallOffOrder> orders = await _callOffService.getCallOffOrders(contractId);
+
+    print(orders.length);
 
     var result = new List<dynamic>();
 
@@ -68,6 +72,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     worksDataSource = new DataSource(result)
       ..primaryField = 'id';
+
+    return null;
   }
 
   Future createWork() async {
