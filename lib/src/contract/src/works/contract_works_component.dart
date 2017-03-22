@@ -18,7 +18,12 @@ import 'package:grid/grid_template_directive.dart';
     selector: 'contract-works',
     templateUrl: 'contract_works_component.html',
     providers: const[CallOffService],
-directives: const [CallOffOrderComponent, GridComponent, GridTemplateDirective, ColumnComponent]
+    directives: const [
+      CallOffOrderComponent,
+      GridComponent,
+      GridTemplateDirective,
+      ColumnComponent
+    ]
 )
 class ContractWorksComponent implements OnInit, OnDestroy {
   static const String route_name = 'ContractWorks';
@@ -60,7 +65,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   void ngOnDestroy() {}
 
   Future loadCallOffOrders() async {
-    List<CallOffOrder> orders = await _callOffService.getCallOffOrders(contractId);
+    List<CallOffOrder> orders = await _callOffService.getCallOffOrders(
+        contractId);
 
     print(orders.length);
 
@@ -78,9 +84,10 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   Future createWork() async {
 
-    await loadCallOffOrders();
+    var newOrder = new CallOffOrder()
+      ..contractId = contractId;
 
-    String id = await _callOffService.createCallOffOrder();
+    String id = await _callOffService.createCallOffOrder(newOrder);
 
     var createdCallOff = await _callOffService.getCallOffOrder(id);
 
@@ -89,6 +96,14 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     worksDataSource.data.insert(0, rowData);
 
     grid.toggleRow(rowData);
+
+    return null;
+  }
+
+  Future deleteWork(String id) async {
+    await _callOffService.deleteCallOfOrder(id);
+
+    worksDataSource.data.removeWhere((item) => item['id'] == id);
 
     return null;
   }

@@ -1,16 +1,21 @@
 <div class="animated fadeIn">
 	<h4 class="float-xs-left">Работы</h4>
-
 	<span class="btn btn-sm btn-info float-xs-right" (click)="createWork()"> Добавить наряд-заказ <i class="fa fa-plus-circle"></i></span>
+	
 	<div>
-		<grid #grid [dataSource]="worksDataSource" [expandableRows]='true'>
-			<grid-column [expander]='true' width="1%"></grid-column>
-			<grid-column header='Номер' field='number' width="10%"></grid-column>
-			<grid-column header='ФИО' field='assignee' width="50%"></grid-column>
-			<grid-column header='Наименование' field='name' width="20%"></grid-column>
-			<grid-column header='Период' width="19%">
-				<template let-col="column" let-callOff="rowData" grid-template="body">
+		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true">
+			<grid-column [expander]="true" width="1%"></grid-column>
+			<grid-column header="Номер" field="number" width="10%"></grid-column>
+			<grid-column header="ФИО" field="assignee" width="50%"></grid-column>
+			<grid-column header="Наименование" field="name" width="20%"></grid-column>
+			<grid-column header="Период" width="19%">
+				<template let-callOff="rowData" grid-template="body">
 					<span>{{callOff['startDate']}} - {{callOff['finishDate']}}</span>
+				</template>
+			</grid-column>
+			<grid-column width="1%">
+				<template let-callOff="rowData" grid-template="body">
+					<span (click)="deleteWork(callOff['id'])">x</span>
 				</template>
 			</grid-column>
 			
@@ -19,8 +24,4 @@
 			</template>
 		</grid>
 	</div>
-
 </div>
-
-
-<!--(callOfChanged)="rowApi.update($event)"-->
