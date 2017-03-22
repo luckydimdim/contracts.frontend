@@ -40,14 +40,19 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     // При ресайзе окна ширина панели
     // подстраивается под ширину родительского элемента
     window.onResize.listen((Event e) {
-      width = querySelector('[sticky]').parent.clientWidth;
+      var stickyElement = querySelector('[sticky]');
 
-      var paddingLeft = querySelector('[sticky]')
+      if (stickyElement == null)
+        return;
+
+      width = stickyElement.parent.clientWidth;
+
+      var paddingLeft = stickyElement
           .parent
           .getComputedStyle()
           .paddingLeft
           .replaceAll('px', '');
-      var paddingRight = querySelector('[sticky]')
+      var paddingRight = stickyElement
           .parent
           .getComputedStyle()
           .paddingRight
@@ -58,7 +63,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
       width = width - pl - pr;
 
-      querySelector('[sticky]').style.width = width.toString() + 'px';
+      stickyElement.style.width = width.toString() + 'px';
     });
 
     // При прокрутке окна устанавливается position: fixed
@@ -66,6 +71,10 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       if (window.pageXOffset > 0) return;
 
       var div = querySelector('[sticky]') as HtmlElement;
+
+      if (div == null)
+        return;
+
       if (window.pageYOffset > 0) {
         div.style.position = 'fixed';
         div.style.width = width.toString();
