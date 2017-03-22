@@ -15,7 +15,7 @@
 			</grid-column>
 			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
-					<span (click)="deleteWork(callOff['id'])">x</span>
+					<a class="fa fa-trash-o" (click)="deleteWork(callOff['id'])" href="javascript:void(0);"></a>
 				</template>
 			</grid-column>
 			
