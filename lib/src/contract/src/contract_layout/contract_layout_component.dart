@@ -68,7 +68,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       var div = querySelector('[sticky]') as HtmlElement;
       if (window.pageYOffset > 0) {
         div.style.position = 'fixed';
-        div.style.width = width;
+        div.style.width = width.toString();
       } else {
         div.style.position = 'relative';
       }
