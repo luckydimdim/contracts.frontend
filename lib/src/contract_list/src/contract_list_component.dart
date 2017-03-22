@@ -4,6 +4,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:config/config_service.dart';
+import '../../contract/src/general/contract_general_model.dart';
 import 'package:logger/logger_service.dart';
 
 import 'package:json_object/json_object.dart';
@@ -41,7 +42,9 @@ class ContractListComponent implements OnInit, AfterViewInit {
     //Instruction ci = _router.parent.parent.currentInstruction;
     //String contractId = ci.component.params['id'];
 
-    String contractId = await _service.general.createContract();
+    var newContractModel = new ContractGeneralModel();
+
+    String contractId = await _service.general.createContract(newContractModel);
 
     _service.writeEnabled = true;
     _router.parent.navigate(['Contract', {'id': contractId}]);

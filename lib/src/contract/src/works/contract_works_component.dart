@@ -5,6 +5,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:call_off_order/src/call_off_order.dart';
+import '../../src/general/contract_general_model.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
@@ -12,7 +13,7 @@ import 'package:grid/datasource.dart';
 import 'package:grid/grid_component.dart';
 import 'package:grid/column_component.dart';
 import 'package:grid/grid_template_directive.dart';
-
+import '../../../contracts_service/contracts_service.dart';
 
 @Component(
     selector: 'contract-works',
@@ -36,8 +37,10 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
   final CallOffService _callOffService;
+  final ContractsService _contractsService;
 
   String contractId;
+  ContractGeneralModel _contractModel;
 
   @ViewChild(GridComponent)
   GridComponent grid;
@@ -45,7 +48,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   var worksDataSource = new DataSource(new List());
 
   ContractWorksComponent(this._router, this._resourcesLoaderService,
-      this._callOffService) {}
+      this._callOffService, this._contractsService) {}
 
   void breadcrumbInit() {}
 
@@ -58,6 +61,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     await loadCallOffOrders();
 
+    _contractModel = await _contractsService.general.getContract(contractId);
+
     return null;
   }
 
@@ -67,8 +72,6 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   Future loadCallOffOrders() async {
     List<CallOffOrder> orders = await _callOffService.getCallOffOrders(
         contractId);
-
-    print(orders.length);
 
     var result = new List<dynamic>();
 
@@ -84,7 +87,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   Future createWork() async {
 
-    var newOrder = new CallOffOrder()
+    var newOrder = new CallOffOrder(_contractModel.templateSysName)
       ..contractId = contractId;
 
     String id = await _callOffService.createCallOffOrder(newOrder);

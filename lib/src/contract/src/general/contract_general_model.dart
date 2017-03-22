@@ -11,11 +11,12 @@ class ContractGeneralModel {
   String contractorName;
   String currency;
   String amount;
-  bool vatIncluded;
+  bool vatIncluded = false;
   String constructionObjectName;
   String constructionObjectTitleName;
   String constructionObjectTitleCode;
   String description;
+  String templateSysName = 'default';
 
   ContractGeneralModel();
 
@@ -33,6 +34,7 @@ class ContractGeneralModel {
       ..constructionObjectName = json['constructionObjectName']
       ..constructionObjectTitleName = json['constructionObjectTitleName']
       ..constructionObjectTitleCode = json['constructionObjectTitleCode']
+      ..templateSysName = json['templateSysName']
       ..description = json['description'];
   }
 
@@ -52,6 +54,7 @@ class ContractGeneralModel {
     map['constructionObjectTitleName'] = constructionObjectTitleName;
     map['constructionObjectTitleCode'] = constructionObjectTitleCode;
     map['description'] = description;
+    map['templateSysName'] = templateSysName;
 
     return JSON.encode(map);
   }
