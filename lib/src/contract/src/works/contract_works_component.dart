@@ -40,6 +40,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   final ContractsService _contractsService;
 
   String contractId;
+  String callOffTemplateSysName;
   ContractGeneralModel _contractModel;
 
   @ViewChild(GridComponent)
@@ -62,6 +63,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     await loadCallOffOrders();
 
     _contractModel = await _contractsService.general.getContract(contractId);
+
+    // TODO: Переименовать
+    callOffTemplateSysName = _contractModel.templateSysName;
 
     return null;
   }
@@ -86,12 +90,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   }
 
   Future createWork() async {
+    String id = await _callOffService.createCallOffOrder(contractId, callOffTemplateSysName);
 
-    var newOrder = new CallOffOrder(_contractModel.templateSysName)
-      ..contractId = contractId;
-
-    String id = await _callOffService.createCallOffOrder(newOrder);
-
+    // TODO: совместить 2 запроса
     var createdCallOff = await _callOffService.getCallOffOrder(id);
 
     var rowData = createdCallOff.toMap();
