@@ -9,9 +9,12 @@ import 'contract_general_read_component.dart';
 import '../../../contracts_service/contracts_service.dart';
 
 @Component(
-  selector: 'contract-general',
-  templateUrl: 'contract_general_component.html',
-  directives: const[ContractGeneralWriteComponent, ContractGeneralReadComponent])
+    selector: 'contract-general',
+    templateUrl: 'contract_general_component.html',
+    directives: const [
+      ContractGeneralWriteComponent,
+      ContractGeneralReadComponent
+    ])
 class ContractGeneralComponent implements OnInit, AfterViewInit {
   static const String route_name = 'ContractGeneral';
   static const String route_path = 'general';
@@ -27,7 +30,8 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
   final Router _router;
   ContractGeneralModel model = new ContractGeneralModel();
 
-  ContractGeneralComponent(this._logger, this._routeParams, this.service, this._router);
+  ContractGeneralComponent(
+      this._logger, this._routeParams, this.service, this._router);
 
   @override
   ngOnInit() async {

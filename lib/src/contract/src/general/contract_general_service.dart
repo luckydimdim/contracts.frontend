@@ -31,7 +31,7 @@ class ContractGeneralService {
     String backendContracts = await _config.Get<String>('backend_contracts');
 
     _backendUrl =
-    '$backendScheme://$backendBaseUrl:$backendPort/$backendContracts';
+        '$backendScheme://$backendBaseUrl:$backendPort/$backendContracts';
 
     _initialized = true;
   }
@@ -40,17 +40,15 @@ class ContractGeneralService {
    * Получение списка договоров
    */
   Future<List<JsonObject>> getContracts() async {
-    if (!_initialized)
-      await _init();
+    if (!_initialized) await _init();
 
     _logger.trace('Requesting contracts. Url: ${_config.helper.contractsUrl}');
 
     Response response = null;
 
     try {
-      response = await _http.get(
-          _backendUrl,
-          headers: {'Content-Type': 'application/json'});
+      response = await _http
+          .get(_backendUrl, headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract list: $e');
 
@@ -66,16 +64,14 @@ class ContractGeneralService {
    * Получение одного договора по его id
    */
   Future<ContractGeneralModel> getContract(String id) async {
-    if (!_initialized)
-      await _init();
+    if (!_initialized) await _init();
 
     Response response = null;
 
     _logger.trace('Requesting contract. Url: $_backendUrl/$id');
 
     try {
-      response = await _http.get(
-          '$_backendUrl/$id',
+      response = await _http.get('$_backendUrl/$id',
           headers: {'Content-Type': 'application/json'});
     } catch (e) {
       _logger.error('Failed to get contract general: $e');
@@ -94,16 +90,14 @@ class ContractGeneralService {
    * Создание нового договора
    */
   Future<String> createContract(ContractGeneralModel model) async {
-    if (!_initialized)
-      await _init();
+    if (!_initialized) await _init();
 
     Response response = null;
 
     _logger.trace('Creating contract ${model.toJsonString()}');
 
     try {
-      response = await _http.post(
-          _backendUrl,
+      response = await _http.post(_backendUrl,
           body: model.toJsonString(),
           headers: {'Content-Type': 'application/json'});
 
@@ -121,14 +115,12 @@ class ContractGeneralService {
    * Изменение данных договора
    */
   updateContract(ContractGeneralModel model) async {
-    if (!_initialized)
-      await _init();
+    if (!_initialized) await _init();
 
     _logger.trace('Updating contract ${model.toJsonString()}');
 
     try {
-      await _http.put(
-          _backendUrl,
+      await _http.put(_backendUrl,
           headers: {'Content-Type': 'application/json'},
           body: model.toJsonString());
       _logger.trace('Contract ${model.name} successfuly updated');
@@ -143,14 +135,12 @@ class ContractGeneralService {
    * Удаление договора
    */
   deleteContract(String id) async {
-    if (!_initialized)
-      await _init();
+    if (!_initialized) await _init();
 
     _logger.trace('Removing contract. Url: $_backendUrl/$id');
 
     try {
-      await _http.delete(
-          '$_backendUrl/$id',
+      await _http.delete('$_backendUrl/$id',
           headers: {'Content-Type': 'application/json'});
       _logger.trace('Contract $id removed');
     } catch (e) {

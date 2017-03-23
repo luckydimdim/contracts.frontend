@@ -31,5 +31,4 @@ class MaterialsToBudgetBindingComponent implements OnInit, OnDestroy {
 
   @override
   void ngOnDestroy() {}
-
 }

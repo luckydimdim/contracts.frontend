@@ -10,7 +10,7 @@ import 'package:contracts/src/contracts_service/contracts_service.dart';
     selector: 'contracts',
     templateUrl: 'contracts_component.html',
     directives: const [RouterOutlet],
-    providers: const[RouteParams, ContractsService, ContractGeneralService])
+    providers: const [RouteParams, ContractsService, ContractGeneralService])
 @RouteConfig(const [
   const Route(
       path: '',

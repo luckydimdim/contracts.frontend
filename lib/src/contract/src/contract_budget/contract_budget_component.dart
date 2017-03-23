@@ -35,13 +35,9 @@ class ContractBudgetComponent implements OnInit, OnDestroy {
   @override
   void ngOnInit() {
     breadcrumbInit();
-
   }
 
-  void render(dynamic e) {
-
-  }
-
+  void render(dynamic e) {}
 
   @override
   void ngOnDestroy() {}

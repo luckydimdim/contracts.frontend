@@ -30,8 +30,4 @@ class MaterialsToTitleBindingComponent implements OnInit, OnDestroy {
 
   @override
   void ngOnDestroy() {}
-
-
-
-
 }

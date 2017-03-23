@@ -10,8 +10,7 @@ import 'contract_general_model.dart';
 import '../../../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-general-read')
-@View(
-  templateUrl: 'contract_general_read_component.html')
+@View(templateUrl: 'contract_general_read_component.html')
 class ContractGeneralReadComponent implements OnInit {
   final ContractsService service;
   final ConfigService _config;
@@ -23,15 +22,16 @@ class ContractGeneralReadComponent implements OnInit {
   ContractGeneralModel model = new ContractGeneralModel();
 
   Map<String, bool> controlStateClasses(NgControl control) => {
-    'ng-dirty': control.dirty ?? false,
-    'ng-pristine': control.pristine ?? false,
-    'ng-touched': control.touched ?? false,
-    'ng-untouched': control.untouched ?? false,
-    'ng-valid': control.valid ?? false,
-    'ng-invalid': control.valid == false
-  };
+        'ng-dirty': control.dirty ?? false,
+        'ng-pristine': control.pristine ?? false,
+        'ng-touched': control.touched ?? false,
+        'ng-untouched': control.untouched ?? false,
+        'ng-valid': control.valid ?? false,
+        'ng-invalid': control.valid == false
+      };
 
-  ContractGeneralReadComponent(this._config, this._logger, this._resourcesLoader, this.service, this._router);
+  ContractGeneralReadComponent(this._config, this._logger,
+      this._resourcesLoader, this.service, this._router);
 
   @override
   ngOnInit() async {

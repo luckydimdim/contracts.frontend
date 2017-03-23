@@ -14,12 +14,10 @@ import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../../contracts_service/contracts_service.dart';
 
-
-@Component(
-  selector: 'contract-general-write')
+@Component(selector: 'contract-general-write')
 @View(
-  templateUrl: 'contract_general_write_component.html',
-  directives: const [DateRangePickerDirective])
+    templateUrl: 'contract_general_write_component.html',
+    directives: const [DateRangePickerDirective])
 class ContractGeneralWriteComponent implements OnInit {
   final ContractsService service;
   final ConfigService _config;
@@ -33,17 +31,18 @@ class ContractGeneralWriteComponent implements OnInit {
   ContractGeneralModel model = new ContractGeneralModel();
 
   Map<String, bool> controlStateClasses(NgControl control) => {
-    'ng-dirty': control.dirty ?? false,
-    'ng-pristine': control.pristine ?? false,
-    'ng-touched': control.touched ?? false,
-    'ng-untouched': control.untouched ?? false,
-    'ng-valid': control.valid ?? false,
-    'ng-invalid': control.valid == false
-  };
+        'ng-dirty': control.dirty ?? false,
+        'ng-pristine': control.pristine ?? false,
+        'ng-touched': control.touched ?? false,
+        'ng-untouched': control.untouched ?? false,
+        'ng-valid': control.valid ?? false,
+        'ng-invalid': control.valid == false
+      };
 
   DateRangePickerOptions dateRangePickerOptions = new DateRangePickerOptions();
 
-  ContractGeneralWriteComponent(this.service, this._config, this._logger, this._resourcesLoader, this._routeParams, this._router, this._alert) {
+  ContractGeneralWriteComponent(this.service, this._config, this._logger,
+      this._resourcesLoader, this._routeParams, this._router, this._alert) {
     var locale = new DateRangePickerLocale()
       ..format = 'DD.MM.YYYY'
       ..separator = ' - '
@@ -55,8 +54,20 @@ class ContractGeneralWriteComponent implements OnInit {
       ..weekLabel = 'W'
       ..firstDay = 1
       ..daysOfWeek = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-      ..monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
-        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+      ..monthNames = [
+        'Январь',
+        'Февраль',
+        'Март',
+        'Апрель',
+        'Май',
+        'Июнь',
+        'Июль',
+        'Август',
+        'Сентябрь',
+        'Октябрь',
+        'Ноябрь',
+        'Декабрь'
+      ];
 
     dateRangePickerOptions = new DateRangePickerOptions()
       ..singleDatePicker = true
@@ -81,7 +92,6 @@ class ContractGeneralWriteComponent implements OnInit {
   }
 
   onChange(NgForm ngForm) async {
-
     if (ngForm == null || ngForm.form.status == 'VALID') {
       await service.general.updateContract(model);
     }
@@ -90,7 +100,6 @@ class ContractGeneralWriteComponent implements OnInit {
   void breadcrumbInit() {}
 
   Future startDateSelected(Map<String, DateTime> dates) async {
-
     var formatter = new DateFormat('dd.MM.yyyy');
     String formatted = formatter.format(dates['start']);
 
@@ -102,7 +111,6 @@ class ContractGeneralWriteComponent implements OnInit {
   }
 
   Future finishDateSelected(Map<String, DateTime> dates) async {
-
     var formatter = new DateFormat('dd.MM.yyyy');
     String formatted = formatter.format(dates['start']);
 

@@ -10,11 +10,9 @@ import 'package:logger/logger_service.dart';
 import 'package:json_object/json_object.dart';
 import '../../contracts_service/contracts_service.dart';
 
-@Component(
-  selector: 'contract-list')
+@Component(selector: 'contract-list')
 @View(
-  templateUrl: 'contract_list_component.html',
-  directives: const [RouterLink])
+    templateUrl: 'contract_list_component.html', directives: const [RouterLink])
 class ContractListComponent implements OnInit, AfterViewInit {
   final Router _router;
   final LoggerService _logger;
@@ -24,7 +22,8 @@ class ContractListComponent implements OnInit, AfterViewInit {
 
   List<JsonObject> contracts = new List<JsonObject>();
 
-  ContractListComponent(this._router, this._logger, this._config, this._service) {}
+  ContractListComponent(
+      this._router, this._logger, this._config, this._service) {}
 
   void breadcrumbInit() {}
 
@@ -47,7 +46,10 @@ class ContractListComponent implements OnInit, AfterViewInit {
     String contractId = await _service.general.createContract(newContractModel);
 
     _service.writeEnabled = true;
-    _router.parent.navigate(['Contract', {'id': contractId}]);
+    _router.parent.navigate([
+      'Contract',
+      {'id': contractId}
+    ]);
 
     return null;
   }

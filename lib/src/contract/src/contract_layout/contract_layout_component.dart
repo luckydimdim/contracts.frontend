@@ -5,8 +5,7 @@ import 'package:angular2/router.dart';
 import 'package:angular_utils/directives.dart';
 import 'package:contracts/contracts_service.dart';
 
-@Component(
-  selector: 'contract-layout')
+@Component(selector: 'contract-layout')
 @View(
     templateUrl: 'contract_layout_component.html',
     directives: const [CmRouterLink])
@@ -32,8 +31,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
    */
   void sticky() {
     var pane = querySelector('[sticky]');
-    if (pane == null)
-      return;
+    if (pane == null) return;
 
     var width = pane.getComputedStyle().width;
 
@@ -42,18 +40,15 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     window.onResize.listen((Event e) {
       var stickyElement = querySelector('[sticky]');
 
-      if (stickyElement == null)
-        return;
+      if (stickyElement == null) return;
 
       width = stickyElement.parent.clientWidth;
 
-      var paddingLeft = stickyElement
-          .parent
+      var paddingLeft = stickyElement.parent
           .getComputedStyle()
           .paddingLeft
           .replaceAll('px', '');
-      var paddingRight = stickyElement
-          .parent
+      var paddingRight = stickyElement.parent
           .getComputedStyle()
           .paddingRight
           .replaceAll('px', '');
@@ -72,8 +67,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
       var div = querySelector('[sticky]') as HtmlElement;
 
-      if (div == null)
-        return;
+      if (div == null) return;
 
       if (window.pageYOffset > 0) {
         div.style.position = 'fixed';

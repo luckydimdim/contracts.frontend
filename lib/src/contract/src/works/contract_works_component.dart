@@ -18,14 +18,15 @@ import '../../../contracts_service/contracts_service.dart';
 @Component(
     selector: 'contract-works',
     templateUrl: 'contract_works_component.html',
-    providers: const[CallOffService],
+    providers: const [
+      CallOffService
+    ],
     directives: const [
       CallOffOrderComponent,
       GridComponent,
       GridTemplateDirective,
       ColumnComponent
-    ]
-)
+    ])
 class ContractWorksComponent implements OnInit, OnDestroy {
   static const String route_name = 'ContractWorks';
   static const String route_path = 'works';
@@ -74,8 +75,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   void ngOnDestroy() {}
 
   Future loadCallOffOrders() async {
-    List<CallOffOrder> orders = await _callOffService.getCallOffOrders(
-        contractId);
+    List<CallOffOrder> orders =
+        await _callOffService.getCallOffOrders(contractId);
 
     var result = new List<dynamic>();
 
@@ -83,14 +84,14 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       result.add(order.toMap());
     }
 
-    worksDataSource = new DataSource(result)
-      ..primaryField = 'id';
+    worksDataSource = new DataSource(result)..primaryField = 'id';
 
     return null;
   }
 
   Future createWork() async {
-    String id = await _callOffService.createCallOffOrder(contractId, callOffTemplateSysName);
+    String id = await _callOffService.createCallOffOrder(
+        contractId, callOffTemplateSysName);
 
     // TODO: совместить 2 запроса
     var createdCallOff = await _callOffService.getCallOffOrder(id);
@@ -111,5 +112,4 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     return null;
   }
-
 }

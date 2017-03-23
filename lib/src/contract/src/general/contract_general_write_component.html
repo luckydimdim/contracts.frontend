@@ -50,7 +50,7 @@
                          autocomplete="off"
                          #contractNumber
 
-                         #numberControl="ngForm"                         
+                         #numberControl="ngForm"
                          required
                          maxlength="10"
                          [class.form-control-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
@@ -59,7 +59,7 @@
                          placeholder="Укажите номер договора"
                          [(ngModel)]="model.number"
                          ngControl="number"
-                         [ngClass]="controlStateClasses(name)" />                  
+                         [ngClass]="controlStateClasses(numberControl)" />
                   <em *ngIf="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
                       class="error form-control-feedback">Некорректный номер документа</em>
                 </div>
