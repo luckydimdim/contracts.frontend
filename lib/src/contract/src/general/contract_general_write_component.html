@@ -102,7 +102,7 @@
                      [class.has-success]="startDateControl.valid && startDateControl.touched">
                   <label for="start-date">Дата заключения</label>
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span (click)="startDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
                     <input daterangepicker type="text" class="form-control" id="start-date"
                            placeholder="Укажите дату заключения договора"
                            [(ngModel)]="model.startDate"
@@ -111,6 +111,7 @@
                            [options]="dateRangePickerOptions"
                            (selected)="startDateSelected($event)"
 
+                           #startDate
                            #startDateControl="ngForm"
                            [ngClass]="controlStateClasses(startDateControl)"
                            required
@@ -131,7 +132,7 @@
                      [class.has-success]="finishDateControl.valid && finishDateControl.touched">
                   <label for="finish-date">Дата окончания</label>
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span (click)="finishDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
                     <input daterangepicker type="text" class="form-control" id="finish-date"
                            placeholder="Укажите дату окончания договора"
                            [(ngModel)]="model.finishDate"
@@ -140,6 +141,7 @@
                            [options]="dateRangePickerOptions"
                            (selected)="finishDateSelected($event)"
 
+                           #finishDate
                            #finishDateControl="ngForm"
                            [ngClass]="controlStateClasses(finishDateControl)"
                            required
