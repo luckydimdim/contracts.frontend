@@ -6,22 +6,25 @@
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true">
 			<grid-column [expander]="true" width="1%"></grid-column>
 			<grid-column header="Номер" field="number" width="10%"></grid-column>
-			<grid-column header="ФИО" field="assignee" width="50%"></grid-column>
-			<grid-column header="Наименование" field="name" width="20%"></grid-column>
 			<grid-column header="Период" width="19%">
 				<template let-callOff="rowData" grid-template="body">
 					<span>{{callOff['startDate']}} - {{callOff['finishDate']}}</span>
 				</template>
 			</grid-column>
+			<grid-column header="Наименование" field="name" width="50%"></grid-column>
+			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
 			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
 					<span (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o cursor-pointer"></i></span>
 				</template>
 			</grid-column>
 			
+			
+			
 			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion" >
 				<call-off-order [id]="callOff['id']" [contractId]="contractId" [templateSysName]="callOffTemplateSysName" (callOfChanged)="rowApi.update($event)"></call-off-order>
 			</template>
+			
 		</grid>
 	</div>
 </div>
