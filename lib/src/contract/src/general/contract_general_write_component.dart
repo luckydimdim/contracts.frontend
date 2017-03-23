@@ -92,9 +92,10 @@ class ContractGeneralWriteComponent implements OnInit {
   }
 
   onChange(NgForm ngForm) async {
-    if (ngForm == null || ngForm.form.status == 'VALID') {
+    // FIXME: придумать способ апдейта отдельных полей
+    //if (ngForm == null || ngForm.form.status == 'VALID') {
       await service.general.updateContract(model);
-    }
+    //}
   }
 
   void breadcrumbInit() {}
