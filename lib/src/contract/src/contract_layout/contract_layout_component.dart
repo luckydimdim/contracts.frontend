@@ -61,19 +61,49 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       stickyElement.style.width = width.toString() + 'px';
     });
 
+    bool topWasSet = false;
+
     // При прокрутке окна устанавливается position: fixed
     window.onScroll.listen((Event e) {
       if (window.pageXOffset > 0) return;
 
-      var div = querySelector('[sticky]') as HtmlElement;
+      // Флаг включенности "режима прилипания"
+      bool enabled = false;
 
-      if (div == null) return;
+      // Высота шапки
+      const headerHeight = 55;
 
-      if (window.pageYOffset > 0) {
-        div.style.position = 'fixed';
-        div.style.width = width.toString();
+      // Отступ родительского элемента
+      const navTopPadding = 15;
+
+      // Контейнер, содержимое которого прилипает
+      var sticky = querySelector('[sticky]') as HtmlElement;
+      if (sticky == null)
+        return;
+
+      // Верхняя отметка, до которой не нужно начинать прилипание
+      var stickyTop = querySelector('[sticky-top]') as HtmlElement;
+      if (stickyTop != null) {
+        enabled = stickyTop.getBoundingClientRect().top - headerHeight <= 0;
       } else {
-        div.style.position = 'relative';
+        enabled = window.pageYOffset > 0;
+      }
+
+      if (enabled) {
+        if (!topWasSet) {
+          sticky.style.top = '${stickyTop.getBoundingClientRect().top + navTopPadding}px';
+          topWasSet = true;
+        }
+
+        sticky.style.position = 'fixed';
+        sticky.style.width = width.toString();
+      } else {
+        if (topWasSet) {
+          sticky.style.top = '0';
+          topWasSet = false;
+        }
+
+        sticky.style.position = 'relative';
       }
     });
   }
