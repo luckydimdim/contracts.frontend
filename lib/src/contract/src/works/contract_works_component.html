@@ -15,16 +15,13 @@
 			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
 			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
-					<span (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o cursor-pointer"></i></span>
+					<button class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
 				</template>
 			</grid-column>
-			
-			
 			
 			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion" >
 				<call-off-order [id]="callOff['id']" [contractId]="contractId" [templateSysName]="callOffTemplateSysName" (callOfChanged)="rowApi.update($event)"></call-off-order>
 			</template>
-			
 		</grid>
 	</div>
 </div>
