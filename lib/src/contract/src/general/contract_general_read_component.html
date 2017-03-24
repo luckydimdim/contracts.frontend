@@ -1,65 +1,48 @@
-<div class="toolbar">
-        <span class="btn-group">
-          <!--<button class="btn btn-secondary" type="button">
-              <span class="fa fa-envelope"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-print"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-excel-o"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-pdf-o"></span>
-          </button>
-          <button (click)="showHistory()" class="btn btn-secondary" id="showHistoryBtn" type="button">
-              <span class="fa fa-history"></span>
-          </button>-->
-          <button class="btn btn-secondary" type="button" (click)="toggleWriteMode()">
-              <span class="fa fa-edit"></span>
-          </button>
-        </span>
-  <button class="btn btn-secondary" type="button" (click)="deleteContract()">
-    <span class="fa fa-trash-o"></span>
-  </button>
-  <!--<span class="btn-group pull-right">
-    <button class="btn btn-secondary" type="button">
-        <span class="fa fa-chevron-left"></span>
-    </button>
-    <button class="btn btn-secondary" type="button">
-        <span class="fa fa-chevron-right"></span>
-    </button>
-  </span>-->
-</div>
-<div class="animated fadeIn">
-  <h4 *ngIf="model.number != null || model.name != null">{{model.name}} №{{model.number}}</h4>
-  <ul class="leaders mt-1">
-    <li><span>Дата заключения</span> <span>{{model.startDate}}</span></li>
-    <li><span>Дата завершения</span><span>{{model.finishDate}}</span></li>
-    <li><span>Подрядчик</span><span>{{model.contractorName}}</span></li>
-    <li><span>НДС</span><span>{{model.vatIncluded != null && model.vatIncluded ? 'включен' : 'нет'}}</span></li>
-    <li><span>Валюта</span><span>{{model.currency}}</span></li>
-    <li><span class="font-weight-bold">Стоимость</span><span class="font-weight-bold">{{model.amount}} <i
-      class="fa fa-rub"></i></span></li>
-  </ul>
-  <div class="row">
-    <div class="col-xl-10 col-md-11">
-      {{model.description}}
-    </div>
+<div class="card borderless">
+  <div class="card-header">
+    <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{model.name}} №{{model.number}}</h4>
+  
+    <span class="btn-group float-lg-right">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleWriteMode()">
+        <i class="fa fa-edit"></i>
+      &nbsp; Редактировать
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+        <i class="fa fa-trash-o"></i>
+        &nbsp; Удалить
+      </button>
+    </span>
+  
   </div>
-
-  <h5 class="text-muted mt-2">
-    Объекты строительства
-  </h5>
-
-  <div class="row">
-    <div class="col-lg-6 col-xl-4">
-      <div class="card">
-        <div class="card-block p-1 clearfix">
-          <i class="icon-grid bg-info p-1 font-2xl mr-1 float-xs-left"></i>
-          <a class="h5 text-primary mb-0 mt-h" href="#">{{model.constructionObjectName}}</a>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">
-            Код титульного списка: {{model.constructionObjectTitleCode}}
+  <div class="card-block animated fadeIn">
+    <ul class="leaders mt-1">
+      <li><span>Дата заключения</span> <span>{{model.startDate}}</span></li>
+      <li><span>Дата завершения</span><span>{{model.finishDate}}</span></li>
+      <li><span>Подрядчик</span><span>{{model.contractorName}}</span></li>
+      <li><span>НДС</span><span>{{model.vatIncluded != null && model.vatIncluded ? 'включен' : 'нет'}}</span></li>
+      <li><span>Валюта</span><span>{{model.currency}}</span></li>
+      <li><span class="font-weight-bold">Стоимость</span><span class="font-weight-bold">{{model.amount}} <i
+              class="fa fa-rub"></i></span></li>
+    </ul>
+    <div class="row">
+      <div class="col-xl-10 col-md-11">
+        {{model.description}}
+      </div>
+    </div>
+  
+    <h5 class="text-muted mt-2">
+      Объекты строительства
+    </h5>
+  
+    <div class="row">
+      <div class="col-lg-6 col-xl-4">
+        <div class="card">
+          <div class="card-block p-1 clearfix">
+            <i class="icon-grid bg-info p-1 font-2xl mr-1 float-xs-left"></i>
+            <a class="h5 text-primary mb-0 mt-h" href="#">{{model.constructionObjectName}}</a>
+            <div class="text-muted text-uppercase font-weight-bold font-xs">
+              Код титульного списка: {{model.constructionObjectTitleCode}}
+            </div>
           </div>
         </div>
       </div>

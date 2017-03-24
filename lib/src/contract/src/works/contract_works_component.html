@@ -1,8 +1,13 @@
-<div class="animated fadeIn">
-	<h4 class="float-xs-left">Работы</h4>
-	<span class="btn btn-sm btn-info float-xs-right" (click)="createWork()"> Добавить наряд-заказ <i class="fa fa-plus-circle"></i></span>
-	
-	<div>
+
+<div class="card animated fadeIn borderless">
+	<div class="card-header">
+		<h4 class="float-xs-left">Работы</h4>
+		<button type="button" class="btn btn-sm btn-outline-info float-lg-right" (click)="createWork()">
+			<i class="fa fa-plus-circle"></i>
+			&nbsp; Добавить наряд-заказ
+		</button>
+	</div>
+	<div class="card-block">
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true">
 			<grid-column [expander]="true" width="1%"></grid-column>
 			<grid-column header="Номер" field="number" width="10%"></grid-column>

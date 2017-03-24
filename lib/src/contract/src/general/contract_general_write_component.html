@@ -1,352 +1,335 @@
-<div class="toolbar">
-        <span class="btn-group">
-          <!--<button class="btn btn-secondary" type="button">
-              <span class="fa fa-envelope"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-print"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-excel-o"></span>
-          </button>
-          <button class="btn btn-secondary" type="button">
-              <span class="fa fa-file-pdf-o"></span>
-          </button>
-          <button (click)="showHistory()" class="btn btn-secondary" id="showHistoryBtn" type="button">
-              <span class="fa fa-history"></span>
-          </button>-->
-          <button class="btn btn-secondary active" type="button" (click)="toggleWriteMode()">
-              <span class="fa fa-edit"></span>
-          </button>
-        </span>
-  <button class="btn btn-secondary" type="button" (click)="deleteContract()">
-    <span class="fa fa-trash-o"></span>
-  </button>
-  <!--<span class="btn-group pull-right">
-    <button class="btn btn-secondary" type="button">
-        <span class="fa fa-chevron-left"></span>
-    </button>
-    <button class="btn btn-secondary" type="button">
-        <span class="fa fa-chevron-right"></span>
-    </button>
-  </span>-->
-</div>
-<div class="animated fadeIn">
-  <div class="row">
-    <div class="col-xl-8 col-md-12">
-
-      <h4>{{contractName.value}}&nbsp;{{contractNumber.value !== '' ? '№'+ contractNumber.value : ''}}</h4>
-      <div class="card mt-1">
-        <form (change)="onChange(contractCreateForm)" #contractCreateForm="ngForm">
-          <div class="card-block">
-            <div class="row">
-
-              <div class="col-md-4">
-                <div class="form-group"
-                     [class.has-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
-                     [class.has-success]="numberControl.valid && numberControl.touched">
-                  <label for="number">Номер</label>
-                  <input type="text" class="form-control" id="number"
-                         autocomplete="off"
-                         #contractNumber
-
-                         #numberControl="ngForm"
-                         required
-                         maxlength="10"
-                         [class.form-control-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
-                         [class.form-control-success]="numberControl.valid && numberControl.touched"
-
-                         placeholder="Укажите номер договора"
-                         [(ngModel)]="model.number"
-                         ngControl="number"
-                         [ngClass]="controlStateClasses(numberControl)" />
-                  <em *ngIf="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
-                      class="error form-control-feedback">Некорректный номер документа</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-              <div class="col-md-8">
-                <div class="form-group"
-                     [class.has-danger]="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
-                     [class.has-success]="nameControl.valid && nameControl.touched">
-                  <label for="name">Название</label>
-                  <input type="text" class="form-control" id="name"
-                         autocomplete="off"
-                         #contractName
-
-                         #nameControl="ngForm"
-                         [ngClass]="controlStateClasses(nameControl)"
-                         required
-                         maxlength="255"
-                         [class.form-control-danger]="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
-                         [class.form-control-success]="nameControl.valid && nameControl.touched"
-
-                         placeholder="Укажите название договора"
-                         [(ngModel)]="model.name"
-                         ngControl="name" />
-                  <em *ngIf="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
-                      class="error form-control-feedback">Некорректное название</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-            </div>
-            <!-- /row -->
-
-            <div class="row">
-
-              <div class="col-md-6">
-                <div class="form-group"
-                     [class.has-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                     [class.has-success]="startDateControl.valid && startDateControl.touched">
-                  <label for="start-date">Дата заключения</label>
-                  <div class="input-group">
-                    <span (click)="startDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
-                    <input daterangepicker type="text" class="form-control" id="start-date"
-                           placeholder="Укажите дату заключения договора"
-                           [(ngModel)]="model.startDate"
-                           ngControl="startDate"
-                           #name="ngForm"
-                           [options]="dateRangePickerOptions"
-                           (selected)="startDateSelected($event)"
-
-                           #startDate
-                           #startDateControl="ngForm"
-                           [ngClass]="controlStateClasses(startDateControl)"
-                           required
-                           pattern="\d\d\.\d\d\.\d\d\d\d"
-                           [class.form-control-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                           [class.form-control-success]="startDateControl.valid && startDateControl.touched" />
-                  </div>
-                  <em *ngIf="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                      class="error form-control-feedback">Некорректная дата</em>
-                </div>
-              </div>
-
-              <!-- /col -->
-
-              <div class="col-md-6">
-                <div class="form-group"
-                     [class.has-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                     [class.has-success]="finishDateControl.valid && finishDateControl.touched">
-                  <label for="finish-date">Дата окончания</label>
-                  <div class="input-group">
-                    <span (click)="finishDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
-                    <input daterangepicker type="text" class="form-control" id="finish-date"
-                           placeholder="Укажите дату окончания договора"
-                           [(ngModel)]="model.finishDate"
-                           ngControl="finishDate"
-                           #name="ngForm"
-                           [options]="dateRangePickerOptions"
-                           (selected)="finishDateSelected($event)"
-
-                           #finishDate
-                           #finishDateControl="ngForm"
-                           [ngClass]="controlStateClasses(finishDateControl)"
-                           required
-                           pattern="\d\d\.\d\d\.\d\d\d\d"
-                           [class.form-control-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                           [class.form-control-success]="finishDateControl.valid && finishDateControl.touched" />
-                  </div>
-                  <em *ngIf="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                      class="error form-control-feedback">Некорректная дата</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-            </div>
-            <!--/row-->
-
-            <div class="form-group"
-                 [class.has-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
-                 [class.has-success]="contractorNameControl.valid && contractorNameControl.touched">
-              <label for="contractor">Подрядчик</label>
-              <input type="text" class="form-control" id="contractor" placeholder="Укажите наименование подрядчика"
-                     autocomplete="off"
-                     [(ngModel)]="model.contractorName"
-                     ngControl="contractorName"
-
-                     #contractorNameControl="ngForm"
-                     [ngClass]="controlStateClasses(contractorNameControl)"
-                     required
-                     maxlength="255"
-                     [class.form-control-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
-                     [class.form-control-success]="contractorNameControl.valid && contractorNameControl.touched" />
-              <em *ngIf="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
-                  class="error form-control-feedback">Некорректное наименование подрядчика</em>
-            </div>
-
-            <div class="row">
-
-              <div class="col-md-6">
-                <div class="form-group"
-                     [class.has-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                     [class.has-success]="amountControl.valid && amountControl.touched">
-                  <label for="amount">Стоимость</label>
-                  <input type="text" class="form-control" id="amount" placeholder="Укажите стоимость договора"
-                         autocomplete="off"
-                         [(ngModel)]="model.amount"
-                         ngControl="amount"
-
-                         #amountControl="ngForm"
-                         [ngClass]="controlStateClasses(amountControl)"
-                         required
-                         pattern="[0-9 ]+"
-                         [class.form-control-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                         [class.form-control-success]="amountControl.valid && amountControl.touched" />
-                  <em *ngIf="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                      class="error form-control-feedback">Некорректная стоимость</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-              <div class="col-md-6">
-                <div class="form-group"
-                     [class.has-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                     [class.has-success]="currencyControl.valid && currencyControl.touched">
-                  <label for="currency">Валюта</label>
-                  <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора"
-                         autocomplete="off"
-                         [(ngModel)]="model.currency"
-                         ngControl="currency"
-
-                         #currencyControl="ngForm"
-                         [ngClass]="controlStateClasses(currencyControl)"
-                         required
-                         pattern="(руб|usd|eur|jpy)"
-                         [class.form-control-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                         [class.form-control-success]="currencyControl.valid && currencyControl.touched" />
-                  <em *ngIf="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                      class="error form-control-feedback">Некорректная валюта</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-            </div>
-            <!--/row-->
-
-            <div class="form-group"
-                 [class.has-danger]="!contractCreateForm.valid && (contractCreateForm.dirty || contractCreateForm.touched)"
-                 [class.has-success]="contractCreateForm.valid && contractCreateForm.touched">
-              <label class="switch switch-default switch-primary switch-sm">
-                <input type="checkbox" class="switch-input"
-                       [(ngModel)]="model.vatIncluded"
-                       ngControl="vatIncluded" />
-                <span class="switch-label"></span>
-                <span class="switch-handle"></span>
-              </label>
-              <span class="pl-1">НДС включен в стоимость договора</span>
-            </div>
-
-            <div class="row">
-
-              <div class="col-md-4">
-                <div class="form-group"
-                     [class.has-danger]="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
-                     [class.has-success]="constructionObjectNameControl.valid && constructionObjectNameControl.touched">
-                  <label for="construction-object-name">Объект строительства</label>
-                  <input type="text" class="form-control" id="construction-object-name"
-                         autocomplete="off"
-                         placeholder="Укажите название объекта строительства"
-                         [(ngModel)]="model.constructionObjectName"
-                         ngControl="constructionObjectName"
-
-                         #constructionObjectNameControl="ngForm"
-                         [ngClass]="controlStateClasses(constructionObjectNameControl)"
-                         required
-                         maxlength="255"
-                         [class.form-control-danger]="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
-                         [class.form-control-success]="constructionObjectNameControl.valid && constructionObjectNameControl.touched" />
-                  <em *ngIf="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
-                      class="error form-control-feedback">Некорректное наименование </em>
-                </div>
-              </div>
-              <!-- /col -->
-
-              <div class="col-md-3">
-                <div class="form-group"
-                     [class.has-danger]="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
-                     [class.has-success]="constructionObjectTitleCodeControl.valid && constructionObjectTitleCodeControl.touched">
-                  <label for="construction-object-title-code">Код по титульному списку</label>
-                  <input type="text" class="form-control" id="construction-object-title-code"
-                         autocomplete="off"
-                         placeholder="Укажите код объекта по титульному списку"
-                         [(ngModel)]="model.constructionObjectTitleCode"
-                         ngControl="constructionObjectTitleCode"
-
-                         #constructionObjectTitleCodeControl="ngForm"
-                         [ngClass]="controlStateClasses(constructionObjectTitleCodeControl)"
-                         required
-                         pattern="[0-9 ]+"
-                         maxlength="10"
-                         [class.form-control-danger]="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
-                         [class.form-control-success]="constructionObjectTitleCodeControl.valid && constructionObjectTitleCodeControl.touched" />
-                  <em *ngIf="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
-                      class="error form-control-feedback">Некорректный код</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-              <div class="col-md-5">
-                <div class="form-group"
-                     [class.has-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
-                     [class.has-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched">
-                  <label for="construction-object-title-name">Наименование по титуьному списку</label>
-                  <input type="text" class="form-control" id="construction-object-title-name"
-                         autocomplete="off"
-                         placeholder="Укажите наименование объекта по титуьному списку"
-                         [(ngModel)]="model.constructionObjectTitleName"
-                         ngControl="constructionObjectTitleName"
-
-                         #constructionObjectTitleNameControl="ngForm"
-                         [ngClass]="controlStateClasses(constructionObjectTitleNameControl)"
-                         required
-                         maxlength="255"
-                         [class.form-control-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
-                         [class.form-control-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched" />
-                  <em *ngIf="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
-                      class="error form-control-feedback">Некорректное наименование</em>
-                </div>
-              </div>
-              <!-- /col -->
-
-            </div>
-            <!--/row-->
-
-            <div class="form-group"
-              [class.has-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
-              [class.has-success]="descriptionControl.valid && descriptionControl.touched">
-              <label for="description">Описание</label>
-              <textarea id="description" name="description" rows="5" class="form-control"
-                        placeholder="Введите описание договора..."
-                        [(ngModel)]="model.description"
-                        ngControl="description"
-                        [ngClass]="controlStateClasses(name)"
-
-                        #descriptionControl="ngForm"
-                        [ngClass]="controlStateClasses(description)"
-                        [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
-                        [class.form-control-success]="descriptionControl.valid && descriptionControl.touched"></textarea>
-            </div>
-
-          </div>
-          <!-- /card-block -->
-
-          <!--<div class="card-footer">
-            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Очистить форму</button>
-            <button type="submit" [disabled]="!contractCreateForm.form.valid" class="btn btn-sm btn-primary pull-right">
-              <i class="fa fa-file-text-o"></i> Сохранить
-              договор
-            </button>
-          </div>-->
-          <!-- /card-footer -->
-        </form>
-      </div>
-      <!-- /card -->
-
-    </div>
-    <!-- /col -->
+<div class="card borderless">
+  <div class="card-header">
+    <h4 class="float-lg-left">{{contractName.value}}&nbsp;{{contractNumber.value !== '' ? '№'+ contractNumber.value : ''}}</h4>
+    <span class="btn-group float-lg-right">
+    <button type="button" class="btn btn-sm btn-outline-secondary active" (click)="toggleWriteMode()">
+        <i class="fa fa-edit"></i>
+      &nbsp; Редактировать
+      </button>
+      <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+        <i class="fa fa-trash-o"></i>
+        &nbsp; Удалить
+      </button>
+    </span>
   </div>
-  <!-- /row -->
+  <div class="card-block animated fadeIn">
+    <div class="row">
+      <div class="col-xl-8 col-md-12">
+      
+      
+        <div class="card mt-1">
+          <form (change)="onChange(contractCreateForm)" #contractCreateForm="ngForm">
+            <div class="card-block">
+              <div class="row">
+              
+                <div class="col-md-4">
+                  <div class="form-group"
+                       [class.has-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
+                       [class.has-success]="numberControl.valid && numberControl.touched">
+                    <label for="number">Номер</label>
+                    <input type="text" class="form-control" id="number"
+                           autocomplete="off"
+                           #contractNumber
+                  
+                           #numberControl="ngForm"
+                           required
+                           maxlength="10"
+                           [class.form-control-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
+                           [class.form-control-success]="numberControl.valid && numberControl.touched"
+                  
+                           placeholder="Укажите номер договора"
+                           [(ngModel)]="model.number"
+                           ngControl="number"
+                           [ngClass]="controlStateClasses(numberControl)" />
+                    <em *ngIf="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
+                        class="error form-control-feedback">Некорректный номер документа</em>
+                  </div>
+                </div>
+                <!-- /col -->
+              
+                <div class="col-md-8">
+                  <div class="form-group"
+                       [class.has-danger]="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
+                       [class.has-success]="nameControl.valid && nameControl.touched">
+                    <label for="name">Название</label>
+                    <input type="text" class="form-control" id="name"
+                           autocomplete="off"
+                           #contractName
+                  
+                           #nameControl="ngForm"
+                           [ngClass]="controlStateClasses(nameControl)"
+                           required
+                           maxlength="255"
+                           [class.form-control-danger]="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
+                           [class.form-control-success]="nameControl.valid && nameControl.touched"
+                  
+                           placeholder="Укажите название договора"
+                           [(ngModel)]="model.name"
+                           ngControl="name" />
+                    <em *ngIf="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
+                        class="error form-control-feedback">Некорректное название</em>
+                  </div>
+                </div>
+                <!-- /col -->
+            
+              </div>
+              <!-- /row -->
+            
+              <div class="row">
+              
+                <div class="col-md-6">
+                  <div class="form-group"
+                       [class.has-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
+                       [class.has-success]="startDateControl.valid && startDateControl.touched">
+                    <label for="start-date">Дата заключения</label>
+                    <div class="input-group">
+                      <span (click)="startDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
+                      <input daterangepicker type="text" class="form-control" id="start-date"
+                             placeholder="Укажите дату заключения договора"
+                             [(ngModel)]="model.startDate"
+                             ngControl="startDate"
+                             #name="ngForm"
+                             [options]="dateRangePickerOptions"
+                             (selected)="startDateSelected($event)"
+                    
+                             #startDate
+                             #startDateControl="ngForm"
+                             [ngClass]="controlStateClasses(startDateControl)"
+                             required
+                             pattern="\d\d\.\d\d\.\d\d\d\d"
+                             [class.form-control-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
+                             [class.form-control-success]="startDateControl.valid && startDateControl.touched" />
+                    </div>
+                    <em *ngIf="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
+                        class="error form-control-feedback">Некорректная дата</em>
+                  </div>
+                </div>
+              
+                <!-- /col -->
+              
+                <div class="col-md-6">
+                  <div class="form-group"
+                       [class.has-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
+                       [class.has-success]="finishDateControl.valid && finishDateControl.touched">
+                    <label for="finish-date">Дата окончания</label>
+                    <div class="input-group">
+                      <span (click)="finishDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
+                      <input daterangepicker type="text" class="form-control" id="finish-date"
+                             placeholder="Укажите дату окончания договора"
+                             [(ngModel)]="model.finishDate"
+                             ngControl="finishDate"
+                             #name="ngForm"
+                             [options]="dateRangePickerOptions"
+                             (selected)="finishDateSelected($event)"
+                    
+                             #finishDate
+                             #finishDateControl="ngForm"
+                             [ngClass]="controlStateClasses(finishDateControl)"
+                             required
+                             pattern="\d\d\.\d\d\.\d\d\d\d"
+                             [class.form-control-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
+                             [class.form-control-success]="finishDateControl.valid && finishDateControl.touched" />
+                    </div>
+                    <em *ngIf="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
+                        class="error form-control-feedback">Некорректная дата</em>
+                  </div>
+                </div>
+                <!-- /col -->
+            
+              </div>
+              <!--/row-->
+            
+              <div class="form-group"
+                   [class.has-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
+                   [class.has-success]="contractorNameControl.valid && contractorNameControl.touched">
+                <label for="contractor">Подрядчик</label>
+                <input type="text" class="form-control" id="contractor" placeholder="Укажите наименование подрядчика"
+                       autocomplete="off"
+                       [(ngModel)]="model.contractorName"
+                       ngControl="contractorName"
+              
+                       #contractorNameControl="ngForm"
+                       [ngClass]="controlStateClasses(contractorNameControl)"
+                       required
+                       maxlength="255"
+                       [class.form-control-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
+                       [class.form-control-success]="contractorNameControl.valid && contractorNameControl.touched" />
+                <em *ngIf="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
+                    class="error form-control-feedback">Некорректное наименование подрядчика</em>
+              </div>
+            
+              <div class="row">
+              
+                <div class="col-md-6">
+                  <div class="form-group"
+                       [class.has-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
+                       [class.has-success]="amountControl.valid && amountControl.touched">
+                    <label for="amount">Стоимость</label>
+                    <input type="text" class="form-control" id="amount" placeholder="Укажите стоимость договора"
+                           autocomplete="off"
+                           [(ngModel)]="model.amount"
+                           ngControl="amount"
+                  
+                           #amountControl="ngForm"
+                           [ngClass]="controlStateClasses(amountControl)"
+                           required
+                           pattern="[0-9 ]+"
+                           [class.form-control-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
+                           [class.form-control-success]="amountControl.valid && amountControl.touched" />
+                    <em *ngIf="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
+                        class="error form-control-feedback">Некорректная стоимость</em>
+                  </div>
+                </div>
+                <!-- /col -->
+              
+                <div class="col-md-6">
+                  <div class="form-group"
+                       [class.has-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
+                       [class.has-success]="currencyControl.valid && currencyControl.touched">
+                    <label for="currency">Валюта</label>
+                    <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора"
+                           autocomplete="off"
+                           [(ngModel)]="model.currency"
+                           ngControl="currency"
+                  
+                           #currencyControl="ngForm"
+                           [ngClass]="controlStateClasses(currencyControl)"
+                           required
+                           pattern="(руб|usd|eur|jpy)"
+                           [class.form-control-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
+                           [class.form-control-success]="currencyControl.valid && currencyControl.touched" />
+                    <em *ngIf="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
+                        class="error form-control-feedback">Некорректная валюта</em>
+                  </div>
+                </div>
+                <!-- /col -->
+            
+              </div>
+              <!--/row-->
+            
+              <div class="form-group"
+                   [class.has-danger]="!contractCreateForm.valid && (contractCreateForm.dirty || contractCreateForm.touched)"
+                   [class.has-success]="contractCreateForm.valid && contractCreateForm.touched">
+                <label class="switch switch-default switch-primary switch-sm">
+                  <input type="checkbox" class="switch-input"
+                         [(ngModel)]="model.vatIncluded"
+                         ngControl="vatIncluded" />
+                  <span class="switch-label"></span>
+                  <span class="switch-handle"></span>
+                </label>
+                <span class="pl-1">НДС включен в стоимость договора</span>
+              </div>
+            
+              <div class="row">
+              
+                <div class="col-md-4">
+                  <div class="form-group"
+                       [class.has-danger]="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
+                       [class.has-success]="constructionObjectNameControl.valid && constructionObjectNameControl.touched">
+                    <label for="construction-object-name">Объект строительства</label>
+                    <input type="text" class="form-control" id="construction-object-name"
+                           autocomplete="off"
+                           placeholder="Укажите название объекта строительства"
+                           [(ngModel)]="model.constructionObjectName"
+                           ngControl="constructionObjectName"
+                  
+                           #constructionObjectNameControl="ngForm"
+                           [ngClass]="controlStateClasses(constructionObjectNameControl)"
+                           required
+                           maxlength="255"
+                           [class.form-control-danger]="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
+                           [class.form-control-success]="constructionObjectNameControl.valid && constructionObjectNameControl.touched" />
+                    <em *ngIf="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
+                        class="error form-control-feedback">Некорректное наименование </em>
+                  </div>
+                </div>
+                <!-- /col -->
+              
+                <div class="col-md-3">
+                  <div class="form-group"
+                       [class.has-danger]="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
+                       [class.has-success]="constructionObjectTitleCodeControl.valid && constructionObjectTitleCodeControl.touched">
+                    <label for="construction-object-title-code">Код по титульному списку</label>
+                    <input type="text" class="form-control" id="construction-object-title-code"
+                           autocomplete="off"
+                           placeholder="Укажите код объекта по титульному списку"
+                           [(ngModel)]="model.constructionObjectTitleCode"
+                           ngControl="constructionObjectTitleCode"
+                  
+                           #constructionObjectTitleCodeControl="ngForm"
+                           [ngClass]="controlStateClasses(constructionObjectTitleCodeControl)"
+                           required
+                           pattern="[0-9 ]+"
+                           maxlength="10"
+                           [class.form-control-danger]="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
+                           [class.form-control-success]="constructionObjectTitleCodeControl.valid && constructionObjectTitleCodeControl.touched" />
+                    <em *ngIf="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
+                        class="error form-control-feedback">Некорректный код</em>
+                  </div>
+                </div>
+                <!-- /col -->
+              
+                <div class="col-md-5">
+                  <div class="form-group"
+                       [class.has-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
+                       [class.has-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched">
+                    <label for="construction-object-title-name">Наименование по титуьному списку</label>
+                    <input type="text" class="form-control" id="construction-object-title-name"
+                           autocomplete="off"
+                           placeholder="Укажите наименование объекта по титуьному списку"
+                           [(ngModel)]="model.constructionObjectTitleName"
+                           ngControl="constructionObjectTitleName"
+                  
+                           #constructionObjectTitleNameControl="ngForm"
+                           [ngClass]="controlStateClasses(constructionObjectTitleNameControl)"
+                           required
+                           maxlength="255"
+                           [class.form-control-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
+                           [class.form-control-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched" />
+                    <em *ngIf="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
+                        class="error form-control-feedback">Некорректное наименование</em>
+                  </div>
+                </div>
+                <!-- /col -->
+            
+              </div>
+              <!--/row-->
+            
+              <div class="form-group"
+                   [class.has-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
+                   [class.has-success]="descriptionControl.valid && descriptionControl.touched">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" rows="5" class="form-control"
+                          placeholder="Введите описание договора..."
+                          [(ngModel)]="model.description"
+                          ngControl="description"
+                          [ngClass]="controlStateClasses(name)"
+              
+                          #descriptionControl="ngForm"
+                          [ngClass]="controlStateClasses(description)"
+                          [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
+                          [class.form-control-success]="descriptionControl.valid && descriptionControl.touched"></textarea>
+              </div>
+          
+            </div>
+            <!-- /card-block -->
+          
+            <!--<div class="card-footer">
+			  <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Очистить форму</button>
+			  <button type="submit" [disabled]="!contractCreateForm.form.valid" class="btn btn-sm btn-primary pull-right">
+				<i class="fa fa-file-text-o"></i> Сохранить
+				договор
+			  </button>
+			</div>-->
+            <!-- /card-footer -->
+          </form>
+        </div>
+        <!-- /card -->
+    
+      </div>
+      <!-- /col -->
+    </div>
+    <!-- /row -->
+  </div>
 </div>
+
