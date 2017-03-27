@@ -1,2 +1,2 @@
-  <contract-general-write [(model)]="model" *ngIf="service.writeEnabled"></contract-general-write>
-  <contract-general-read [(model)]="model" *ngIf="!service.writeEnabled"></contract-general-read>
+  <contract-general-write [(model)]="contract.model" *ngIf="service.writeEnabled && contract.model != null"></contract-general-write>
+  <contract-general-read [(model)]="contract.model" *ngIf="!service.writeEnabled && contract.model != null"></contract-general-read>

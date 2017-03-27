@@ -28,12 +28,7 @@ import '../../../contracts_service/contracts_service.dart';
       ColumnComponent
     ])
 class ContractWorksComponent implements OnInit, OnDestroy {
-  static const String route_name = 'ContractWorks';
-  static const String route_path = 'works';
-  static const Route route = const Route(
-      path: ContractWorksComponent.route_path,
-      component: ContractWorksComponent,
-      name: ContractWorksComponent.route_name);
+   static const DisplayName = const {'displayName': 'Работы'};
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;

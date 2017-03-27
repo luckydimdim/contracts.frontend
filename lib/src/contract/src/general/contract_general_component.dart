@@ -2,6 +2,7 @@ import 'contract_general_model.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
+import '../../../contract/contract_component.dart';
 import 'package:logger/logger_service.dart';
 
 import 'contract_general_write_component.dart';
@@ -16,34 +17,19 @@ import '../../../contracts_service/contracts_service.dart';
       ContractGeneralReadComponent
     ])
 class ContractGeneralComponent implements OnInit, AfterViewInit {
-  static const String route_name = 'ContractGeneral';
-  static const String route_path = 'general';
-  static const Route route = const Route(
-      path: ContractGeneralComponent.route_path,
-      component: ContractGeneralComponent,
-      name: ContractGeneralComponent.route_name,
-      useAsDefault: true);
-
   final LoggerService _logger;
   final RouteParams _routeParams;
   final ContractsService service;
   final Router _router;
-  ContractGeneralModel model = new ContractGeneralModel();
+  final ContractComponent contract;
+  static const DisplayName = const {'displayName': 'Общая информация'};
 
   ContractGeneralComponent(
-      this._logger, this._routeParams, this.service, this._router);
+      this._logger, this._routeParams, this.service, this._router, @Inject(ContractComponent) this.contract);
 
   @override
-  ngOnInit() async {
-    breadcrumbInit();
-
-    Instruction ci = _router.parent.parent.currentInstruction;
-    String contractId = ci.component.params['id'];
-
-    model = await service.general.getContract(contractId);
+  ngOnInit() {
   }
-
-  void breadcrumbInit() {}
 
   @override
   ngAfterViewInit() {}
