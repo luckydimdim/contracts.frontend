@@ -21,14 +21,18 @@ class ContractGeneralComponent implements OnInit, AfterViewInit {
   final RouteParams _routeParams;
   final ContractsService service;
   final Router _router;
-  final ContractComponent contract;
+  ContractGeneralModel model = new ContractGeneralModel();
   static const DisplayName = const {'displayName': 'Общая информация'};
 
   ContractGeneralComponent(
-      this._logger, this._routeParams, this.service, this._router, @Inject(ContractComponent) this.contract);
+      this._logger, this._routeParams, this.service, this._router);
 
   @override
-  ngOnInit() {
+  ngOnInit() async {
+    Instruction ci = _router.parent.parent.currentInstruction;
+    String contractId = ci.component.params['id'];
+
+    model = await service.general.getContract(contractId);
   }
 
   @override
