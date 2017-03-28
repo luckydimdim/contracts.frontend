@@ -35,6 +35,8 @@ dependencies:
     call_off_order:
       git:  http://cm-ylng-msk-04/git/call_off_order.frontend.git
       #path: ../call_off_order.frontend
+    aside:
+      git: http://cm-ylng-msk-04/git/aside.frontend.git
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test
     yaml: ^2.1.12                         # A parser for YAML. https://pub.dartlang.org/packages/yaml

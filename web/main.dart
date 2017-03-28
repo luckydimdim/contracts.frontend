@@ -11,6 +11,7 @@ import 'package:http/http.dart';
 import 'package:http/browser_client.dart';
 
 import 'package:alert/alert_service.dart';
+import 'package:aside/aside_service.dart';
 import 'package:angular_utils/cm_router_link.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:master_layout/master_layout_component.dart';
@@ -53,6 +54,7 @@ main() async {
     const Provider(LocationStrategy, useClass: HashLocationStrategy),
     const Provider(ResourcesLoaderService),
     const Provider(AlertService),
+    const Provider(AsideService),
     const Provider(LoggerService),
     const Provider(ConfigService),
     //provide(Client, useClass: InMemoryDataService)
