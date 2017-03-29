@@ -41,7 +41,7 @@ class ContractGeneralService {
   Future<List<ContractGeneralModel>> getContracts() async {
     if (!_initialized) await _init();
 
-    _logger.trace('Requesting contracts. Url: ${_config.helper.contractsUrl}');
+    _logger.trace('Requesting contracts. Url: $_backendUrl');
 
     Response response = null;
 

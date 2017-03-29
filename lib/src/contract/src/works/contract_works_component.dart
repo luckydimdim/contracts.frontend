@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -9,10 +8,7 @@ import '../../src/general/contract_general_model.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
-import 'package:grid/datasource.dart';
-import 'package:grid/grid_component.dart';
-import 'package:grid/column_component.dart';
-import 'package:grid/grid_template_directive.dart';
+import 'package:grid/grid.dart';
 import '../../../contracts_service/contracts_service.dart';
 
 @Component(
@@ -25,8 +21,7 @@ import '../../../contracts_service/contracts_service.dart';
       CallOffOrderComponent,
       GridComponent,
       GridTemplateDirective,
-      ColumnComponent
-    ])
+      ColumnComponent])
 class ContractWorksComponent implements OnInit, OnDestroy {
    static const DisplayName = const {'displayName': 'Работы'};
 
@@ -42,10 +37,13 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   @ViewChild(GridComponent)
   GridComponent grid;
 
-  var worksDataSource = new DataSource(new List());
+  var worksDataSource = new DataSource();
 
-  ContractWorksComponent(this._router, this._resourcesLoaderService,
-      this._callOffService, this._contractsService) {}
+  ContractWorksComponent(
+    this._router,
+    this._resourcesLoaderService,
+    this._callOffService,
+    this._contractsService);
 
   void breadcrumbInit() {}
 
@@ -79,7 +77,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       result.add(order.toMap());
     }
 
-    worksDataSource = new DataSource(result)..primaryField = 'id';
+    worksDataSource = new DataSource(data: result)
+      ..primaryField = 'id';
 
     return null;
   }
