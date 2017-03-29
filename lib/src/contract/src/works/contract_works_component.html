@@ -8,7 +8,7 @@
 		</button>
 	</div>
 	<div class="card-block">
-		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true">
+		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
 			<grid-column [expander]="true" width="1%"></grid-column>
 			<grid-column header="Номер" field="number" width="10%"></grid-column>
 			<grid-column header="Период" width="19%">
