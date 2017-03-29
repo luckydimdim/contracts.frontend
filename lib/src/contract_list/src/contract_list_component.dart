@@ -7,7 +7,6 @@ import 'package:config/config_service.dart';
 import '../../contract/src/general/contract_general_model.dart';
 import 'package:logger/logger_service.dart';
 
-import 'package:json_object/json_object.dart';
 import '../../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-list')
@@ -20,7 +19,7 @@ class ContractListComponent implements OnInit, AfterViewInit {
   final ContractsService _service;
   static const DisplayName = const {'displayName': 'Список договоров'};
 
-  List<JsonObject> contracts = new List<JsonObject>();
+  List<Map> contracts = new List<Map>();
 
   ContractListComponent(
       this._router, this._logger, this._config, this._service) {}
@@ -34,7 +33,11 @@ class ContractListComponent implements OnInit, AfterViewInit {
 
   @override
   ngAfterViewInit() async {
-    contracts = await _service.general.getContracts();
+    var contractsList = await _service.general.getContracts();
+
+    for (var contract in contractsList) {
+      contracts.add(contract.toMap());
+    }
   }
 
   Future createContract() async {
