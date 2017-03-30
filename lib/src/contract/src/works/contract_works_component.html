@@ -24,7 +24,7 @@
 				</template>
 			</grid-column>
 			
-			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion" >
+			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion">
 				<call-off-order [id]="callOff['id']" [contractId]="contractId" [templateSysName]="callOffTemplateSysName" (callOfChanged)="rowApi.update($event)"></call-off-order>
 			</template>
 		</grid>
