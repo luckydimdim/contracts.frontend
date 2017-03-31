@@ -17,6 +17,7 @@ dependencies:
     http: ^0.11.1+9
     json_object: any
     intl: any
+    reflectable: ^1.0.2
     alert:
       git: http://cm-ylng-msk-04/git/alert.frontend.git
     grid:
@@ -39,7 +40,6 @@ dependencies:
       git: http://cm-ylng-msk-04/git/aside.frontend.git
     converters:
       git:  http://cm-ylng-msk-04/git/converters.frontend.git
-    reflectable: ^1.0.2
 dev_dependencies:
     test: ^0.12.18                        # A library for writing dart unit tests. https://pub.dartlang.org/packages/test
     yaml: ^2.1.12                         # A parser for YAML. https://pub.dartlang.org/packages/yaml
