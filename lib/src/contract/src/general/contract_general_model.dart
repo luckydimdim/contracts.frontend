@@ -1,12 +1,12 @@
 import 'package:converters/json_converter.dart';
 import 'package:converters/map_converter.dart';
 import 'package:converters/reflector.dart';
+
 /**
  * Модель представления договора
  */
 @reflectable
 class ContractGeneralModel extends Object with JsonConverter, MapConverter {
-
   String id;
   String name;
   String number;

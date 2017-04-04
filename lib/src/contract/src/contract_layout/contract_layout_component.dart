@@ -78,8 +78,7 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // Контейнер, содержимое которого прилипает
       var sticky = querySelector('[sticky]') as HtmlElement;
-      if (sticky == null)
-        return;
+      if (sticky == null) return;
 
       // Верхняя отметка, до которой не нужно начинать прилипание
       var stickyTop = querySelector('[sticky-top]') as HtmlElement;
@@ -92,7 +91,8 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
       if (enabled) {
         if (!topWasSet) {
           // FIXME: при скроле колесом криво считается отступ сверху
-          sticky.style.top = '${stickyTop.getBoundingClientRect().top + navTopPadding}px';
+          sticky.style.top =
+              '${stickyTop.getBoundingClientRect().top + navTopPadding}px';
           topWasSet = true;
         }
 

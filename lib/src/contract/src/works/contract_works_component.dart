@@ -21,9 +21,10 @@ import '../../../contracts_service/contracts_service.dart';
       CallOffOrderComponent,
       GridComponent,
       GridTemplateDirective,
-      ColumnComponent])
+      ColumnComponent
+    ])
 class ContractWorksComponent implements OnInit, OnDestroy {
-   static const DisplayName = const {'displayName': 'Работы'};
+  static const DisplayName = const {'displayName': 'Работы'};
 
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
@@ -39,11 +40,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   var worksDataSource = new DataSource();
 
-  ContractWorksComponent(
-    this._router,
-    this._resourcesLoaderService,
-    this._callOffService,
-    this._contractsService);
+  ContractWorksComponent(this._router, this._resourcesLoaderService,
+      this._callOffService, this._contractsService);
 
   void breadcrumbInit() {}
 
@@ -77,8 +75,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       result.add(order.toMap());
     }
 
-    worksDataSource = new DataSource(data: result)
-      ..primaryField = 'id';
+    worksDataSource = new DataSource(data: result)..primaryField = 'id';
 
     return null;
   }

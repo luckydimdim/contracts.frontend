@@ -48,8 +48,7 @@ import '../../contracts_service/contracts_service.dart';
   MaterialsToTitleBindingComponent.route,
   ContractBudgetComponent.route
 ])
-class ContractComponent
-    implements OnInit {
+class ContractComponent implements OnInit {
   final Router _router;
   final ResourcesLoaderService _resourcesLoaderService;
   static const DisplayName = const {'displayName': 'Договор'};
@@ -57,7 +56,8 @@ class ContractComponent
   final ContractsService service;
   final BreadcrumbService _breadcrumbService;
 
-  ContractGeneralModel model = null; // FIXME: Использовать модель, предназначенную для этого компонента
+  ContractGeneralModel model =
+      null; // FIXME: Использовать модель, предназначенную для этого компонента
 
   String contractId;
 
