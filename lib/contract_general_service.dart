@@ -1,1 +1,1 @@
-export 'src/contract/src/general/contract_general_service.dart';
+export 'src/contract/general/contract_general_service.dart';

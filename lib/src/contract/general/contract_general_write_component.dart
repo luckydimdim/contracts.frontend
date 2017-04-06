@@ -12,7 +12,7 @@ import 'package:resources_loader/resources_loader.dart';
 import 'package:daterangepicker/daterangepicker.dart';
 import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
-import '../../../contracts_service/contracts_service.dart';
+import '../../contracts_service/contracts_service.dart';
 
 @Component(selector: 'contract-general-write')
 @View(

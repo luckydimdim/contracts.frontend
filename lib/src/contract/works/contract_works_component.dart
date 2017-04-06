@@ -4,12 +4,12 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:call_off_order/src/call_off_order.dart';
-import '../../src/general/contract_general_model.dart';
+import '../general/contract_general_model.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
 import 'package:grid/grid.dart';
-import '../../../contracts_service/contracts_service.dart';
+import '../../contracts_service/contracts_service.dart';
 
 @Component(
     selector: 'contract-works',
@@ -43,12 +43,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   ContractWorksComponent(this._router, this._resourcesLoaderService,
       this._callOffService, this._contractsService);
 
-  void breadcrumbInit() {}
-
   @override
   Future ngOnInit() async {
-    breadcrumbInit();
-
     Instruction ci = _router.parent.parent.currentInstruction;
     contractId = ci.component.params['id'];
 
