@@ -1,7 +1,7 @@
 import 'package:angular2/core.dart';
 import 'package:http/http.dart';
 import 'package:config/config_service.dart';
-import '../contract/src/general/contract_general_service.dart';
+import '../contract/general/contract_general_service.dart';
 
 /**
  * Сервис для всего раздела "Договоры"
