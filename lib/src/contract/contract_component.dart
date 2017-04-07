@@ -4,6 +4,7 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:resources_loader/resources_loader.dart';
+import 'package:master_layout/breadcrumb_service.dart';
 
 import 'contract_layout/contract_layout_component.dart';
 import 'general/contract_general_component.dart';
@@ -17,7 +18,6 @@ import 'works_to_title_binding/works_to_title_binding_component.dart';
 import 'materials_to_budget_binding/materials_to_budget_binding_component.dart';
 import 'materials_to_title_binding/materials_to_title_binding_component.dart';
 import 'contract_budget/contract_budget_component.dart';
-import 'package:master_layout/breadcrumb_service.dart';
 
 import 'general/contract_general_model.dart';
 import '../contracts_service/contracts_service.dart';
