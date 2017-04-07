@@ -24,4 +24,6 @@ import 'package:contracts/src/contracts_service/contracts_service.dart';
       name: 'Contract',
       data: ContractComponent.DisplayName)
 ])
-class ContractsComponent {}
+class ContractsComponent {
+  static const DisplayName = const {'displayName': 'Договоры'};
+}
