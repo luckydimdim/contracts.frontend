@@ -15,6 +15,7 @@ import 'package:aside/aside_service.dart';
 import 'package:angular_utils/cm_router_link.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:master_layout/master_layout_component.dart';
+import 'package:master_layout/breadcrumb_service.dart';
 import 'package:contracts/contracts_component.dart';
 import 'package:logger/logger_service.dart';
 import 'package:config/config_service.dart';
@@ -57,6 +58,8 @@ main() async {
     const Provider(AsideService),
     const Provider(LoggerService),
     const Provider(ConfigService),
+    const Provider(BreadcrumbService),
+
     // provide(Client, useClass: InMemoryDataService)
     // Using a real back end?
     // Import browser_client.dart and change the above to:

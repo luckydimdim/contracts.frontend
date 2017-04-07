@@ -22,7 +22,6 @@ dependencies:
       git: http://cm-ylng-msk-04/git/alert.frontend.git
     grid:
       git: http://cm-ylng-msk-04/git/grid.frontend.git
-      #path: ../grid.frontend
     resources_loader:
       git: http://cm-ylng-msk-04/git/resources_loader.frontend.git
     angular_utils:
@@ -35,7 +34,6 @@ dependencies:
       git: http://cm-ylng-msk-04/git/daterangepicker.frontend.git
     call_off_order:
       git:  http://cm-ylng-msk-04/git/call_off_order.frontend.git
-      #path: ../call_off_order.frontend
     aside:
       git: http://cm-ylng-msk-04/git/aside.frontend.git
     converters:
