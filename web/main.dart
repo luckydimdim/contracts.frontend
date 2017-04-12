@@ -7,6 +7,7 @@ import 'package:angular2/router.dart';
 import 'package:angular2/src/platform/browser/location/hash_location_strategy.dart';
 import 'package:angular2/platform/common.dart';
 
+import 'package:auth/auth_service.dart';
 import 'package:http/http.dart';
 import 'package:http/browser_client.dart';
 
@@ -59,6 +60,7 @@ main() async {
     const Provider(LoggerService),
     const Provider(ConfigService),
     const Provider(BreadcrumbService),
+    const Provider(AuthenticationService),
 
     // provide(Client, useClass: InMemoryDataService)
     // Using a real back end?
