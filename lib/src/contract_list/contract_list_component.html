@@ -20,8 +20,8 @@
 							</tr>
 							</thead>
 							<tbody>
-								<tr [routerLink]="['Contract', {id:contract['id']}]" *ngFor="let contract of contracts; let i=index">
-                  <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
+								<tr *ngFor="let contract of contracts; let i=index">
+                                    <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
 									<td>{{contract['startDate']}}</td>
 									<td>{{contract['finishDate']}}</td>
 									<td>{{contract['number']}}</td>
