@@ -1,6 +1,6 @@
 <div class="card borderless">
   <div class="card-header">
-    <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{model.name}} №{{model.number}}</h4>
+    <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{ model.contractorName }} №{{ model.number }}</h4>
   
     <span class="btn-group float-lg-right">
     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleWriteMode()">
@@ -20,9 +20,8 @@
       <li><span>Дата завершения</span><span>{{model.finishDate}}</span></li>
       <li><span>Подрядчик</span><span>{{model.contractorName}}</span></li>
       <li><span>НДС</span><span>{{model.vatIncluded != null && model.vatIncluded ? 'включен' : 'нет'}}</span></li>
-      <li><span>Валюта</span><span>{{model.currency}}</span></li>
-      <li><span class="font-weight-bold">Стоимость</span><span class="font-weight-bold">{{model.amount}} <i
-              class="fa fa-rub"></i></span></li>
+      <li><span>Валюта</span><span>{{ model.currency }}</span></li>
+      <li><span class="font-weight-bold">Стоимость</span><span class="font-weight-bold">{{model.amount}} </span></li>
     </ul>
     <div class="row">
       <div class="col-xl-10 col-md-11">

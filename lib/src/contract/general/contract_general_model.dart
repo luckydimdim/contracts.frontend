@@ -2,24 +2,51 @@ import 'package:converters/json_converter.dart';
 import 'package:converters/map_converter.dart';
 import 'package:converters/reflector.dart';
 
+@reflectable
 /**
  * Модель представления договора
  */
-@reflectable
 class ContractGeneralModel extends Object with JsonConverter, MapConverter {
-  String id;
-  String name;
-  String number;
-  String startDate;
-  String finishDate;
-  String contractorName;
-  String currency;
-  String amount;
+  // Внутренний идентификатор
+  String id = '';
+
+  // Название договора
+  String name = '';
+
+  // Номер договора
+  String number = '';
+
+  // Дата заключения
+  String startDate = null;
+
+  // Дата окончания
+  String finishDate = null;
+
+  // Имя подрядчика
+  String contractorName = '';
+
+  // Валюта договора
+  String currency = '';
+
+  // Стоимость договора
+  String amount = '0';
+
+  // НДC включен в стоимость договора
   bool vatIncluded = false;
-  String constructionObjectName;
-  String constructionObjectTitleName;
-  String constructionObjectTitleCode;
-  String description;
+
+  // Название объекта строительства
+  String constructionObjectName = '';
+
+  // Название объекта строительства по титульному списку
+  String constructionObjectTitleName = '';
+
+  // Код титульного списка объекта строительства
+  String constructionObjectTitleCode = '';
+
+  // Примечания к договору
+  String description = '';
+
+  // Шаблон договора
   String templateSysName = 'default';
 
   ContractGeneralModel();

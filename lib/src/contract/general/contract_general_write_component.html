@@ -1,6 +1,6 @@
 <div class="card borderless">
   <div class="card-header">
-    <h4 class="float-lg-left">{{contractName.value}}&nbsp;{{contractNumber.value !== '' ? '№'+ contractNumber.value : ''}}</h4>
+    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;{{ contractNumber.value !== '' ? '№'+ contractNumber.value : '' }}</h4>
     <span class="btn-group float-lg-right">
     <button type="button" class="btn btn-sm btn-outline-secondary active" (click)="toggleWriteMode()">
         <i class="fa fa-edit"></i>
@@ -54,7 +54,6 @@
                     <label for="name">Название</label>
                     <input type="text" class="form-control" id="name"
                            autocomplete="off"
-                           #contractName
                   
                            #nameControl="ngForm"
                            [ngClass]="controlStateClasses(nameControl)"
@@ -147,6 +146,7 @@
                        autocomplete="off"
                        [(ngModel)]="model.contractorName"
                        ngControl="contractorName"
+                       #contractorName
               
                        #contractorNameControl="ngForm"
                        [ngClass]="controlStateClasses(contractorNameControl)"
@@ -305,7 +305,7 @@
                           ngControl="description"
               
                           #descriptionControl="ngForm"
-                          [ngClass]="controlStateClasses(description)"
+                          [ngClass]="controlStateClasses(descriptionControl)"
                           [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
                           [class.form-control-success]="descriptionControl.valid && descriptionControl.touched"></textarea>
               </div>

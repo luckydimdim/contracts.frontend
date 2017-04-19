@@ -18,7 +18,7 @@ import '../../contracts_service/contracts_service.dart';
 @View(
     templateUrl: 'contract_general_write_component.html',
     directives: const [DateRangePickerDirective])
-class ContractGeneralWriteComponent implements OnInit {
+class ContractGeneralWriteComponent {
   final ContractsService service;
   final ConfigService _config;
   final LoggerService _logger;
@@ -78,17 +78,15 @@ class ContractGeneralWriteComponent implements OnInit {
     service.writeEnabled = !service.writeEnabled;
   }
 
+  /**
+   * Удаление договора
+   */
   Future deleteContract() async {
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);
 
     return null;
-  }
-
-  @override
-  ngOnInit() {
-    breadcrumbInit();
   }
 
   onChange(NgForm ngForm) async {
@@ -98,8 +96,9 @@ class ContractGeneralWriteComponent implements OnInit {
     //}
   }
 
-  void breadcrumbInit() {}
-
+  /**
+   * Обработка события выбора даты заключения договора
+   */
   Future startDateSelected(Map<String, DateTime> dates) async {
     var formatter = new DateFormat('dd.MM.yyyy');
     String formatted = formatter.format(dates['start']);
@@ -111,6 +110,9 @@ class ContractGeneralWriteComponent implements OnInit {
     return null;
   }
 
+  /**
+   * Обработка события выбора даты окончания договора
+   */
   Future finishDateSelected(Map<String, DateTime> dates) async {
     var formatter = new DateFormat('dd.MM.yyyy');
     String formatted = formatter.format(dates['start']);

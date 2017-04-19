@@ -1,55 +1,56 @@
 <div class="animated fadeIn">
-	<div class="row">
-		<div class="col-xl-12">
-			<div class="card">
-				<div class="card-header">
-					Список договоров
-					<span class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> Создать договор <i class="fa fa-plus-circle"></i></span>
-				</div>
-				<div class="card-block">
-					<table class="table table-condensed table-striped table-hover" table-click>
-						<thead>
-							<tr>
-								<th>Название</th>
-								<th>Дата заключения</th>
-								<th>Дата завершения</th>
-								<th>№ договора</th>
-								<th>Подрядчик</th>
-								<th>Объект</th>
-								<th>Стоимость</th>
-							</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let contract of contracts; let i=index">
-                                    <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
-									<td>{{contract['startDate']}}</td>
-									<td>{{contract['finishDate']}}</td>
-									<td>{{contract['number']}}</td>
-									<td>{{contract['contractorName']}}</td>
-									<td>{{contract['constructionObjectName']}}</td>
-									<td class="text-xl-right">{{contract['amount']}}&nbsp;{{contract['currency']}}</td>
-								</tr>
-						</tbody>
-					</table>
-					<!--<nav>
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#">Назад</a>
-							</li>
-							<li class="page-item active">
-								<a class="page-link" href="#">1</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">3</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">4</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">Вперед</a>
-							</li>
-						</ul>
-					</nav>-->
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          Список договоров
+          <span class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> Создать договор <i
+            class="fa fa-plus-circle"></i></span>
+        </div>
+        <div class="card-block">
+          <table class="table table-condensed table-striped table-hover" table-click>
+            <thead>
+            <tr>
+              <th>Название</th>
+              <th>Дата заключения</th>
+              <th>Дата завершения</th>
+              <th>№ договора</th>
+              <th>Подрядчик</th>
+              <th>Объект</th>
+              <th>Стоимость</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contract of contracts; let i=index">
+              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
+              <td>{{contract['startDate']}}</td>
+              <td>{{contract['finishDate']}}</td>
+              <td>{{contract['number']}}</td>
+              <td>{{contract['contractorName']}}</td>
+              <td>{{contract['constructionObjectName']}}</td>
+              <td class="text-xl-right">{{contract['amount']}}&nbsp;{{contract['currency']}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <!--<nav>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Назад</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">4</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">Вперед</a>
+              </li>
+            </ul>
+          </nav>-->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
