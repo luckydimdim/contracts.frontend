@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:http_wrapper/http_wrapper.dart';
 import 'package:angular2/core.dart';
 
 import 'package:config/config_service.dart';
@@ -13,9 +14,9 @@ import '../general/contract_general_model.dart';
  */
 @Injectable()
 class ContractGeneralService {
-  final Client _http;
   final ConfigService _config;
   LoggerService _logger;
+  final HttpWrapper _http;
 
   ContractGeneralService(this._http, this._config) {
     _logger = new LoggerService(_config);
@@ -36,7 +37,7 @@ class ContractGeneralService {
     } catch (e) {
       _logger.error('Failed to get contract list: $e');
 
-      throw new Exception('Failed to get contract list. Cause: $e');
+      rethrow;
     }
 
     _logger.trace('Contracts requested: $response.');
@@ -67,7 +68,7 @@ class ContractGeneralService {
     } catch (e) {
       _logger.error('Failed to get contract general: $e');
 
-      throw new Exception('Failed to get contract general. Cause: $e');
+      rethrow;
     }
 
     _logger.trace('Contract requested: $response.');
@@ -97,7 +98,7 @@ class ContractGeneralService {
     } catch (e) {
       print('Failed to create contract: $e');
 
-      throw new Exception('Failed to create contract. Cause: $e');
+      rethrow;
     }
 
     return response.body;
@@ -118,7 +119,7 @@ class ContractGeneralService {
     } catch (e) {
       _logger.error('Failed to update contract: $e');
 
-      throw new Exception('Failed to update contract. Cause: $e');
+    rethrow;
     }
   }
 
@@ -136,7 +137,7 @@ class ContractGeneralService {
     } catch (e) {
       _logger.error('Failed to remove contract: $e');
 
-      throw new Exception('Failed to remove contract. Cause: $e');
+      rethrow;
     }
   }
 }
