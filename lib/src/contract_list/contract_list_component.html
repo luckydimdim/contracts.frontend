@@ -11,24 +11,24 @@
           <table class="table table-condensed table-striped table-hover" table-click>
             <thead>
             <tr>
-              <th>Название</th>
+              <th>Подрядчик</th>
+              <th>№ договора</th>
               <th>Дата заключения</th>
               <th>Дата завершения</th>
-              <th>№ договора</th>
-              <th>Подрядчик</th>
+              <th>Название</th>
               <th>Объект</th>
               <th>Стоимость</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let contract of contracts; let i=index">
-              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{contract['name']}}</a></td>
-              <td>{{contract['startDate']}}</td>
-              <td>{{contract['finishDate']}}</td>
-              <td>{{contract['number']}}</td>
-              <td>{{contract['contractorName']}}</td>
-              <td>{{contract['constructionObjectName']}}</td>
-              <td class="text-xl-right">{{contract['amount']}}&nbsp;{{contract['currency']}}</td>
+              <td>{{ contract['contractorName'] }}</td>
+              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{ contract['number'] }}</a></td>
+              <td>{{ contract['startDate'] }}</td>
+              <td>{{ contract['finishDate'] }}</td>
+              <td>{{ contract['name'] }}</td>
+              <td>{{ contract['constructionObjectName'] }}</td>
+              <td class="text-xl-right">{{ contract['amount'] | cmFormatMoney | cmFormatCurrency:contract['currency'] }}</td>
             </tr>
             </tbody>
           </table>

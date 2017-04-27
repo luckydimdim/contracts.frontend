@@ -47,7 +47,7 @@ class ContractGeneralService {
     var list = JSON.decode(response.body);
 
     for (var json in list) {
-      result.add(new ContractGeneralModel.fromJson(json));
+      result.add(new ContractGeneralModel().fromJson(json));
     }
 
     return result;
@@ -75,7 +75,7 @@ class ContractGeneralService {
 
     var json = JSON.decode(response.body);
 
-    var result = new ContractGeneralModel.fromJson(json);
+    var result = new ContractGeneralModel().fromJson(json);
 
     return result;
   }

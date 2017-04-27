@@ -1,6 +1,6 @@
 <div class="card borderless">
   <div class="card-header">
-    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;{{ contractNumber.value !== '' ? '№'+ contractNumber.value : '' }}</h4>
+    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span><span *ngIf="startDate.value !== ''"> от {{ startDate.value }}</span></h4>
     <span class="btn-group float-lg-right">
     <button type="button" class="btn btn-sm btn-outline-secondary active" (click)="toggleWriteMode()">
         <i class="fa fa-edit"></i>
@@ -217,7 +217,7 @@
                   <span class="switch-label"></span>
                   <span class="switch-handle"></span>
                 </label>
-                <span class="pl-1">НДС включен в стоимость договора</span>
+                <span class="pl-1">Расходы облагаются НДС</span>
               </div>
             
               <div class="row">

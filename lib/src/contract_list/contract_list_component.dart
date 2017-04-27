@@ -6,13 +6,18 @@ import 'package:angular2/router.dart';
 import 'package:config/config_service.dart';
 import '../contract/general/contract_general_model.dart';
 import 'package:logger/logger_service.dart';
+import 'package:angular_utils/cm_format_money_pipe.dart';
+import 'package:angular_utils/cm_format_currency_pipe.dart';
 
 import '../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-list')
-@View(
-    templateUrl: 'contract_list_component.html', directives: const [RouterLink])
-class ContractListComponent implements OnInit, AfterViewInit {
+@Component(
+  selector: 'contract-list',
+  templateUrl: 'contract_list_component.html',
+  directives: const [RouterLink],
+  pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe]
+  )
+class ContractListComponent implements AfterViewInit {
   final Router _router;
   final LoggerService _logger;
   final ConfigService _config;
@@ -22,28 +27,18 @@ class ContractListComponent implements OnInit, AfterViewInit {
   List<Map> contracts = new List<Map>();
 
   ContractListComponent(
-      this._router, this._logger, this._config, this._service) {}
-
-  void breadcrumbInit() {}
-
-  @override
-  void ngOnInit() {
-    breadcrumbInit();
-  }
+      this._router, this._logger, this._config, this._service);
 
   @override
   ngAfterViewInit() async {
-    var contractsList = await _service.general.getContracts();
+    List<ContractGeneralModel> contractsList = await _service.general.getContracts();
 
-    for (var contract in contractsList) {
+    for (ContractGeneralModel contract in contractsList) {
       contracts.add(contract.toMap());
     }
   }
 
   Future createContract() async {
-    //Instruction ci = _router.parent.parent.currentInstruction;
-    //String contractId = ci.component.params['id'];
-
     var newContractModel = new ContractGeneralModel();
 
     String contractId = await _service.general.createContract(newContractModel);

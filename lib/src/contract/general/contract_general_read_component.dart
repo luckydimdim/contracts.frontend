@@ -5,12 +5,15 @@ import 'package:angular2/router.dart';
 
 import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
+import 'package:angular_utils/cm_format_money_pipe.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-general-read')
-@View(templateUrl: 'contract_general_read_component.html')
+@Component(
+    templateUrl: 'contract_general_read_component.html',
+    selector: 'contract-general-read',
+    pipes: const [CmFormatMoneyPipe])
 class ContractGeneralReadComponent implements OnInit {
   final ContractsService service;
   final ConfigService _config;

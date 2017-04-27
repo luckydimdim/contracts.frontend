@@ -29,7 +29,7 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
   String currency = '';
 
   // Стоимость договора
-  String amount = '0';
+  num amount = 0;
 
   // НДC включен в стоимость договора
   bool vatIncluded = false;
@@ -48,10 +48,4 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
   // Шаблон договора
   String templateSysName = 'default';
-
-  ContractGeneralModel();
-
-  factory ContractGeneralModel.fromJson(dynamic json) {
-    return new ContractGeneralModel().fromJson(json);
-  }
 }
