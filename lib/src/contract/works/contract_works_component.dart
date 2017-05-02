@@ -35,6 +35,11 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   String callOffTemplateSysName;
   ContractGeneralModel _contractModel;
 
+  /**
+   * Первичные документы отсутствуют
+   */
+  bool isEmpty = false;
+
   @ViewChild(GridComponent)
   GridComponent grid;
 
@@ -73,6 +78,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     worksDataSource = new DataSource(data: result)..primaryField = 'id';
 
+    isEmpty = orders.isEmpty;
+
     return null;
   }
 
@@ -87,7 +94,11 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     worksDataSource.data.insert(0, rowData);
 
-    grid.toggleRow(rowData);
+    if (isEmpty) {
+      isEmpty = false;
+    } else {
+      grid.toggleRow(rowData);
+    }
 
     return null;
   }
@@ -96,6 +107,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     await _callOffService.deleteCallOfOrder(id);
 
     worksDataSource.data.removeWhere((item) => item['id'] == id);
+
+    isEmpty = worksDataSource.data.isEmpty;
 
     return null;
   }
