@@ -8,6 +8,7 @@ import '../general/contract_general_model.dart';
 import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
+import 'package:auth/auth_service.dart';
 import 'package:grid/grid.dart';
 import '../../contracts_service/contracts_service.dart';
 
@@ -30,6 +31,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   final ResourcesLoaderService _resourcesLoaderService;
   final CallOffService _callOffService;
   final ContractsService _contractsService;
+  final AuthorizationService _authorizationService;
 
   String contractId;
   String callOffTemplateSysName;
@@ -40,13 +42,15 @@ class ContractWorksComponent implements OnInit, OnDestroy {
    */
   bool isEmpty = false;
 
+  bool readOnly = true;
+
   @ViewChild(GridComponent)
   GridComponent grid;
 
   var worksDataSource = new DataSource();
 
   ContractWorksComponent(this._router, this._resourcesLoaderService,
-      this._callOffService, this._contractsService);
+      this._callOffService, this._contractsService, this._authorizationService);
 
   @override
   Future ngOnInit() async {
@@ -59,6 +63,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     // TODO: Переименовать
     callOffTemplateSysName = _contractModel.templateSysName;
+
+    if (_authorizationService.isInRole(Role.Customer))
+      readOnly = false;
 
     return null;
   }

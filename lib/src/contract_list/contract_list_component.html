@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           Список договоров
-          <span class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> Создать договор <i
+          <span *ngIf="!readOnly" class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> Создать договор <i
             class="fa fa-plus-circle"></i></span>
         </div>
         <div class="card-block">

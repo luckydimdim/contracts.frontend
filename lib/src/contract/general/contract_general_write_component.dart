@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 
 import 'package:alert/alert_service.dart';
 import 'package:angular2/common.dart';
@@ -14,10 +14,12 @@ import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
 
+
 @Component(
     selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
     directives: const [DateRangePickerDirective])
+
 class ContractGeneralWriteComponent {
   final ContractsService service;
   final ConfigService _config;

@@ -1,14 +1,14 @@
 <div class="card animated fadeIn borderless">
 	<div class="card-header">
 		<h4 class="float-xs-left">Наряд-заказы</h4>
-		<button type="button" class="btn btn-sm btn-outline-info float-lg-right" (click)="createWork()">
+		<button *ngIf="!readOnly" type="button" class="btn btn-sm btn-outline-info float-lg-right" (click)="createWork()">
 			<i class="fa fa-plus-circle"></i>
 			&nbsp; Добавить наряд-заказ
 		</button>
 	</div>
 	<div class="card-block">
 		<div class="card-block" *ngIf="isEmpty">
-			<h4 class="text-muted">Список пуст, но вы там держитесь! <a href="javascript: void(0)" (click)="createWork()">Создать наряд-заказ</a></h4>
+			<h4 class="text-muted">Список пуст <a *ngIf="!readOnly" href="javascript: void(0)" (click)="createWork()">Создать наряд-заказ</a></h4>
 		</div>
 
 		<grid *ngIf="!isEmpty" #grid [dataSource]="worksDataSource" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
@@ -21,7 +21,7 @@
 			</grid-column>
 			<grid-column header="Наименование" field="name" width="50%"></grid-column>
 			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
-			<grid-column width="1%">
+			<grid-column *ngIf="!readOnly" width="1%">
 				<template let-callOff="rowData" grid-template="body">
 					<button class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
 				</template>

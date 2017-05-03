@@ -3,12 +3,13 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
+import 'package:auth/auth_service.dart';
 import 'package:config/config_service.dart';
-import '../contract/general/contract_general_model.dart';
 import 'package:logger/logger_service.dart';
 import 'package:angular_utils/cm_format_money_pipe.dart';
 import 'package:angular_utils/cm_format_currency_pipe.dart';
 
+import '../contract/general/contract_general_model.dart';
 import '../contracts_service/contracts_service.dart';
 
 @Component(
@@ -17,17 +18,26 @@ import '../contracts_service/contracts_service.dart';
   directives: const [RouterLink],
   pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe]
   )
-class ContractListComponent implements AfterViewInit {
+class ContractListComponent implements AfterViewInit, OnInit {
   final Router _router;
   final LoggerService _logger;
   final ConfigService _config;
   final ContractsService _service;
+  final AuthorizationService _authorizationService;
   static const DisplayName = const {'displayName': 'Список договоров'};
+
+  bool readOnly = true;
 
   List<Map> contracts = new List<Map>();
 
   ContractListComponent(
-      this._router, this._logger, this._config, this._service);
+      this._router, this._logger, this._config, this._service, this._authorizationService);
+
+  @override
+  ngOnInit() {
+    if (_authorizationService.isInRole(Role.Customer))
+      readOnly = false;
+  }
 
   @override
   ngAfterViewInit() async {

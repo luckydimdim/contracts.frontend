@@ -62,6 +62,7 @@ main() async {
     const Provider(ConfigService),
     const Provider(BreadcrumbService),
     const Provider(AuthenticationService),
+    const Provider(AuthorizationService),
 
     // provide(Client, useClass: InMemoryDataService)
     // Using a real back end?
