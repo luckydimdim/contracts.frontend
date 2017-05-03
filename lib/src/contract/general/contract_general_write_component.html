@@ -2,9 +2,9 @@
   <div class="card-header">
     <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span><span *ngIf="startDate.value !== ''"> от {{ startDate.value }}</span></h4>
     <span class="btn-group float-lg-right">
-    <button type="button" class="btn btn-sm btn-outline-secondary active" (click)="toggleWriteMode()">
-        <i class="fa fa-edit"></i>
-      &nbsp; Редактировать
+    <button type="button" class="btn btn-sm btn-primary" (click)="toggleWriteMode()">
+        <i class="icon-action-undo"></i>
+      &nbsp; Назад
       </button>
       <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
         <i class="fa fa-trash-o"></i>
