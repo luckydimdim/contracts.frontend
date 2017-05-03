@@ -1,6 +1,6 @@
-<div class="card borderless">
+<div class="card borderless" *ngIf="model != null">
   <div class="card-header">
-    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span><span *ngIf="startDate.value !== ''"> от {{ startDate.value }}</span></h4>
+    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span></h4>
     <span class="btn-group float-lg-right">
     <button type="button" class="btn btn-sm btn-primary" (click)="toggleWriteMode()">
         <i class="icon-action-undo"></i>
@@ -165,15 +165,14 @@
                        [class.has-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
                        [class.has-success]="amountControl.valid && amountControl.touched">
                     <label for="amount">Стоимость</label>
-                    <input type="text" class="form-control" id="amount" placeholder="Укажите стоимость договора"
+                    <input type="number" class="form-control" id="amount" placeholder="Укажите стоимость договора"
                            autocomplete="off"
                            [(ngModel)]="model.amount"
                            ngControl="amount"
-                  
+
                            #amountControl="ngForm"
                            [ngClass]="controlStateClasses(amountControl)"
                            required
-                           pattern="[0-9 ]+"
                            [class.form-control-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
                            [class.form-control-success]="amountControl.valid && amountControl.touched" />
                     <em *ngIf="!amountControl.valid && (amountControl.dirty || amountControl.touched)"

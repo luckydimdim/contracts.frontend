@@ -14,8 +14,8 @@ import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
 
-@Component(selector: 'contract-general-write')
-@View(
+@Component(
+    selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
     directives: const [DateRangePickerDirective])
 class ContractGeneralWriteComponent {
@@ -28,7 +28,7 @@ class ContractGeneralWriteComponent {
   final AlertService _alert;
 
   @Input()
-  ContractGeneralModel model = new ContractGeneralModel();
+  ContractGeneralModel model = null;
 
   Map<String, bool> controlStateClasses(NgControl control) => {
         'ng-dirty': control.dirty ?? false,
