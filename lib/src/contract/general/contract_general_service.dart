@@ -113,7 +113,7 @@ class ContractGeneralService {
     _logger.trace('Updating contract $jsonString');
 
     try {
-      await _http.put(_config.helper.contractsUrl,
+      await _http.put('${_config.helper.contractsUrl}/${model.id}',
           headers: {'Content-Type': 'application/json'}, body: jsonString);
       _logger.trace('Contract ${model.name} successfuly updated');
     } catch (e) {
