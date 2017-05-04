@@ -119,4 +119,11 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     return null;
   }
+
+  /**
+   * Нажатие на кнопку "Завершить"
+   */
+  void finish(dynamic row) {
+    grid.toggleRow(row);
+  }
 }
