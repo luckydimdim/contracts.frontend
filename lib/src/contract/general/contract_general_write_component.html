@@ -85,7 +85,8 @@
                       <span (click)="startDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
                       <input daterangepicker type="text" class="form-control" id="start-date"
                              placeholder="Укажите дату заключения договора"
-                             [(ngModel)]="model.startDate"
+                             [value]="model.startDateStr"
+                             [ngModel]="model.startDateStr"
                              ngControl="startDate"
                              #name="ngForm"
                              [options]="dateRangePickerOptions"
@@ -115,7 +116,8 @@
                       <span (click)="finishDate.click()" class="input-group-addon"><i class="fa fa-calendar cursor-pointer"></i></span>
                       <input daterangepicker type="text" class="form-control" id="finish-date"
                              placeholder="Укажите дату окончания договора"
-                             [(ngModel)]="model.finishDate"
+                             [ngModel]="model.finishDateStr"
+                             [value]="model.finishDateStr"
                              ngControl="finishDate"
                              #name="ngForm"
                              [options]="dateRangePickerOptions"

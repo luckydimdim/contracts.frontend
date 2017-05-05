@@ -16,6 +16,9 @@ class ContractsService {
   ContractGeneralService general;
 
   ContractsService(this._config, this._http) {
-    general = new ContractGeneralService(this._http, this._config,);
+    general = new ContractGeneralService(
+      this._http,
+      this._config,
+    );
   }
 }

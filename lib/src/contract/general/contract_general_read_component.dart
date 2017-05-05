@@ -38,14 +38,17 @@ class ContractGeneralReadComponent implements OnInit {
         'ng-invalid': control.valid == false
       };
 
-  ContractGeneralReadComponent(this._config, this._logger,
-      this._resourcesLoader, this.service, this._router, this._authorizationService);
+  ContractGeneralReadComponent(
+      this._config,
+      this._logger,
+      this._resourcesLoader,
+      this.service,
+      this._router,
+      this._authorizationService);
 
   @override
   ngOnInit() async {
-
-    if (_authorizationService.isInRole(Role.Customer))
-      readOnly = false;
+    if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
 
     breadcrumbInit();
   }

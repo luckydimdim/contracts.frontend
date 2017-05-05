@@ -13,11 +13,10 @@ import '../contract/general/contract_general_model.dart';
 import '../contracts_service/contracts_service.dart';
 
 @Component(
-  selector: 'contract-list',
-  templateUrl: 'contract_list_component.html',
-  directives: const [RouterLink],
-  pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe]
-  )
+    selector: 'contract-list',
+    templateUrl: 'contract_list_component.html',
+    directives: const [RouterLink],
+    pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe])
 class ContractListComponent implements AfterViewInit, OnInit {
   final Router _router;
   final LoggerService _logger;
@@ -30,18 +29,18 @@ class ContractListComponent implements AfterViewInit, OnInit {
 
   List<Map> contracts = new List<Map>();
 
-  ContractListComponent(
-      this._router, this._logger, this._config, this._service, this._authorizationService);
+  ContractListComponent(this._router, this._logger, this._config, this._service,
+      this._authorizationService);
 
   @override
   ngOnInit() {
-    if (_authorizationService.isInRole(Role.Customer))
-      readOnly = false;
+    if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
   }
 
   @override
   ngAfterViewInit() async {
-    List<ContractGeneralModel> contractsList = await _service.general.getContracts();
+    List<ContractGeneralModel> contractsList =
+        await _service.general.getContracts();
 
     for (ContractGeneralModel contract in contractsList) {
       contracts.add(contract.toMap());

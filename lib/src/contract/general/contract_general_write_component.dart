@@ -1,10 +1,9 @@
-﻿import 'dart:async';
+import 'dart:async';
 
 import 'package:alert/alert_service.dart';
-import 'package:angular2/common.dart';
+import 'package:angular2/angular2.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:intl/intl.dart';
 
 import 'package:config/config_service.dart';
 import 'package:logger/logger_service.dart';
@@ -14,12 +13,10 @@ import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
 
-
 @Component(
     selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
     directives: const [DateRangePickerDirective])
-
 class ContractGeneralWriteComponent {
   final ContractsService service;
   final ConfigService _config;
@@ -91,21 +88,20 @@ class ContractGeneralWriteComponent {
     return null;
   }
 
-  onChange(NgForm ngForm) async {
+  Future onChange(NgForm ngForm) async {
     // FIXME: придумать способ апдейта отдельных полей
     //if (ngForm == null || ngForm.form.status == 'VALID') {
     await service.general.updateContract(model);
     //}
+
+    return null;
   }
 
   /**
    * Обработка события выбора даты заключения договора
    */
   Future startDateSelected(Map<String, DateTime> dates) async {
-    var formatter = new DateFormat('dd.MM.yyyy');
-    String formatted = formatter.format(dates['start']);
-
-    model.startDate = formatted;
+    model.startDate = dates['start'];
 
     await onChange(null);
 
@@ -116,10 +112,7 @@ class ContractGeneralWriteComponent {
    * Обработка события выбора даты окончания договора
    */
   Future finishDateSelected(Map<String, DateTime> dates) async {
-    var formatter = new DateFormat('dd.MM.yyyy');
-    String formatted = formatter.format(dates['start']);
-
-    model.finishDate = formatted;
+    model.finishDate = dates['start'];
 
     await onChange(null);
 

@@ -68,7 +68,10 @@ main() async {
     // Using a real back end?
     // Import browser_client.dart and change the above to:
     provide(Client, useFactory: () => new BrowserClient(), deps: []),
-    provide(HttpWrapper, useFactory: (_http, _authenticationService) => new HttpWrapper(_http, _authenticationService), deps: [Client, AuthenticationService])
+    provide(HttpWrapper,
+        useFactory: (_http, _authenticationService) =>
+            new HttpWrapper(_http, _authenticationService),
+        deps: [Client, AuthenticationService])
   ]);
 
   if (isDebug) {

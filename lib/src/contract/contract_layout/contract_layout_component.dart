@@ -109,15 +109,11 @@ class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  void showHistory() {
+  void showHistory() {}
 
-  }
+  void createHistoryTab() {}
 
-  void createHistoryTab() {
-  }
-
-  void destroyHistory() {
-  }
+  void destroyHistory() {}
 
   @override
   void ngOnDestroy() {

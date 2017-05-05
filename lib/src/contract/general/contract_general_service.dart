@@ -108,7 +108,7 @@ class ContractGeneralService {
    * Изменение данных договора
    */
   updateContract(ContractGeneralModel model) async {
-    var jsonString = JSON.encode(model.toJson());
+    var jsonString = model.toJsonString();
 
     _logger.trace('Updating contract $jsonString');
 
@@ -119,7 +119,7 @@ class ContractGeneralService {
     } catch (e) {
       _logger.error('Failed to update contract: $e');
 
-    rethrow;
+      rethrow;
     }
   }
 

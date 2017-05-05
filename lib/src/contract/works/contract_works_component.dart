@@ -64,8 +64,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     // TODO: Переименовать
     callOffTemplateSysName = _contractModel.templateSysName;
 
-    if (_authorizationService.isInRole(Role.Customer))
-      readOnly = false;
+    if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
 
     return null;
   }

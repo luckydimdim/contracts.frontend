@@ -24,8 +24,8 @@
             <tr *ngFor="let contract of contracts; let i=index">
               <td>{{ contract['contractorName'] }}</td>
               <td><a [routerLink]="['Contract', {id:contract['id']}]">{{ contract['number'] }}</a></td>
-              <td>{{ contract['startDate'] }}</td>
-              <td>{{ contract['finishDate'] }}</td>
+              <td>{{ contract['startDate'] | date:'dd.MM.yyyy' }}</td>
+              <td>{{ contract['finishDate'] | date:'dd.MM.yyyy' }}</td>
               <td>{{ contract['name'] }}</td>
               <td>{{ contract['constructionObjectName'] }}</td>
               <td class="text-xl-right">{{ contract['amount'] | cmFormatMoney | cmFormatCurrency:contract['currency'] }}</td>

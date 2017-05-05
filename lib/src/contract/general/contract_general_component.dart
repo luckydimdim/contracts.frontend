@@ -2,7 +2,6 @@ import 'contract_general_model.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import '../../contract/contract_component.dart';
 import 'package:logger/logger_service.dart';
 
 import 'contract_general_write_component.dart';

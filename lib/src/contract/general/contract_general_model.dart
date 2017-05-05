@@ -1,6 +1,7 @@
 import 'package:converters/json_converter.dart';
 import 'package:converters/map_converter.dart';
 import 'package:converters/reflector.dart';
+import 'package:intl/intl.dart';
 
 @reflectable
 /**
@@ -17,10 +18,10 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
   String number = '';
 
   // Дата заключения
-  String startDate = null;
+  DateTime startDate = null;
 
   // Дата окончания
-  String finishDate = null;
+  DateTime finishDate = null;
 
   // Имя подрядчика
   String contractorName = '';
@@ -48,4 +49,12 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
   // Шаблон договора
   String templateSysName = 'default';
+
+  String get startDateStr =>
+      startDate == null ? '' : _formatter.format(startDate);
+
+  String get finishDateStr =>
+      finishDate == null ? '' : _formatter.format(finishDate);
+
+  DateFormat _formatter = new DateFormat('dd.MM.yyyy');
 }
