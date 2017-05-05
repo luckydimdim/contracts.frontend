@@ -1,6 +1,6 @@
 <div class="card borderless">
   <div class="card-header">
-    <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{ model.contractorName }} №{{ model.number }}<span *ngIf="model.startDate !== ''"> от {{ model.startDate }}</span></h4>
+    <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{ model.contractorName }} №{{ model.number }}<span *ngIf="model.startDate !== ''"> от {{ model.startDate | date:'dd.MM.yyyy'}}</span></h4>
   
     <span *ngIf="!readOnly" class="btn-group float-lg-right">
     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleWriteMode()">
@@ -16,8 +16,8 @@
   </div>
   <div class="card-block animated fadeIn">
     <ul class="leaders mt-1">
-      <li><span>Дата заключения</span> <span>{{ model.startDate }}</span></li>
-      <li><span>Дата завершения</span><span>{{ model.finishDate }}</span></li>
+      <li><span>Дата заключения</span> <span>{{ model.startDate | date:'dd.MM.yyyy'}}</span></li>
+      <li><span>Дата завершения</span><span>{{ model.finishDate | date:'dd.MM.yyyy'}}</span></li>
       <li><span>Подрядчик</span><span>{{ model.contractorName }}</span></li>
       <li><span>Расходы облагаются НДС</span><span>{{ model.vatIncluded != null && model.vatIncluded ? 'включен' : 'нет' }}</span></li>
       <li><span>Валюта</span><span>{{ model.currency }}</span></li>
