@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
@@ -57,12 +58,16 @@ class ContractGeneralReadComponent implements OnInit {
     service.writeEnabled = !service.writeEnabled;
   }
 
-  Future deleteContract() async {
+  deleteContract() async {
+
+    if(!window.confirm('Удалить контракт?'))
+      return;
+
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);
 
-    return null;
+    return;
   }
 
   void breadcrumbInit() {}

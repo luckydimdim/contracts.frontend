@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
@@ -109,14 +110,18 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  Future deleteWork(String id) async {
+  deleteWork(String id) async {
+
+    if(!window.confirm('Удалить наряд-заказ?'))
+      return;
+
     await _callOffService.deleteCallOfOrder(id);
 
     worksDataSource.data.removeWhere((item) => item['id'] == id);
 
     isEmpty = worksDataSource.data.isEmpty;
 
-    return null;
+    return;
   }
 
   /**
