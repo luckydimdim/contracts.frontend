@@ -12,11 +12,13 @@ import 'package:daterangepicker/daterangepicker.dart';
 import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
+import 'amount_component.dart';
+import 'amount.dart';
 
 @Component(
     selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
-    directives: const [DateRangePickerDirective])
+    directives: const [DateRangePickerDirective, AmountComponent])
 class ContractGeneralWriteComponent {
   final ContractsService service;
   final ConfigService _config;
@@ -117,5 +119,30 @@ class ContractGeneralWriteComponent {
     await onChange(null);
 
     return null;
+  }
+
+  updateAmount(AmountComponent amountComponent) async{
+    await onChange(null);
+  }
+
+  removeAmount(int index) async{
+    if (model.amounts.length <= 1)
+      return;
+
+    model.amounts.removeAt(index);
+    await onChange(null);
+  }
+
+  addAmount(AmountComponent amountComponent) async{
+
+    if (model.amounts.length >= 4)
+      return;
+
+    var amount = new Amount()
+    ..currencySysName = 'RUR';
+
+    model.amounts.insert(model.amounts.length, amount);
+
+    await onChange(null);
   }
 }

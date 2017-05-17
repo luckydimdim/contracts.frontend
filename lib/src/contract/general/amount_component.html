@@ -1,0 +1,14 @@
+<div class="col-md-4">
+	<input type="number" class="form-control" autocomplete="off" placeholder="Стоимость" required [(ngModel)]="model.value"/>
+</div>
+
+<div class="col-md-2">
+	<select [(ngModel)]="model.currencySysName" class="form-control">
+		<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+	</select>
+</div>
+
+<div class="col-md-2">
+	<button type="button" class="btn btn-secondary text-muted cm-minus" (click)="emitRemove()"><span>—</span></button>
+	<button type="button" class="btn btn-secondary text-muted cm-plus" (click)="emitAdd()"><span>—</span></button>
+</div>

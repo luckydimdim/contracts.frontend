@@ -86,7 +86,7 @@ class ContractGeneralService {
   Future<String> createContract(ContractGeneralModel model) async {
     Response response = null;
 
-    var jsonString = JSON.encode(model.toJson());
+    var jsonString = model.toJsonString();
 
     _logger.trace('Creating contract $jsonString');
 

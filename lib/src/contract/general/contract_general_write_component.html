@@ -161,54 +161,17 @@
               </div>
             
               <div class="row">
-              
-                <div class="col-md-6">
-                  <div class="form-group"
-                       [class.has-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                       [class.has-success]="amountControl.valid && amountControl.touched">
-                    <label for="amount">Стоимость</label>
-                    <input type="number" class="form-control" id="amount" placeholder="Укажите стоимость договора"
-                           autocomplete="off"
-                           [(ngModel)]="model.amount"
-                           ngControl="amount"
-
-                           #amountControl="ngForm"
-                           [ngClass]="controlStateClasses(amountControl)"
-                           required
-                           [class.form-control-danger]="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                           [class.form-control-success]="amountControl.valid && amountControl.touched" />
-                    <em *ngIf="!amountControl.valid && (amountControl.dirty || amountControl.touched)"
-                        class="error form-control-feedback">Некорректная стоимость</em>
+                  <div>Укажите стоимости договора</div>
+    
+                  <div class="col-md-12 mt-1" *ngFor="let amount of model.amounts; let i=index">
+                    <amount [model]="amount" (addAmount)="addAmount($event)" (removeAmount)="removeAmount(i)" (updateAmount)="updateAmount($event)"></amount>
                   </div>
-                </div>
-                <!-- /col -->
-              
-                <div class="col-md-6">
-                  <div class="form-group"
-                       [class.has-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                       [class.has-success]="currencyControl.valid && currencyControl.touched">
-                    <label for="currency">Валюта</label>
-                    <input type="text" class="form-control" id="currency" placeholder="Укажите валюту договора"
-                           autocomplete="off"
-                           [(ngModel)]="model.currency"
-                           ngControl="currency"
-                  
-                           #currencyControl="ngForm"
-                           [ngClass]="controlStateClasses(currencyControl)"
-                           required
-                           pattern="(руб|usd|eur|jpy)"
-                           [class.form-control-danger]="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                           [class.form-control-success]="currencyControl.valid && currencyControl.touched" />
-                    <em *ngIf="!currencyControl.valid && (currencyControl.dirty || currencyControl.touched)"
-                        class="error form-control-feedback">Некорректная валюта</em>
-                  </div>
-                </div>
-                <!-- /col -->
-            
+  
               </div>
+              
               <!--/row-->
             
-              <div class="form-group"
+              <div class="form-group mt-1"
                    [class.has-danger]="!contractCreateForm.valid && (contractCreateForm.dirty || contractCreateForm.touched)"
                    [class.has-success]="contractCreateForm.valid && contractCreateForm.touched">
                 <label class="switch switch-default switch-primary switch-sm">
@@ -274,7 +237,7 @@
                   <div class="form-group"
                        [class.has-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
                        [class.has-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched">
-                    <label for="construction-object-title-name">Наименование по титуьному списку</label>
+                    <label for="construction-object-title-name">Наименование по титульному списку</label>
                     <input type="text" class="form-control" id="construction-object-title-name"
                            autocomplete="off"
                            placeholder="Укажите наименование объекта по титуьному списку"

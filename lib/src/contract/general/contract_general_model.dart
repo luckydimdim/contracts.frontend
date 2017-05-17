@@ -2,6 +2,7 @@ import 'package:converters/json_converter.dart';
 import 'package:converters/map_converter.dart';
 import 'package:converters/reflector.dart';
 import 'package:intl/intl.dart';
+import 'amount.dart';
 
 @reflectable
 /**
@@ -26,11 +27,9 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
   // Имя подрядчика
   String contractorName = '';
 
-  // Валюта договора
-  String currency = '';
-
-  // Стоимость договора
-  num amount = 0;
+  // Стоимости договора в разрезе валют
+  @Json(exclude: true)
+  List<Amount> amounts = new List<Amount>();
 
   // НДC включен в стоимость договора
   bool vatIncluded = false;
@@ -57,4 +56,30 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
       finishDate == null ? '' : _formatter.format(finishDate);
 
   DateFormat _formatter = new DateFormat('dd.MM.yyyy');
+
+  @override
+  Map toJson() {
+    var result = super.toJson();
+
+    var amountsList = new List<Map>();
+
+    amounts.forEach((a){
+      amountsList.add(a.toJson());
+    });
+
+    result['amounts'] = amountsList;
+
+    return result;
+  }
+
+  @override
+  dynamic fromJson(dynamic json) {
+    super.fromJson(json);
+
+    for (dynamic amountJson in json['amounts']) {
+      amounts.add(new Amount().fromJson(amountJson));
+    }
+
+    return this;
+  }
 }

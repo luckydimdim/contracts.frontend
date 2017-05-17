@@ -7,6 +7,7 @@ import 'package:logger/logger_service.dart';
 import 'contract_general_write_component.dart';
 import 'contract_general_read_component.dart';
 import '../../contracts_service/contracts_service.dart';
+import 'amount.dart';
 
 @Component(
     selector: 'contract-general',
