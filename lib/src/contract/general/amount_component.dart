@@ -4,19 +4,20 @@ import 'package:angular2/core.dart';
 
 import 'amount.dart';
 
-@Component(
-    selector: 'amount', templateUrl: 'amount_component.html')
+@Component(selector: 'amount', templateUrl: 'amount_component.html')
 class AmountComponent implements OnInit {
-
   @Input()
   Amount model = new Amount();
 
   @Input()
   List<String> currencies = new List<String>();
 
-  StreamController<AmountComponent> onAddAmount = new StreamController<AmountComponent>.broadcast();
-  StreamController<AmountComponent> onRemoveAmount = new StreamController<AmountComponent>.broadcast();
-  StreamController<AmountComponent> onUpdateAmount = new StreamController<AmountComponent>.broadcast();
+  StreamController<AmountComponent> onAddAmount =
+      new StreamController<AmountComponent>.broadcast();
+  StreamController<AmountComponent> onRemoveAmount =
+      new StreamController<AmountComponent>.broadcast();
+  StreamController<AmountComponent> onUpdateAmount =
+      new StreamController<AmountComponent>.broadcast();
 
   @Output()
   // Событие добавления стоимости во внешний компонент

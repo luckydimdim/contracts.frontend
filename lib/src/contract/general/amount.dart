@@ -7,11 +7,9 @@ import 'package:converters/reflector.dart';
  */
 @reflectable
 class Amount extends Object with JsonConverter, MapConverter {
-
   // Валюта
   String currencySysName;
 
   // значение
   num value = 0;
-
 }
