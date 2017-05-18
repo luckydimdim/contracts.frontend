@@ -28,7 +28,11 @@
               <td>{{ contract['finishDate'] | date:'dd.MM.yyyy' }}</td>
               <td>{{ contract['name'] }}</td>
               <td>{{ contract['constructionObjectName'] }}</td>
-              <td class="text-xl-right">{{ contract['amount'] | cmFormatMoney | cmFormatCurrency:contract['currency'] }}</td>
+              <td class="text-xl-right">
+                <div class="text-md-right text-nowrap" *ngFor="let amount of contract['amounts']">
+                  {{ amount['value'] | cmFormatMoney | cmFormatCurrency:amount['currencySysName'] }}
+                </div>
+               
             </tr>
             </tbody>
           </table>

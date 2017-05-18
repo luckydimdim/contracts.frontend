@@ -73,6 +73,11 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
   }
 
   @override
+  Map toMap() {
+    return toJson();  // FIXME: Переделать конвертирование сложных вложенных объектов  и убрать это
+  }
+
+  @override
   dynamic fromJson(dynamic json) {
     super.fromJson(json);
 
