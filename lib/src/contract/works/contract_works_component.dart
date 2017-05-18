@@ -91,8 +91,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   }
 
   Future createWork() async {
-    String id = await _callOffService.createCallOffOrder(
-        contractId, callOffTemplateSysName);
+    String id = await _callOffService.createCallOffOrder(contractId);
 
     // TODO: совместить 2 запроса
     var createdCallOff = await _callOffService.getCallOffOrder(id);
