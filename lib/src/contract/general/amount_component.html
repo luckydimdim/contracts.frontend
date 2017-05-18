@@ -15,7 +15,7 @@
         <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
       </select>
 
-      <div class="input-group-btn">
+      <div class="input-group-btn float-md-left ml-1">
         <button type="button" class="btn btn-secondary text-muted cm-minus" (click)="emitRemove()"><span>—</span></button>
         <button type="button" class="btn btn-secondary text-muted cm-plus" (click)="emitAdd()"><span>—</span></button>
       </div>
