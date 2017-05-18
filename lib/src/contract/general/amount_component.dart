@@ -10,6 +10,12 @@ class AmountComponent implements OnInit {
   Amount model = new Amount();
 
   @Input()
+  bool showPlus = true;
+
+  @Input()
+  bool showMinus = true;
+
+  @Input()
   List<String> currencies = new List<String>();
 
   StreamController<AmountComponent> onAddAmount =

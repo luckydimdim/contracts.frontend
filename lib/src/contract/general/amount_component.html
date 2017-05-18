@@ -16,8 +16,8 @@
       </select>
 
       <div class="input-group-btn float-md-left ml-1">
-        <button type="button" class="btn btn-secondary text-muted cm-minus" (click)="emitRemove()"><span>—</span></button>
-        <button type="button" class="btn btn-secondary text-muted cm-plus" (click)="emitAdd()"><span>—</span></button>
+        <button type="button" class="btn btn-secondary text-muted cm-minus" (click)="emitRemove()" *ngIf="showMinus"><span>—</span></button>
+        <button type="button" class="btn btn-secondary text-muted cm-plus" (click)="emitAdd()" *ngIf="showPlus"><span>—</span></button>
       </div>
     </div>
   </div>
