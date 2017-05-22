@@ -8,26 +8,8 @@ import 'package:json_object/json_object.dart';
 
 @Injectable()
 class InMemoryDataService extends MockClient {
-  /*contract.name = '1';
-  contract.number = '2';
-  contract.startDate = '3';
-  contract.finishDate = '4';
-  contract.contractorName = '5';
-  contract.currency = '6';
-  contract.amount = '7';
-  contract.vatIncluded = '8';
-  contract.constructionObjectName = '9';
-  contract.constructionObjectTitleName = '10';
-  contract.constructionObjectTitleCode = '11';
-  contract.description = '12';*/
-
   static final _initialContracts = new List<JsonObject>();
-
-  /*static final List<JsonObject> _heroesDb =
-    _initialContracts.map((json) => new ContractGeneralCreateViewModel.fromJson(json)).toList();*/
-  /*static final List<JsonObject> _contractsDb = JSON.decode(_initialContracts);*/
   static final List<JsonObject> _contractsDb = _initialContracts;
-  /*static int _nextId = _contractsDb.map((contract) => contract.id).fold(0, max) + 1;*/
 
   InMemoryDataService() : super(_handler) {
     _initialContracts.add(new JsonObject.fromJsonString(JSON.encode({
@@ -252,15 +234,10 @@ class InMemoryDataService extends MockClient {
           data = _contractsDb.firstWhere(
               (contract) => contract.id == id); // throws if no match
         } else {
-          /*String prefix = request.url.queryParameters['name'] ?? '';
-          final regExp = new RegExp(prefix, caseSensitive: false);
-          data = _contractsDb.where((contract) => contract.name.contains(regExp)).toList();*/
           data = _contractsDb;
         }
         break;
       case 'POST':
-        var name = JSON.decode(request.body)['name'];
-        /*var newContract = new ContractGeneralCreateViewModel(_nextId++, name);*/
         var newContract = new JsonObject();
         newContract.id = '33';
         newContract.name = '33';
@@ -268,7 +245,6 @@ class InMemoryDataService extends MockClient {
         data = newContract;
         break;
       case 'PUT':
-        /*var contractChanges = new ContractGeneralCreateViewModel.fromJson(JSON.decode(request.body));*/
         var contractChanges =
             new JsonObject.fromJsonString(JSON.encode(request.body));
         var targetContract =

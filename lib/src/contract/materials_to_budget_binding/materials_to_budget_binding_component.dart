@@ -1,6 +1,5 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:resources_loader/resources_loader.dart';
 
 @Component(
     selector: 'materials-to-budget-binding',
@@ -15,11 +14,7 @@ class MaterialsToBudgetBindingComponent implements OnInit, OnDestroy {
       component: MaterialsToBudgetBindingComponent,
       name: MaterialsToBudgetBindingComponent.route_name);
 
-  final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
-
-  MaterialsToBudgetBindingComponent(
-      this._router, this._resourcesLoaderService) {}
+  MaterialsToBudgetBindingComponent();
 
   @override
   void ngOnInit() {

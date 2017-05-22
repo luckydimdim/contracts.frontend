@@ -12,9 +12,7 @@ class ContractDocSettingsComponent implements OnInit {
       component: ContractDocSettingsComponent,
       name: ContractDocSettingsComponent.route_name);
 
-  final Router _router;
-
-  ContractDocSettingsComponent(this._router) {}
+  ContractDocSettingsComponent();
 
   @override
   void ngOnInit() {

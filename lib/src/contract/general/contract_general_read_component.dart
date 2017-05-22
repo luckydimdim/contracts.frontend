@@ -1,14 +1,10 @@
-import 'dart:async';
 import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
 
 import 'package:auth/src/role.dart';
-import 'package:config/config_service.dart';
-import 'package:logger/logger_service.dart';
 import 'package:angular_utils/cm_format_money_pipe.dart';
-import 'package:resources_loader/resources_loader.dart';
 import 'package:auth/auth_service.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
@@ -19,9 +15,6 @@ import '../../contracts_service/contracts_service.dart';
     pipes: const [CmFormatMoneyPipe])
 class ContractGeneralReadComponent implements OnInit {
   final ContractsService service;
-  final ConfigService _config;
-  final LoggerService _logger;
-  final ResourcesLoaderService _resourcesLoader;
   final Router _router;
   final AuthorizationService _authorizationService;
 
@@ -40,9 +33,6 @@ class ContractGeneralReadComponent implements OnInit {
       };
 
   ContractGeneralReadComponent(
-      this._config,
-      this._logger,
-      this._resourcesLoader,
       this.service,
       this._router,
       this._authorizationService);

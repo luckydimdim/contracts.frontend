@@ -12,11 +12,8 @@ class ContractPaymentsScheduleComponent implements OnInit {
       component: ContractPaymentsScheduleComponent,
       name: ContractPaymentsScheduleComponent.route_name);
 
-  final Router _router;
+  ContractPaymentsScheduleComponent();
 
-  ContractPaymentsScheduleComponent(this._router) {}
-
-  // import 'dart:html';
   void breadcrumbInit() {}
 
   @override

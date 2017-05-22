@@ -1,8 +1,8 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-@Component(selector: 'contract-budget')
-@View(
+@Component(
+    selector: 'contract-budget',
     templateUrl: 'contract_budget_component.html',
     directives: const [RouterLink])
 class ContractBudgetComponent {

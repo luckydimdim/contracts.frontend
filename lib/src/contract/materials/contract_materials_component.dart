@@ -1,6 +1,5 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:resources_loader/resources_loader.dart';
 
 @Component(
     selector: 'contract-works',
@@ -13,10 +12,7 @@ class ContractMaterialsComponent implements OnInit, OnDestroy {
       component: ContractMaterialsComponent,
       name: ContractMaterialsComponent.route_name);
 
-  final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
-
-  ContractMaterialsComponent(this._router, this._resourcesLoaderService) {}
+  ContractMaterialsComponent();
 
   @override
   void ngOnInit() {

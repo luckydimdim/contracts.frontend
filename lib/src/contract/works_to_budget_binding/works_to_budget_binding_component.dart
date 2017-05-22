@@ -1,6 +1,5 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:resources_loader/resources_loader.dart';
 
 @Component(
     selector: 'works-to-budget-binding',
@@ -15,10 +14,7 @@ class WorksToBudgetBindingComponent implements OnInit, OnDestroy {
       component: WorksToBudgetBindingComponent,
       name: WorksToBudgetBindingComponent.route_name);
 
-  final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
-
-  WorksToBudgetBindingComponent(this._router, this._resourcesLoaderService) {}
+  WorksToBudgetBindingComponent();
 
   void breadcrumbInit() {}
 

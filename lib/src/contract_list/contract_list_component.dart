@@ -4,8 +4,6 @@ import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
 import 'package:auth/auth_service.dart';
-import 'package:config/config_service.dart';
-import 'package:logger/logger_service.dart';
 import 'package:angular_utils/cm_format_money_pipe.dart';
 import 'package:angular_utils/cm_format_currency_pipe.dart';
 
@@ -19,8 +17,6 @@ import '../contracts_service/contracts_service.dart';
     pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe])
 class ContractListComponent implements AfterViewInit, OnInit {
   final Router _router;
-  final LoggerService _logger;
-  final ConfigService _config;
   final ContractsService _service;
   final AuthorizationService _authorizationService;
   static const DisplayName = const {'displayName': 'Список договоров'};
@@ -29,8 +25,7 @@ class ContractListComponent implements AfterViewInit, OnInit {
 
   List<Map> contracts = new List<Map>();
 
-  ContractListComponent(this._router, this._logger, this._config, this._service,
-      this._authorizationService);
+  ContractListComponent(this._router, this._service, this._authorizationService);
 
   @override
   ngOnInit() {

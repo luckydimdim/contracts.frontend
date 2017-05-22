@@ -2,12 +2,9 @@ import 'contract_general_model.dart';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import 'package:logger/logger_service.dart';
-
 import 'contract_general_write_component.dart';
 import 'contract_general_read_component.dart';
 import '../../contracts_service/contracts_service.dart';
-import 'amount.dart';
 
 @Component(
     selector: 'contract-general',
@@ -17,15 +14,12 @@ import 'amount.dart';
       ContractGeneralReadComponent
     ])
 class ContractGeneralComponent implements OnInit, AfterViewInit {
-  final LoggerService _logger;
-  final RouteParams _routeParams;
   final ContractsService service;
   final Router _router;
   ContractGeneralModel model = new ContractGeneralModel();
   static const DisplayName = const {'displayName': 'Общая информация'};
 
-  ContractGeneralComponent(
-      this._logger, this._routeParams, this.service, this._router);
+  ContractGeneralComponent(this.service, this._router);
 
   @override
   ngOnInit() async {

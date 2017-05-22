@@ -6,7 +6,6 @@ import 'package:angular2/router.dart';
 
 import 'package:call_off_order/src/call_off_order.dart';
 import '../general/contract_general_model.dart';
-import 'package:resources_loader/resources_loader.dart';
 import 'package:call_off_order/call_off_service.dart';
 import 'package:call_off_order/call_off_order_component.dart';
 import 'package:auth/auth_service.dart';
@@ -29,7 +28,6 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   static const DisplayName = const {'displayName': 'Работы'};
 
   final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
   final CallOffService _callOffService;
   final ContractsService _contractsService;
   final AuthorizationService _authorizationService;
@@ -50,8 +48,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   var worksDataSource = new DataSource();
 
-  ContractWorksComponent(this._router, this._resourcesLoaderService,
-      this._callOffService, this._contractsService, this._authorizationService);
+  ContractWorksComponent(this._router, this._callOffService, this._contractsService, this._authorizationService);
 
   @override
   Future ngOnInit() async {

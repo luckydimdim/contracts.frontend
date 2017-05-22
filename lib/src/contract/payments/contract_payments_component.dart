@@ -12,9 +12,7 @@ class ContractPaymentsComponent implements OnInit {
       component: ContractPaymentsComponent,
       name: ContractPaymentsComponent.route_name);
 
-  final Router _router;
-
-  ContractPaymentsComponent(this._router) {}
+  ContractPaymentsComponent();
 
   // import 'dart:html';
   void breadcrumbInit() {}

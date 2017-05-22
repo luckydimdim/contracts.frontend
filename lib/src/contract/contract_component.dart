@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
 
-import 'package:resources_loader/resources_loader.dart';
 import 'package:master_layout/breadcrumb_service.dart';
 
 import 'contract_layout/contract_layout_component.dart';
@@ -50,9 +49,7 @@ import '../contracts_service/contracts_service.dart';
 ])
 class ContractComponent implements OnInit {
   final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
   static const DisplayName = const {'displayName': 'Договор'};
-  final RouteParams _routeParams;
   final ContractsService service;
   final BreadcrumbService _breadcrumbService;
 
@@ -61,8 +58,7 @@ class ContractComponent implements OnInit {
 
   String contractId;
 
-  ContractComponent(this._router, this._resourcesLoaderService,
-      this._routeParams, this._breadcrumbService, this.service) {}
+  ContractComponent(this._router, this._breadcrumbService, this.service);
 
   @override
   Future ngOnInit() async {

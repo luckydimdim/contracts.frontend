@@ -1,20 +1,17 @@
 import 'dart:html';
 import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
 
 import 'package:angular_utils/directives.dart';
 import 'package:contracts/contracts_service.dart';
 
-@Component(selector: 'contract-layout')
-@View(
+@Component(
+    selector: 'contract-layout',
     templateUrl: 'contract_layout_component.html',
     directives: const [CmRouterLink])
 class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
-  final Router _router;
-  final RouteParams _routeParams;
   final ContractsService service;
 
-  ContractLayoutComponent(this._router, this._routeParams, this.service);
+  ContractLayoutComponent(this.service);
 
   @override
   void ngOnInit() {

@@ -1,6 +1,5 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
-import 'package:resources_loader/resources_loader.dart';
 
 @Component(
     selector: 'works-to-title-binding',
@@ -15,10 +14,7 @@ class WorksToTitleBindingComponent implements OnInit, OnDestroy {
       component: WorksToTitleBindingComponent,
       name: WorksToTitleBindingComponent.route_name);
 
-  final Router _router;
-  final ResourcesLoaderService _resourcesLoaderService;
-
-  WorksToTitleBindingComponent(this._router, this._resourcesLoaderService) {}
+  WorksToTitleBindingComponent();
 
   void breadcrumbInit() {}
 
