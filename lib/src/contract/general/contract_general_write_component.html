@@ -77,75 +77,37 @@
 
               <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group"
-                       [class.has-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                       [class.has-success]="startDateControl.valid && startDateControl.touched">
-                    <label for="start-date">Дата заключения</label>
+                       [class.has-danger]="!contractDatesControl.valid && (contractDatesControl.dirty || contractDatesControl.touched)"
+                       [class.has-success]="contractDatesControl.valid && contractDatesControl.touched">
+                    <label for="contract-dates">Дата заключения и окончания</label>
                     <div class="input-group">
-                      <span (click)="startDate.click()" class="input-group-addon"><i
+                      <span (click)="contractDates.click()" class="input-group-addon"><i
                         class="fa fa-calendar cursor-pointer"></i></span>
-                      <input daterangepicker type="text" class="form-control" id="start-date"
-                             placeholder="Укажите дату заключения договора"
-                             [value]="model.startDateStr"
-                             [ngModel]="model.startDateStr"
-                             ngControl="startDate"
+                      <input daterangepicker type="text" class="form-control" id="contract-dates"
+                             placeholder="Укажите дату заключения и окончания договора"
+                             [value]="getDates()"
+                             [ngModel]="getDates()"
+                             ngControl="contractDates"
                              #name="ngForm"
                              [options]="dateRangePickerOptions"
-                             (selected)="startDateSelected($event)"
-
-                             #startDate
-                             #startDateControl="ngForm"
-                             [ngClass]="controlStateClasses(startDateControl)"
+                             (selected)="contractDateSelected($event)"
+                             #contractDates
+                             #contractDatesControl="ngForm"
+                             [ngClass]="controlStateClasses(contractDatesControl)"
                              required
-                             pattern="\d\d\.\d\d\.\d\d\d\d"
-                             [class.form-control-danger]="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                             [class.form-control-success]="startDateControl.valid && startDateControl.touched"/>
+                             [class.form-control-danger]="!contractDatesControl.valid && (contractDatesControl.dirty || contractDatesControl.touched)"
+                             [class.form-control-success]="contractDatesControl.valid && contractDatesControl.touched"/>
                     </div>
-                    <em *ngIf="!startDateControl.valid && (startDateControl.dirty || startDateControl.touched)"
-                        class="error form-control-feedback">Некорректная дата</em>
+                    <em *ngIf="!contractDatesControl.valid && (contractDatesControl.dirty || contractDatesControl.touched)"
+                        class="error form-control-feedback">Некорректный период</em>
                   </div>
                 </div>
 
                 <!-- /col -->
-
-                <div class="col-md-6">
-                  <div class="form-group"
-                       [class.has-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                       [class.has-success]="finishDateControl.valid && finishDateControl.touched">
-                    <label for="finish-date">Дата окончания</label>
-                    <div class="input-group">
-                      <span (click)="finishDate.click()" class="input-group-addon"><i
-                        class="fa fa-calendar cursor-pointer"></i></span>
-                      <input daterangepicker type="text" class="form-control" id="finish-date"
-                             placeholder="Укажите дату окончания договора"
-                             [ngModel]="model.finishDateStr"
-                             [value]="model.finishDateStr"
-                             ngControl="finishDate"
-                             #name="ngForm"
-                             [options]="dateRangePickerOptions"
-                             (selected)="finishDateSelected($event)"
-
-                             #finishDate
-                             #finishDateControl="ngForm"
-                             [ngClass]="controlStateClasses(finishDateControl)"
-                             required
-                             pattern="\d\d\.\d\d\.\d\d\d\d"
-                             [class.form-control-danger]="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                             [class.form-control-success]="finishDateControl.valid && finishDateControl.touched"/>
-                    </div>
-                    <em *ngIf="!finishDateControl.valid && (finishDateControl.dirty || finishDateControl.touched)"
-                        class="error form-control-feedback">Некорректная дата</em>
-                  </div>
-                </div>
-                <!-- /col -->
-
-              </div>
-              <!--/row-->
-
-              <div class="row">
-
-                <div class="col-md-12">
+  
+                <div class="col-md-8">
                   <div class="form-group"
                        [class.has-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
                        [class.has-success]="contractorNameControl.valid && contractorNameControl.touched">
@@ -156,7 +118,7 @@
                            [(ngModel)]="model.contractorName"
                            ngControl="contractorName"
                            #contractorName
-
+      
                            #contractorNameControl="ngForm"
                            [ngClass]="controlStateClasses(contractorNameControl)"
                            required
@@ -164,14 +126,15 @@
                            [class.form-control-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
                            [class.form-control-success]="contractorNameControl.valid && contractorNameControl.touched"/>
                     <em
-                      *ngIf="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
-                      class="error form-control-feedback">Некорректное наименование подрядчика</em>
+                            *ngIf="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
+                            class="error form-control-feedback">Некорректное наименование подрядчика</em>
                   </div>
                 </div>
                 <!-- /col -->
 
               </div>
               <!--/row-->
+              
 
               <div class="row">
                 <div class="col-md-12">

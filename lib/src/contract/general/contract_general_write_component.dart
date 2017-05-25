@@ -60,9 +60,7 @@ class ContractGeneralWriteComponent {
         'Декабрь'
       ];
 
-    dateRangePickerOptions = new DateRangePickerOptions()
-      ..singleDatePicker = true
-      ..locale = locale;
+    dateRangePickerOptions = new DateRangePickerOptions()..locale = locale;
   }
 
   toggleWriteMode() {
@@ -90,26 +88,17 @@ class ContractGeneralWriteComponent {
   }
 
   /**
-   * Обработка события выбора даты заключения договора
+   * Обработка события выбора даты договора
    */
-  Future startDateSelected(Map<String, DateTime> dates) async {
+  Future contractDateSelected(Map<String, DateTime> dates) async {
     model.startDate = dates['start'];
+    model.finishDate = dates['end'];
 
     await onChange(null);
 
     return null;
   }
 
-  /**
-   * Обработка события выбора даты окончания договора
-   */
-  Future finishDateSelected(Map<String, DateTime> dates) async {
-    model.finishDate = dates['start'];
-
-    await onChange(null);
-
-    return null;
-  }
 
   updateAmount(AmountComponent amountComponent) async {
     await onChange(null);
@@ -130,5 +119,20 @@ class ContractGeneralWriteComponent {
     model.amounts.insert(model.amounts.length, amount);
 
     await onChange(null);
+  }
+
+  String getDates() {
+    String result = '';
+
+    if (model.startDate != null && model.finishDate != null)
+      result = '${model.startDateStr} - ${model.finishDateStr}';
+
+    if (model.startDate == null && model.finishDate == null) result = '';
+
+    if (model.startDate == null) result = model.finishDateStr;
+
+    if (model.finishDate == null) result = model.startDateStr;
+
+    return result;
   }
 }
