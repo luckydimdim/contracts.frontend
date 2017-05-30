@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:angular2/angular2.dart';
 import 'package:angular2/core.dart';
@@ -71,6 +72,10 @@ class ContractGeneralWriteComponent {
    * Удаление договора
    */
   Future deleteContract() async {
+
+    if(!window.confirm('Удалить контракт?'))
+      return;
+
     await service.general.deleteContract(model.id);
 
     _router.parent.parent.navigate(['ContractList']);
