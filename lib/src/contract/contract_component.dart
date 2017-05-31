@@ -55,29 +55,25 @@ class ContractComponent implements OnInit {
   final ContractsService service;
   final BreadcrumbService _breadcrumbService;
 
-  ContractComponent(this._router, this._breadcrumbService, this.service, RouteData routeData, RouteParams routeParams) {
-
+  ContractComponent(this._router, this._breadcrumbService, this.service,
+      RouteData routeData, RouteParams routeParams) {
     if (routeData.get('creatingMode') == true)
       service.creatingMode = true;
     else {
       service.creatingMode = false;
       service.contractId = routeParams.get('id');
     }
-
   }
 
   @override
   Future ngOnInit() async {
-
     if (!service.creatingMode) {
       service.model = await service.general.getContract(service.contractId);
       breadcrumbInit();
-    }
-    else {
+    } else {
       service.model = new ContractGeneralModel();
       service.writeEnabled = true;
     }
-
   }
 
   void breadcrumbInit() {

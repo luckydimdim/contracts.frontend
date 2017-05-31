@@ -68,20 +68,16 @@ class ContractGeneralWriteComponent {
   onBack() {
     if (service.creatingMode) {
       _router.navigate(['../../ContractList']);
-    }else
-    {
+    } else {
       service.writeEnabled = !service.writeEnabled;
     }
-
   }
 
   /**
    * Удаление договора
    */
   Future deleteContract() async {
-
-    if(!window.confirm('Удалить контракт?'))
-      return null;
+    if (!window.confirm('Удалить контракт?')) return null;
 
     await service.general.deleteContract(model.id);
 
@@ -128,18 +124,18 @@ class ContractGeneralWriteComponent {
   }
 
   // сохранить/создать
-  Future save() async{
-
+  Future save() async {
     if (service.creatingMode) {
       String id = await service.general.createContract(model);
 
-      _router.navigate(['../../Contract', {'id': id}]);
-    }
-    else {
+      _router.navigate([
+        '../../Contract',
+        {'id': id}
+      ]);
+    } else {
       await service.general.updateContract(model);
 
       service.writeEnabled = false;
-
     }
   }
 }

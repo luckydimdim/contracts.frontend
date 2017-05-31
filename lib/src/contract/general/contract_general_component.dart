@@ -14,12 +14,10 @@ import '../../contracts_service/contracts_service.dart';
       ContractGeneralReadComponent
     ])
 class ContractGeneralComponent {
-
   final ContractsService service;
   final Router _router;
 
   static const DisplayName = 'Общая информация';
 
   ContractGeneralComponent(this.service, this._router);
-
 }

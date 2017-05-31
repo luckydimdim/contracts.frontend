@@ -63,7 +63,7 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
     var amountsList = new List<Map>();
 
-    amounts.forEach((a){
+    amounts.forEach((a) {
       amountsList.add(a.toJson());
     });
 
@@ -74,7 +74,7 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
   @override
   Map toMap() {
-    return toJson();  // FIXME: Переделать конвертирование сложных вложенных объектов  и убрать это
+    return toJson(); // FIXME: Переделать конвертирование сложных вложенных объектов  и убрать это
   }
 
   @override

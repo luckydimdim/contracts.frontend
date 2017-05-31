@@ -27,7 +27,10 @@ import 'package:contracts/src/contracts_service/contracts_service.dart';
       path: '/create/...',
       component: ContractComponent,
       name: 'ContractCreate',
-      data: const {'displayName': ContractComponent.DisplayNameOnCreate, 'creatingMode': true})
+      data: const {
+        'displayName': ContractComponent.DisplayNameOnCreate,
+        'creatingMode': true
+      })
 ])
 class ContractsComponent {
   static const DisplayName = const {'displayName': 'Договоры'};

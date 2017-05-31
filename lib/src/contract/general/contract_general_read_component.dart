@@ -33,9 +33,7 @@ class ContractGeneralReadComponent implements OnInit {
       };
 
   ContractGeneralReadComponent(
-      this.service,
-      this._router,
-      this._authorizationService);
+      this.service, this._router, this._authorizationService);
 
   @override
   ngOnInit() async {
@@ -49,9 +47,7 @@ class ContractGeneralReadComponent implements OnInit {
   }
 
   deleteContract() async {
-
-    if(!window.confirm('Удалить контракт?'))
-      return;
+    if (!window.confirm('Удалить контракт?')) return;
 
     await service.general.deleteContract(model.id);
 

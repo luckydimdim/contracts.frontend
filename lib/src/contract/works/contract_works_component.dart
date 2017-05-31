@@ -48,7 +48,8 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   var worksDataSource = new DataSource();
 
-  ContractWorksComponent(this._router, this._callOffService, this._contractsService, this._authorizationService);
+  ContractWorksComponent(this._router, this._callOffService,
+      this._contractsService, this._authorizationService);
 
   @override
   Future ngOnInit() async {
@@ -107,9 +108,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   }
 
   deleteWork(String id) async {
-
-    if(!window.confirm('Удалить наряд-заказ?'))
-      return;
+    if (!window.confirm('Удалить наряд-заказ?')) return;
 
     await _callOffService.deleteCallOfOrder(id);
 

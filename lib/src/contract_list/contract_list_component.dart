@@ -25,7 +25,8 @@ class ContractListComponent implements AfterViewInit, OnInit {
 
   List<Map> contracts = new List<Map>();
 
-  ContractListComponent(this._router, this._service, this._authorizationService);
+  ContractListComponent(
+      this._router, this._service, this._authorizationService);
 
   @override
   ngOnInit() {
@@ -34,8 +35,7 @@ class ContractListComponent implements AfterViewInit, OnInit {
 
   @override
   ngAfterViewInit() async {
-    List<ContractGeneralModel> contractsList =
-        await _service.getContracts();
+    List<ContractGeneralModel> contractsList = await _service.getContracts();
 
     for (ContractGeneralModel contract in contractsList) {
       contracts.add(contract.toMap());
@@ -58,6 +58,5 @@ class ContractListComponent implements AfterViewInit, OnInit {
     _router.parent.navigate([
       'ContractCreate',
     ]);
-
   }
 }
