@@ -10,7 +10,7 @@ import 'package:contracts/src/contracts_service/contracts_service.dart';
     selector: 'contracts',
     templateUrl: 'contracts_component.html',
     directives: const [RouterOutlet],
-    providers: const [RouteParams, ContractsService, ContractGeneralService])
+    providers: const [RouteParams, ContractGeneralService])
 @RouteConfig(const [
   const Route(
       path: '',
@@ -22,7 +22,12 @@ import 'package:contracts/src/contracts_service/contracts_service.dart';
       path: '/:id/...',
       component: ContractComponent,
       name: 'Contract',
-      data: ContractComponent.DisplayName)
+      data: const {'displayName': ContractComponent.DisplayName}),
+  const Route(
+      path: '/create/...',
+      component: ContractComponent,
+      name: 'ContractCreate',
+      data: const {'displayName': ContractComponent.DisplayNameOnCreate, 'creatingMode': true})
 ])
 class ContractsComponent {
   static const DisplayName = const {'displayName': 'Договоры'};

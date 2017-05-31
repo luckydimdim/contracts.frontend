@@ -17,7 +17,7 @@
               <a class="nav-link" [cmRouterLink]="['ContractDocSettings']"><i class="fa fa-files-o"></i>
                 Документация</a>
             </li>-->
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!creatingMode">
               <a class="nav-link" [cmRouterLink]="['ContractWorks']"><i class="fa fa-wrench"></i> Наряд-заказы</a>
             </li>
             <!--<li class="nav-item">

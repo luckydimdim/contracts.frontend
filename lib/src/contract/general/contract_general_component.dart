@@ -13,22 +13,13 @@ import '../../contracts_service/contracts_service.dart';
       ContractGeneralWriteComponent,
       ContractGeneralReadComponent
     ])
-class ContractGeneralComponent implements OnInit, AfterViewInit {
+class ContractGeneralComponent {
+
   final ContractsService service;
   final Router _router;
-  ContractGeneralModel model = new ContractGeneralModel();
-  static const DisplayName = const {'displayName': 'Общая информация'};
+
+  static const DisplayName = 'Общая информация';
 
   ContractGeneralComponent(this.service, this._router);
 
-  @override
-  ngOnInit() async {
-    Instruction ci = _router.parent.parent.currentInstruction;
-    String contractId = ci.component.params['id'];
-
-    model = await service.general.getContract(contractId);
-  }
-
-  @override
-  ngAfterViewInit() {}
 }

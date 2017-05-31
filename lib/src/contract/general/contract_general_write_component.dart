@@ -64,8 +64,15 @@ class ContractGeneralWriteComponent {
     dateRangePickerOptions = new DateRangePickerOptions()..locale = locale;
   }
 
-  toggleWriteMode() {
-    service.writeEnabled = !service.writeEnabled;
+  // нажали кнопку назад
+  onBack() {
+    if (service.creatingMode) {
+      _router.navigate(['../../ContractList']);
+    }else
+    {
+      service.writeEnabled = !service.writeEnabled;
+    }
+
   }
 
   /**
@@ -83,37 +90,18 @@ class ContractGeneralWriteComponent {
     return null;
   }
 
-  Future onChange(NgForm ngForm) async {
-    // FIXME: придумать способ апдейта отдельных полей
-    //if (ngForm == null || ngForm.form.status == 'VALID') {
-    await service.general.updateContract(model);
-    //}
-
-    return null;
-  }
-
   /**
    * Обработка события выбора даты договора
    */
   Future contractDateSelected(Map<String, DateTime> dates) async {
     model.startDate = dates['start'];
     model.finishDate = dates['end'];
-
-    await onChange(null);
-
-    return null;
-  }
-
-
-  updateAmount(AmountComponent amountComponent) async {
-    await onChange(null);
   }
 
   removeAmount(int index) async {
     if (model.amounts.length <= 1) return;
 
     model.amounts.removeAt(index);
-    await onChange(null);
   }
 
   addAmount(AmountComponent amountComponent) async {
@@ -122,8 +110,6 @@ class ContractGeneralWriteComponent {
     var amount = new Amount()..currencySysName = 'RUR';
 
     model.amounts.insert(model.amounts.length, amount);
-
-    await onChange(null);
   }
 
   String getDates() {
@@ -139,5 +125,21 @@ class ContractGeneralWriteComponent {
     if (model.finishDate == null) result = model.startDateStr;
 
     return result;
+  }
+
+  // сохранить/создать
+  Future save() async{
+
+    if (service.creatingMode) {
+      String id = await service.general.createContract(model);
+
+      _router.navigate(['../../Contract', {'id': id}]);
+    }
+    else {
+      await service.general.updateContract(model);
+
+      service.writeEnabled = false;
+
+    }
   }
 }

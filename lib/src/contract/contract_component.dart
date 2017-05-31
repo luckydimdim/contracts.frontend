@@ -24,13 +24,14 @@ import '../contracts_service/contracts_service.dart';
 @Component(
     selector: 'contract',
     templateUrl: 'contract_component.html',
-    directives: const [RouterOutlet, ContractLayoutComponent])
+    directives: const [RouterOutlet, ContractLayoutComponent],
+    providers: [ContractsService])
 @RouteConfig(const [
   const Route(
       path: 'general',
       component: ContractGeneralComponent,
       name: 'ContractGeneral',
-      data: ContractGeneralComponent.DisplayName,
+      data: const {'displayName': ContractGeneralComponent.DisplayName},
       useAsDefault: true),
   const Route(
       path: 'works',
@@ -49,31 +50,38 @@ import '../contracts_service/contracts_service.dart';
 ])
 class ContractComponent implements OnInit {
   final Router _router;
-  static const DisplayName = const {'displayName': 'Договор'};
+  static const DisplayName = 'Договор';
+  static const DisplayNameOnCreate = 'Создание договора';
   final ContractsService service;
   final BreadcrumbService _breadcrumbService;
 
-  // FIXME: Использовать модель, предназначенную для этого компонента
-  ContractGeneralModel model = null;
+  ContractComponent(this._router, this._breadcrumbService, this.service, RouteData routeData, RouteParams routeParams) {
 
-  String contractId;
+    if (routeData.get('creatingMode') == true)
+      service.creatingMode = true;
+    else {
+      service.creatingMode = false;
+      service.contractId = routeParams.get('id');
+    }
 
-  ContractComponent(this._router, this._breadcrumbService, this.service);
+  }
 
   @override
   Future ngOnInit() async {
-    Instruction ci = _router.parent.currentInstruction;
-    contractId = ci.component.params['id'];
 
-    model = await service.general.getContract(contractId);
+    if (!service.creatingMode) {
+      service.model = await service.general.getContract(service.contractId);
+      breadcrumbInit();
+    }
+    else {
+      service.model = new ContractGeneralModel();
+      service.writeEnabled = true;
+    }
 
-    breadcrumbInit();
-
-    return null;
   }
 
   void breadcrumbInit() {
-    var displayName = 'Договор №${model.number}';
+    var displayName = 'Договор №${service.model.number}';
     _breadcrumbService.changeDisplayName(this.runtimeType, displayName);
   }
 }

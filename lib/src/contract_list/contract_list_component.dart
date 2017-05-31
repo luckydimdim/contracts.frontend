@@ -8,7 +8,7 @@ import 'package:angular_utils/cm_format_money_pipe.dart';
 import 'package:angular_utils/cm_format_currency_pipe.dart';
 
 import '../contract/general/contract_general_model.dart';
-import '../contracts_service/contracts_service.dart';
+import '../contract/general/contract_general_service.dart';
 
 @Component(
     selector: 'contract-list',
@@ -17,7 +17,7 @@ import '../contracts_service/contracts_service.dart';
     pipes: const [CmFormatMoneyPipe, CmFormatCurrencyPipe])
 class ContractListComponent implements AfterViewInit, OnInit {
   final Router _router;
-  final ContractsService _service;
+  final ContractGeneralService _service;
   final AuthorizationService _authorizationService;
   static const DisplayName = const {'displayName': 'Список договоров'};
 
@@ -35,7 +35,7 @@ class ContractListComponent implements AfterViewInit, OnInit {
   @override
   ngAfterViewInit() async {
     List<ContractGeneralModel> contractsList =
-        await _service.general.getContracts();
+        await _service.getContracts();
 
     for (ContractGeneralModel contract in contractsList) {
       contracts.add(contract.toMap());
@@ -43,7 +43,7 @@ class ContractListComponent implements AfterViewInit, OnInit {
   }
 
   Future createContract() async {
-    var newContractModel = new ContractGeneralModel();
+    /*var newContractModel = new ContractGeneralModel();
 
     String contractId = await _service.general.createContract(newContractModel);
 
@@ -53,6 +53,11 @@ class ContractListComponent implements AfterViewInit, OnInit {
       {'id': contractId}
     ]);
 
-    return null;
+    return null;*/
+
+    _router.parent.navigate([
+      'ContractCreate',
+    ]);
+
   }
 }

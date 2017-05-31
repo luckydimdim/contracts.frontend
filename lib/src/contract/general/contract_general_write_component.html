@@ -3,13 +3,18 @@
     <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span>
     </h4>
     <span class="btn-group float-lg-right">
-    <button type="button" class="btn btn-sm btn-primary" (click)="toggleWriteMode()">
+    
+      <button type="button" class="btn btn-sm btn-primary" (click)="onBack()">
         <i class="icon-action-undo"></i>
       &nbsp; Назад
       </button>
-      <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+      <button *ngIf="!service.creatingMode" type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
         <i class="fa fa-trash-o"></i>
         &nbsp; Удалить
+      </button>
+        <button type="button" class="btn btn-sm btn-outline-success  ml-1" (click)="save()" [disabled]="!contractCreateForm.valid">
+        <i class="fa fa-save"></i>
+        &nbsp;{{service.creatingMode?'Создать':'Сохранить'}}
       </button>
     </span>
   </div>
@@ -19,7 +24,7 @@
 
 
         <div class="card mt-1">
-          <form (change)="onChange(contractCreateForm)" #contractCreateForm="ngForm">
+          <form  #contractCreateForm="ngForm">
             <div class="card-block">
               <div class="row">
 
@@ -143,7 +148,7 @@
                     <div class="form-group">
                       <label *ngIf="i == 0">Стоимость</label>
                       <amount [model]="amount" (addAmount)="addAmount($event)" (removeAmount)="removeAmount(i)"
-                              (updateAmount)="updateAmount($event)" [showPlus]="(i == (model.amounts.length - 1) && model.amounts.length > 1 && i < 3 ) || model.amounts.length == 1" [showMinus]="model.amounts.length > 1"></amount>
+                              [showPlus]="(i == (model.amounts.length - 1) && model.amounts.length > 1 && i < 3 ) || model.amounts.length == 1" [showMinus]="model.amounts.length > 1"></amount>
                     </div>
                   </div>
 

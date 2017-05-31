@@ -11,6 +11,9 @@ import 'package:contracts/contracts_service.dart';
 class ContractLayoutComponent implements OnInit, OnDestroy, AfterViewInit {
   final ContractsService service;
 
+  @Input()
+  bool creatingMode = false;
+
   ContractLayoutComponent(this.service);
 
   @override
