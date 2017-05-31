@@ -15,7 +15,7 @@
   </div>
   <div class="card-block animated fadeIn">
     <div class="row">
-      <div class="col-xl-8 col-md-12">
+      <div class="col-xl-9 col-md-12">
 
 
         <div class="card mt-1">
@@ -23,7 +23,7 @@
             <div class="card-block">
               <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-5">
                   <div class="form-group"
                        [class.has-danger]="!numberControl.valid && (numberControl.dirty || numberControl.touched)"
                        [class.has-success]="numberControl.valid && numberControl.touched">
@@ -48,7 +48,7 @@
                 </div>
                 <!-- /col -->
 
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <div class="form-group"
                        [class.has-danger]="!nameControl.valid && (nameControl.dirty || nameControl.touched)"
                        [class.has-success]="nameControl.valid && nameControl.touched">
@@ -77,7 +77,7 @@
 
               <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-5">
                   <div class="form-group"
                        [class.has-danger]="!contractDatesControl.valid && (contractDatesControl.dirty || contractDatesControl.touched)"
                        [class.has-success]="contractDatesControl.valid && contractDatesControl.touched">
@@ -107,7 +107,7 @@
 
                 <!-- /col -->
   
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <div class="form-group"
                        [class.has-danger]="!contractorNameControl.valid && (contractorNameControl.dirty || contractorNameControl.touched)"
                        [class.has-success]="contractorNameControl.valid && contractorNameControl.touched">
@@ -175,7 +175,7 @@
 
               <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group"
                        [class.has-danger]="!constructionObjectNameControl.valid && (constructionObjectNameControl.dirty || constructionObjectNameControl.touched)"
                        [class.has-success]="constructionObjectNameControl.valid && constructionObjectNameControl.touched">
@@ -199,7 +199,7 @@
                 </div>
                 <!-- /col -->
 
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="form-group"
                        [class.has-danger]="!constructionObjectTitleCodeControl.valid && (constructionObjectTitleCodeControl.dirty || constructionObjectTitleCodeControl.touched)"
                        [class.has-success]="constructionObjectTitleCodeControl.valid && constructionObjectTitleCodeControl.touched">
@@ -224,7 +224,12 @@
                 </div>
                 <!-- /col -->
 
-                <div class="col-md-5">
+              </div>
+              <!--/row-->
+
+              <div class="row">
+
+                <div class="col-md-12">
                   <div class="form-group"
                        [class.has-danger]="!constructionObjectTitleNameControl.valid && (constructionObjectTitleNameControl.dirty || constructionObjectTitleNameControl.touched)"
                        [class.has-success]="constructionObjectTitleNameControl.valid && constructionObjectTitleNameControl.touched">
@@ -251,20 +256,28 @@
               </div>
               <!--/row-->
 
-              <div class="form-group"
-                   [class.has-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
-                   [class.has-success]="descriptionControl.valid && descriptionControl.touched">
-                <label for="description">Описание</label>
-                <textarea id="description" name="description" rows="5" class="form-control"
-                          placeholder="Введите описание договора..."
-                          [(ngModel)]="model.description"
-                          ngControl="description"
+              <div class="row">
 
-                          #descriptionControl="ngForm"
-                          [ngClass]="controlStateClasses(descriptionControl)"
-                          [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
-                          [class.form-control-success]="descriptionControl.valid && descriptionControl.touched"></textarea>
+                <div class="col-md-12">
+                  <div class="form-group"
+                       [class.has-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
+                       [class.has-success]="descriptionControl.valid && descriptionControl.touched">
+                    <label for="description">Описание</label>
+                    <textarea id="description" name="description" rows="5" class="form-control"
+                              placeholder="Введите описание договора..."
+                              [(ngModel)]="model.description"
+                              ngControl="description"
+
+                              #descriptionControl="ngForm"
+                              [ngClass]="controlStateClasses(descriptionControl)"
+                              [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"
+                              [class.form-control-success]="descriptionControl.valid && descriptionControl.touched"></textarea>
+                  </div>
+                </div>
+                <!-- /col -->
+
               </div>
+              <!--/row-->
 
             </div>
             <!-- /card-block -->

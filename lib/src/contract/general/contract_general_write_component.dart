@@ -74,7 +74,7 @@ class ContractGeneralWriteComponent {
   Future deleteContract() async {
 
     if(!window.confirm('Удалить контракт?'))
-      return;
+      return null;
 
     await service.general.deleteContract(model.id);
 
