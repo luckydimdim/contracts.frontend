@@ -1,0 +1,35 @@
+<div class="animated fadeIn" *ngFor="let amount of amounts; let i=index">
+	<div class="form-group">
+		<label *ngIf="i == 0">Стоимость</label>
+		<div class="row">
+			
+			<div class="col-md-12">
+				<div class="input-group">
+					<div class="input-group-btn input-group-btn__fld" style="width: 250px;">
+						<input type="number" cmPositive
+						       class="form-control"
+						       autocomplete="off"
+						       placeholder="Стоимость"
+						       min="0"
+						       required
+						       [disabled] = "readOnly"
+						       [(ngModel)]="amount.value"/>
+					</div>
+					
+					<select [ngModel]="amounts[i].currencySysName" class="form-control" style="width: 80px; display: block; margin-left: -1px" [disabled] = "readOnly" [name]="getName(amount)" (ngModelChange)="onChange(i, $event)">
+						<option *ngFor="let currency of getCurrencies(i); let idx = index"  [value]="currency">{{ currency }}</option>
+					</select>
+					
+					<div class="input-group-btn float-md-left ml-1">
+						<button type="button" [disabled] = "readOnly" class="btn btn-secondary text-muted cm-minus" (click)="removeAmount(i)" *ngIf="showMinus()"><span>—</span></button>
+						<button type="button" [disabled] = "readOnly" class="btn btn-secondary text-muted cm-plus" (click)="addAmount()" *ngIf="showPlus(i, amount)"><span>—</span></button>
+					</div>
+				</div>
+			</div>
+			<!-- /col -->
+		
+		</div>
+		<!-- /row -->
+
+	</div>
+</div>

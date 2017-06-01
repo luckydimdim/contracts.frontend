@@ -90,4 +90,5 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
     return this;
   }
+
 }

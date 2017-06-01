@@ -72,6 +72,7 @@ class ContractComponent implements OnInit {
       breadcrumbInit();
     } else {
       service.model = new ContractGeneralModel();
+      service.model.amounts.add(new Amount()..currencySysName = 'RUR');
       service.writeEnabled = true;
     }
   }

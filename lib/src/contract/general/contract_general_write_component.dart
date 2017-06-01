@@ -9,13 +9,13 @@ import 'package:daterangepicker/daterangepicker.dart';
 import 'package:daterangepicker/daterangepicker_directive.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
-import 'amount_component.dart';
+import 'amounts_component.dart';
 import 'amount.dart';
 
 @Component(
     selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
-    directives: const [DateRangePickerDirective, AmountComponent])
+    directives: const [DateRangePickerDirective, AmountsComponent])
 class ContractGeneralWriteComponent {
   final ContractsService service;
   final Router _router;
@@ -65,11 +65,15 @@ class ContractGeneralWriteComponent {
   }
 
   // нажали кнопку назад
-  onBack() {
+  onBack()async {
     if (service.creatingMode) {
       _router.navigate(['../../ContractList']);
     } else {
       service.writeEnabled = !service.writeEnabled;
+
+      // перезагружаем, т.к. могли не нажать кнопку сохранить
+      service.model = await service.general.getContract(service.contractId);
+
     }
   }
 
@@ -92,20 +96,6 @@ class ContractGeneralWriteComponent {
   Future contractDateSelected(Map<String, DateTime> dates) async {
     model.startDate = dates['start'];
     model.finishDate = dates['end'];
-  }
-
-  removeAmount(int index) async {
-    if (model.amounts.length <= 1) return;
-
-    model.amounts.removeAt(index);
-  }
-
-  addAmount(AmountComponent amountComponent) async {
-    if (model.amounts.length >= 4) return;
-
-    var amount = new Amount()..currencySysName = 'RUR';
-
-    model.amounts.insert(model.amounts.length, amount);
   }
 
   String getDates() {
@@ -138,4 +128,16 @@ class ContractGeneralWriteComponent {
       service.writeEnabled = false;
     }
   }
+
+  List<String> availableCurrencies() {
+    var result = new List<String>();
+
+    result.add('RUR');
+    result.add('USD');
+    result.add('JPY');
+    result.add('EUR');
+
+    return result;
+  }
+
 }
