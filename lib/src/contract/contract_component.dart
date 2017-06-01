@@ -69,12 +69,9 @@ class ContractComponent implements OnInit {
   @override
   Future ngOnInit() async {
     if (!service.creatingMode) {
+      //FIXME: заменить на более легковесное решение
       service.model = await service.general.getContract(service.contractId);
       breadcrumbInit();
-    } else {
-      service.model = new ContractGeneralModel();
-      service.model.amounts.add(new Amount()..currencySysName = 'RUR');
-      service.writeEnabled = true;
     }
   }
 
