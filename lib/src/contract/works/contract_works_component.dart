@@ -88,6 +88,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     return null;
   }
 
+  // добавить наряд заказ
   Future createWork() async {
     String id = await _callOffService.createCallOffOrder(contractId);
 
@@ -107,6 +108,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     return null;
   }
 
+  // удалить наряд заказ
   deleteWork(String id) async {
     if (!window.confirm('Удалить наряд-заказ?')) return;
 

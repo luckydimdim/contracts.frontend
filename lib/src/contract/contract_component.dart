@@ -20,6 +20,7 @@ import 'contract_budget/contract_budget_component.dart';
 
 import 'general/contract_general_model.dart';
 import '../contracts_service/contracts_service.dart';
+import 'general/amount.dart';
 
 @Component(
     selector: 'contract',
