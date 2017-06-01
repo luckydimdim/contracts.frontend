@@ -1,18 +1,19 @@
 <div class="card borderless" *ngIf="model != null">
   <div class="card-header">
-    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span>
+    <h4 class="float-lg-left">{{ contractorName.value }}&nbsp;<span *ngIf="contractNumber.value !== ''">№ {{ contractNumber.value }}</span>&nbsp;
     </h4>
+    <span *ngIf="model.readOnly" class="tag tag-pill tag-warning">Только на чтение - по договору есть наряд заказы</span>
     <span class="btn-group float-lg-right">
     
       <button type="button" class="btn btn-sm btn-primary" (click)="onBack()">
         <i class="icon-action-undo"></i>
       &nbsp; Назад
       </button>
-      <button *ngIf="!service.creatingMode" type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+      <button *ngIf="!service.creatingMode && !model.readOnly" type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
         <i class="fa fa-trash-o"></i>
         &nbsp; Удалить
       </button>
-        <button type="button" class="btn btn-sm btn-outline-success  ml-1" (click)="save()" [disabled]="!contractCreateForm.valid">
+        <button *ngIf="!model.readOnly" type="button" class="btn btn-sm btn-outline-success  ml-1" (click)="save()" [disabled]="!contractCreateForm.valid">
         <i class="fa fa-save"></i>
         &nbsp;{{service.creatingMode?'Создать':'Сохранить'}}
       </button>
@@ -36,7 +37,7 @@
                     <input type="text" class="form-control" id="number"
                            autocomplete="off"
                            #contractNumber
-
+                           [disabled] = "model.readOnly"
                            #numberControl="ngForm"
                            required
                            maxlength="10"
@@ -60,7 +61,7 @@
                     <label for="name">Название</label>
                     <input type="text" class="form-control" id="name"
                            autocomplete="off"
-
+                           [disabled] = "model.readOnly"
                            #nameControl="ngForm"
                            [ngClass]="controlStateClasses(nameControl)"
                            required
@@ -96,6 +97,7 @@
                              [ngModel]="getDates()"
                              ngControl="contractDates"
                              #name="ngForm"
+                             [disabled] = "model.readOnly"
                              [options]="dateRangePickerOptions"
                              (selected)="contractDateSelected($event)"
                              #contractDates
@@ -123,7 +125,7 @@
                            [(ngModel)]="model.contractorName"
                            ngControl="contractorName"
                            #contractorName
-      
+                           [disabled] = "model.readOnly"
                            #contractorNameControl="ngForm"
                            [ngClass]="controlStateClasses(contractorNameControl)"
                            required
@@ -147,7 +149,7 @@
                   <div class="animated fadeIn" *ngFor="let amount of model.amounts; let i=index">
                     <div class="form-group">
                       <label *ngIf="i == 0">Стоимость</label>
-                      <amount [model]="amount" (addAmount)="addAmount($event)" (removeAmount)="removeAmount(i)"
+                      <amount [model]="amount" (addAmount)="addAmount($event)" (removeAmount)="removeAmount(i)" [readOnly]="model.readOnly"
                               [showPlus]="(i == (model.amounts.length - 1) && model.amounts.length > 1 && i < 3 ) || model.amounts.length == 1" [showMinus]="model.amounts.length > 1"></amount>
                     </div>
                   </div>
@@ -164,7 +166,7 @@
                        [class.has-danger]="!contractCreateForm.valid && (contractCreateForm.dirty || contractCreateForm.touched)"
                        [class.has-success]="contractCreateForm.valid && contractCreateForm.touched">
                     <label class="switch switch-default switch-primary switch-sm">
-                      <input type="checkbox" class="switch-input"
+                      <input type="checkbox" class="switch-input" [disabled] = "model.readOnly"
                              [(ngModel)]="model.vatIncluded"
                              ngControl="vatIncluded"/>
                       <span class="switch-label"></span>
@@ -190,7 +192,7 @@
                            placeholder="Укажите название объекта строительства"
                            [(ngModel)]="model.constructionObjectName"
                            ngControl="constructionObjectName"
-
+                           [disabled] = "model.readOnly"
                            #constructionObjectNameControl="ngForm"
                            [ngClass]="controlStateClasses(constructionObjectNameControl)"
                            required
@@ -214,7 +216,7 @@
                            placeholder="Укажите код объекта по титульному списку"
                            [(ngModel)]="model.constructionObjectTitleCode"
                            ngControl="constructionObjectTitleCode"
-
+                           [disabled] = "model.readOnly"
                            #constructionObjectTitleCodeControl="ngForm"
                            [ngClass]="controlStateClasses(constructionObjectTitleCodeControl)"
                            required
@@ -244,7 +246,7 @@
                            placeholder="Укажите наименование объекта по титуьному списку"
                            [(ngModel)]="model.constructionObjectTitleName"
                            ngControl="constructionObjectTitleName"
-
+                           [disabled] = "model.readOnly"
                            #constructionObjectTitleNameControl="ngForm"
                            [ngClass]="controlStateClasses(constructionObjectTitleNameControl)"
                            required
@@ -272,7 +274,7 @@
                               placeholder="Введите описание договора..."
                               [(ngModel)]="model.description"
                               ngControl="description"
-
+                              [disabled] = "model.readOnly"
                               #descriptionControl="ngForm"
                               [ngClass]="controlStateClasses(descriptionControl)"
                               [class.form-control-danger]="!descriptionControl.valid && (descriptionControl.dirty || descriptionControl.touched)"

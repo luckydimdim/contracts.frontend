@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/core.dart';
+import 'package:angular_utils/cm_positive_number.dart';
 
 import 'amount.dart';
 
-@Component(selector: 'amount', templateUrl: 'amount_component.html')
+@Component(selector: 'amount', templateUrl: 'amount_component.html', directives: [CmPositiveNumberDirective])
 class AmountComponent implements OnInit {
   @Input()
   Amount model = new Amount();
+
+  @Input()
+  bool readOnly = false;
 
   @Input()
   bool showPlus = true;

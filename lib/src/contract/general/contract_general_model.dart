@@ -57,6 +57,9 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
 
   DateFormat _formatter = new DateFormat('dd.MM.yyyy');
 
+  // только чтение
+  bool readOnly = false;
+
   @override
   Map toJson() {
     var result = super.toJson();
