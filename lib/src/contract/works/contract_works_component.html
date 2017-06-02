@@ -28,7 +28,7 @@
 			</grid-column>
 			
 			<template let-i="index" let-rowApi="rowApi" let-callOff="rowData" grid-template="rowexpansion">
-				<call-off-order [id]="callOff['id']" [contractId]="contractId" [templateSysName]="callOffTemplateSysName" (callOfChanged)="rowApi.update($event)" (onFinish)="finish(callOff)"></call-off-order>
+				<call-off-order [id]="callOff['id']" [creatingMode]="rowApi.creatingMode" [contractId]="contractId" [templateSysName]="contractModel.templateSysName" (callOfChanged)="rowApi.update($event)" (onFinish)="finish(callOff)" (onCancel)="cancel(callOff)"></call-off-order>
 			</template>
 		</grid>
 	</div>

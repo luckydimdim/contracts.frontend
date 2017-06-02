@@ -33,8 +33,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   final AuthorizationService _authorizationService;
 
   String contractId;
-  String callOffTemplateSysName;
-  ContractGeneralModel _contractModel;
+  ContractGeneralModel contractModel;
 
   /**
    * Первичные документы отсутствуют
@@ -58,10 +57,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     await loadCallOffOrders();
 
-    _contractModel = await _contractsService.general.getContract(contractId);
-
-    // TODO: Переименовать
-    callOffTemplateSysName = _contractModel.templateSysName;
+    contractModel = await _contractsService.general.getContract(contractId);
 
     if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
 
@@ -90,12 +86,12 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   // добавить наряд заказ
   Future createWork() async {
-    String id = await _callOffService.createCallOffOrder(contractId);
 
-    // TODO: совместить 2 запроса
-    var createdCallOff = await _callOffService.getCallOffOrder(id);
+    CallOffOrder createdCallOff = new CallOffOrder.initTemplate(contractModel.templateSysName);
 
-    var rowData = createdCallOff.toMap();
+    Map<dynamic,dynamic> rowData = createdCallOff.toMap();
+
+    grid.toggleCreatingMode(rowData);
 
     worksDataSource.data.insert(0, rowData);
 
@@ -125,6 +121,27 @@ class ContractWorksComponent implements OnInit, OnDestroy {
    * Нажатие на кнопку "Завершить"
    */
   void finish(dynamic row) {
-    grid.toggleRow(row);
+    if (grid.isRowInCreatingMode(row)) {
+      grid.toggleCreatingMode(row);
+      grid.toggleRow(row);
+    }
+    else {
+      grid.toggleRow(row);
+    }
   }
+
+  /**
+   * Нажатие на кнопку "Отмена"
+   */
+  void cancel(dynamic row) {
+    if (grid.isRowInCreatingMode(row)) {
+      grid.toggleCreatingMode(row);
+      grid.toggleRow(row);
+      worksDataSource.data.remove(row);
+    }
+    else {
+      grid.toggleRow(row);
+    }
+  }
+
 }

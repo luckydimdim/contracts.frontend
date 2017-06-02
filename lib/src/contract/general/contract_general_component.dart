@@ -28,7 +28,6 @@ class ContractGeneralComponent implements OnInit  {
   Future ngOnInit() async {
     if (!service.creatingMode) {
       service.model = await service.general.getContract(service.contractId);
-      breadcrumbInit();
     } else {
       service.model = new ContractGeneralModel();
       service.model.amounts.add(new Amount()..currencySysName = 'RUR');
