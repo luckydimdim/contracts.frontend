@@ -23,7 +23,7 @@
             <tbody>
             <tr *ngFor="let contract of contracts; let i=index">
               <td>{{ contract['contractorName'] }}</td>
-              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{ contract['number'] }}</a></td>
+              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{ getContractNumber(contract)}}</a></td>
               <td>{{ contract['startDate'] | date:'dd.MM.yyyy' }}</td>
               <td>{{ contract['finishDate'] | date:'dd.MM.yyyy' }}</td>
               <td>{{ contract['name'] }}</td>
