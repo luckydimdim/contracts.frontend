@@ -5,7 +5,7 @@ import 'package:angular_utils/cm_positive_number.dart';
 
 import 'amount.dart';
 
-@Component(selector: 'amounts', templateUrl: 'amounts_component.html', directives: [CmPositiveNumberDirective])
+@Component(selector: 'amounts', templateUrl: 'amounts_component.html', directives: const [CmPositiveNumberDirective])
 class AmountsComponent implements OnInit {
 
   @Input()

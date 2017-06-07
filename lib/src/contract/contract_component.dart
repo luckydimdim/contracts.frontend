@@ -26,7 +26,7 @@ import 'general/amount.dart';
     selector: 'contract',
     templateUrl: 'contract_component.html',
     directives: const [RouterOutlet, ContractLayoutComponent],
-    providers: [ContractsService])
+    providers: const [ContractsService])
 @RouteConfig(const [
   const Route(
       path: 'general',
