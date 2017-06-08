@@ -86,20 +86,15 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
   // добавить наряд заказ
   Future createWork() async {
+    CallOffOrder createdCallOff =
+        new CallOffOrder.initTemplate(contractModel.templateSysName);
 
-    CallOffOrder createdCallOff = new CallOffOrder.initTemplate(contractModel.templateSysName);
-
-    Map<dynamic,dynamic> rowData = createdCallOff.toMap();
-
-    grid.toggleCreatingMode(rowData);
+    Map<dynamic, dynamic> rowData = createdCallOff.toMap();
 
     worksDataSource.data.insert(0, rowData);
 
-    if (isEmpty) {
-      isEmpty = false;
-    } else {
-      grid.toggleRow(rowData);
-    }
+    grid.toggleCreatingMode(rowData);
+    grid.toggleRow(rowData);
 
     return null;
   }
@@ -112,8 +107,6 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     worksDataSource.data.removeWhere((item) => item['id'] == id);
 
-    isEmpty = worksDataSource.data.isEmpty;
-
     return;
   }
 
@@ -124,8 +117,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     if (grid.isRowInCreatingMode(row)) {
       grid.toggleCreatingMode(row);
       grid.toggleRow(row);
-    }
-    else {
+    } else {
       grid.toggleRow(row);
     }
   }
@@ -138,10 +130,15 @@ class ContractWorksComponent implements OnInit, OnDestroy {
       grid.toggleCreatingMode(row);
       grid.toggleRow(row);
       worksDataSource.data.remove(row);
-    }
-    else {
+    } else {
       grid.toggleRow(row);
     }
   }
 
+  /**
+   * Строка в режиме создания наряд заказа
+   */
+  bool inCreatingMode(dynamic row) {
+    return grid.isRowInCreatingMode(row);
+  }
 }

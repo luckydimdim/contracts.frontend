@@ -60,16 +60,12 @@ class ContractListComponent implements AfterViewInit, OnInit {
     ]);
   }
 
-  String getContractNumber(Map contract){
+  String getContractNumber(Map contract) {
     var number = contract['number'];
 
     if (number == null || number == '') {
       return '???????';
-    }
-
-    else
+    } else
       return number;
-
   }
-
 }

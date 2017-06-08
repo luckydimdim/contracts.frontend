@@ -17,7 +17,7 @@ import '../general/amount.dart';
       ContractGeneralWriteComponent,
       ContractGeneralReadComponent
     ])
-class ContractGeneralComponent implements OnInit  {
+class ContractGeneralComponent implements OnInit {
   final ContractsService service;
   final Router _router;
 

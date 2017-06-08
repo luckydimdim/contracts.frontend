@@ -5,9 +5,11 @@ import 'package:angular_utils/cm_positive_number.dart';
 
 import 'amount.dart';
 
-@Component(selector: 'amounts', templateUrl: 'amounts_component.html', directives: const [CmPositiveNumberDirective])
+@Component(
+    selector: 'amounts',
+    templateUrl: 'amounts_component.html',
+    directives: const [CmPositiveNumberDirective])
 class AmountsComponent implements OnInit {
-
   @Input()
   List<Amount> amounts = null;
 
@@ -19,12 +21,13 @@ class AmountsComponent implements OnInit {
   bool readOnly = false;
 
   @override
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 
   bool showPlus(int index, Amount amount) {
-    return (index == (amounts.length - 1) && amounts.length > 1 && index < availableCurrencies.length - 1 ) || amounts.length == 1;
+    return (index == (amounts.length - 1) &&
+            amounts.length > 1 &&
+            index < availableCurrencies.length - 1) ||
+        amounts.length == 1;
   }
 
   bool showMinus() {
@@ -33,26 +36,26 @@ class AmountsComponent implements OnInit {
 
   // список доступных валют для указанной стоимости
   List<String> getCurrencies(int index) {
-    List<String> result = new  List<String>();
+    List<String> result = new List<String>();
 
-    if (amounts == null || availableCurrencies == null)
-      return result;
+    if (amounts == null || availableCurrencies == null) return result;
 
     // валюты сумм
-    List<String> amountsCurrencies = amounts.map((a) => a.currencySysName).toList();
+    List<String> amountsCurrencies =
+        amounts.map((a) => a.currencySysName).toList();
 
     result.add(amounts[index].currencySysName);
 
-    result.addAll(availableCurrencies.where((c) => !amountsCurrencies.contains(c)).toList());
+    result.addAll(availableCurrencies
+        .where((c) => !amountsCurrencies.contains(c))
+        .toList());
 
     return result;
   }
 
   // удалить стоимость
   removeAmount(int index) {
-
-    if (amounts == null)
-      return;
+    if (amounts == null) return;
 
     if (amounts.length <= 1) return;
 
@@ -61,15 +64,16 @@ class AmountsComponent implements OnInit {
 
   // добавить стоимость
   addAmount() {
-
-    if (amounts == null || availableCurrencies == null)
-      return;
+    if (amounts == null || availableCurrencies == null) return;
 
     if (amounts.length >= availableCurrencies.length) return;
 
     // валюты сумм
-    List<String> amountsCurrencies = amounts.map((a) => a.currencySysName).toList();
-    List<String> result = availableCurrencies.where((c) => !amountsCurrencies.contains(c)).toList();
+    List<String> amountsCurrencies =
+        amounts.map((a) => a.currencySysName).toList();
+    List<String> result = availableCurrencies
+        .where((c) => !amountsCurrencies.contains(c))
+        .toList();
 
     var amount = new Amount()..currencySysName = result.first;
 
@@ -82,8 +86,8 @@ class AmountsComponent implements OnInit {
 
   // поменяли валюту
   onChange(int index, String currencySysName) {
-    amounts[index] = new Amount()..currencySysName = currencySysName..value =  amounts[index].value;
+    amounts[index] = new Amount()
+      ..currencySysName = currencySysName
+      ..value = amounts[index].value;
   }
-
-
 }

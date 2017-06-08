@@ -7,11 +7,9 @@
 		</button>
 	</div>
 	<div class="card-block">
-		<div class="card-block" *ngIf="isEmpty">
-			<h4 class="text-muted">Список пуст <a *ngIf="!readOnly" href="javascript: void(0)" (click)="createWork()">Создать наряд-заказ</a></h4>
-		</div>
+	
 
-		<grid *ngIf="!isEmpty" #grid [dataSource]="worksDataSource" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
+		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
 			<grid-column [expander]="true" width="1%"></grid-column>
 			<grid-column header="Номер" field="number" width="10%"></grid-column>
 			<grid-column header="Период" width="19%">
@@ -21,9 +19,9 @@
 			</grid-column>
 			<grid-column header="Наименование" field="name" width="50%"></grid-column>
 			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
-			<grid-column *ngIf="!readOnly" width="1%">
+			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
-					<button class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
+					<button  *ngIf="!readOnly && !inCreatingMode(callOff)" class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
 				</template>
 			</grid-column>
 			

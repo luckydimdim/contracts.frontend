@@ -65,7 +65,7 @@ class ContractGeneralWriteComponent {
   }
 
   // нажали кнопку назад
-  onBack()async {
+  onBack() async {
     if (service.creatingMode) {
       _router.navigate(['../../ContractList']);
     } else {
@@ -73,7 +73,6 @@ class ContractGeneralWriteComponent {
 
       // перезагружаем, т.к. могли не нажать кнопку сохранить
       service.model = await service.general.getContract(service.contractId);
-
     }
   }
 
@@ -139,5 +138,4 @@ class ContractGeneralWriteComponent {
 
     return result;
   }
-
 }
