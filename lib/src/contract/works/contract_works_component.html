@@ -12,12 +12,12 @@
 		<grid #grid [dataSource]="worksDataSource" [expandableRows]="true" [tableStyleClass]="'table table-condensed table-striped table-hover table-bordered'">
 			<grid-column [expander]="true" width="1%"></grid-column>
 			<grid-column header="Номер" field="number" width="10%"></grid-column>
-			<grid-column header="Период" width="19%">
+			<grid-column header="Период" width="22%">
 				<template let-callOff="rowData" grid-template="body">
-					<span>{{callOff['startDate'] | date:'dd.MM.yyyy'}} - {{callOff['finishDate'] | date:'dd.MM.yyyy'}}</span>
+					<span class="text-nowrap">{{callOff['startDate'] | date:'dd.MM.yyyy'}} - {{callOff['finishDate'] | date:'dd.MM.yyyy'}}</span>
 				</template>
 			</grid-column>
-			<grid-column header="Наименование" field="name" width="50%"></grid-column>
+			<grid-column header="Наименование" field="name" width="47%"></grid-column>
 			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
 			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
