@@ -11,11 +11,16 @@ import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
 import 'amounts_component.dart';
 import 'amount.dart';
+import 'package:angular_utils/cm_loading_btn_directive.dart';
 
 @Component(
     selector: 'contract-general-write',
     templateUrl: 'contract_general_write_component.html',
-    directives: const [DateRangePickerDirective, AmountsComponent])
+    directives: const [
+      DateRangePickerDirective,
+      AmountsComponent,
+      CmLoadingBtnDirective
+    ])
 class ContractGeneralWriteComponent {
   final ContractsService service;
   final Router _router;

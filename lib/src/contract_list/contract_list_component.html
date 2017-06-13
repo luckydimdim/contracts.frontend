@@ -4,8 +4,8 @@
       <div class="card">
         <div class="card-header">
           Список договоров
-          <span *ngIf="!readOnly" class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> Создать договор <i
-            class="fa fa-plus-circle"></i></span>
+          <button type="button" *ngIf="!readOnly" class="btn btn-sm btn-info float-xs-right" (click)="createContract()"> <i class="fa fa-plus-circle"></i>&nbsp;
+            Создать договор </button>
         </div>
         <div class="card-block">
           <table class="table table-condensed table-striped table-hover" table-click>

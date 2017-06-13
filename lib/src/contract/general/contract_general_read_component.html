@@ -3,13 +3,14 @@
     <h4 class="float-lg-left" *ngIf="model.number != null || model.name != null">{{ model.contractorName }} №{{ model.number }}<span *ngIf="model.startDate !== ''"> от {{ model.startDate | date:'dd.MM.yyyy'}}</span></h4>
   
     <span *ngIf="!readOnly" class="btn-group float-lg-right">
-    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleWriteMode()">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="toggleWriteMode()">
         <i class="fa fa-edit"></i>
-      &nbsp; Редактировать
+      Редактировать
       </button>
-      <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+      <button type="button" class="btn btn-sm btn-danger ml-1" [cmLoadingBtn]="deleteContract">
         <i class="fa fa-trash-o"></i>
-        &nbsp; Удалить
+         <span class="ladda-label">
+           &nbsp;&nbsp;Удалить</span>
       </button>
     </span>
   

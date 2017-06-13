@@ -9,13 +9,15 @@
         <i class="icon-action-undo"></i>
       &nbsp; Назад
       </button>
-      <button *ngIf="!service.creatingMode && !model.readOnly" type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="deleteContract()">
+      <button *ngIf="!service.creatingMode && !model.readOnly" type="button" class="btn btn-sm btn-danger ml-1" [cmLoadingBtn]="deleteContract">
         <i class="fa fa-trash-o"></i>
-        &nbsp; Удалить
+         <span class="ladda-label">
+           &nbsp;Удалить</span>
       </button>
-        <button *ngIf="!model.readOnly" type="button" class="btn btn-sm btn-outline-success  ml-1" (click)="save()" [disabled]="!contractCreateForm.valid">
+        <button *ngIf="!model.readOnly" type="button" class="btn btn-sm btn-success  ml-1" [cmLoadingBtn]="save" [disabled]="!contractCreateForm.valid">
         <i class="fa fa-save"></i>
-        &nbsp;{{service.creatingMode?'Создать':'Сохранить'}}
+          <span class="ladda-label">
+            &nbsp;{{service.creatingMode?'Создать':'Сохранить'}}</span>
       </button>
     </span>
   </div>

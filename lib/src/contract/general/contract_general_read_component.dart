@@ -1,10 +1,12 @@
 import 'dart:html';
+import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:angular2/angular2.dart';
 import 'package:angular2/router.dart';
 
 import 'package:auth/src/role.dart';
-import 'package:angular_utils/cm_format_money_pipe.dart';
+import 'package:angular_utils/pipes.dart';
+import 'package:angular_utils/directives.dart';
 import 'package:auth/auth_service.dart';
 import 'contract_general_model.dart';
 import '../../contracts_service/contracts_service.dart';
@@ -12,7 +14,8 @@ import '../../contracts_service/contracts_service.dart';
 @Component(
     templateUrl: 'contract_general_read_component.html',
     selector: 'contract-general-read',
-    pipes: const [CmFormatMoneyPipe])
+    pipes: const [CmFormatMoneyPipe],
+    directives: const [CmLoadingBtnDirective])
 class ContractGeneralReadComponent implements OnInit {
   final ContractsService service;
   final Router _router;
@@ -46,14 +49,12 @@ class ContractGeneralReadComponent implements OnInit {
     service.writeEnabled = !service.writeEnabled;
   }
 
-  deleteContract() async {
+  Future deleteContract() async {
     if (!window.confirm('Удалить контракт?')) return;
 
     await service.general.deleteContract(model.id);
 
-    _router.parent.parent.navigate(['ContractList']);
-
-    return;
+    await _router.parent.parent.navigate(['ContractList']);
   }
 
   void breadcrumbInit() {}
