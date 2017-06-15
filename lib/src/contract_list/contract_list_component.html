@@ -8,51 +8,40 @@
             Создать договор </button>
         </div>
         <div class="card-block">
-          <table class="table table-condensed table-striped table-hover" table-click>
-            <thead>
-            <tr>
-              <th>Подрядчик</th>
-              <th>№ договора</th>
-              <th>Дата заключения</th>
-              <th>Дата завершения</th>
-              <th>Название</th>
-              <th>Объект</th>
-              <th>Стоимость</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let contract of contracts; let i=index">
-              <td>{{ contract['contractorName'] }}</td>
-              <td><a [routerLink]="['Contract', {id:contract['id']}]">{{ getContractNumber(contract)}}</a></td>
-              <td>{{ contract['startDate'] | date:'dd.MM.yyyy' }}</td>
-              <td>{{ contract['finishDate'] | date:'dd.MM.yyyy' }}</td>
-              <td>{{ contract['name'] }}</td>
-              <td>{{ contract['constructionObjectName'] }}</td>
-              <td class="text-xl-right">
+          <grid #grid [dataSource]="dataSource" [tableStyleClass]="'table table-condensed table-striped table-hover'">
+    
+            <grid-column header="Подрядчик" field="contractorName"></grid-column>
+            <grid-column header="№ договора">
+              <template let-contract="rowData" grid-template="body">
+                <a [routerLink]="['Contract', {id:contract['id']}]">{{ getContractNumber(contract)}}</a>
+              </template>
+            </grid-column>
+    
+            <grid-column header="Дата заключения">
+              <template let-contract="rowData" grid-template="body">
+                {{ contract['startDate'] | date:'dd.MM.yyyy' }}
+              </template>
+            </grid-column>
+    
+    
+            <grid-column header="Дата завершения">
+              <template let-contract="rowData" grid-template="body">
+                {{ contract['finishDate'] | date:'dd.MM.yyyy' }}
+              </template>
+            </grid-column>
+    
+            <grid-column header="Название" field="name"></grid-column>
+            <grid-column header="Объект" field="constructionObjectName"></grid-column>
+    
+            <grid-column header="Стоимость">
+              <template let-contract="rowData" grid-template="body">
                 <div class="text-md-right text-nowrap" *ngFor="let amount of contract['amounts']">
                   {{ amount['value'] | cmFormatMoney | cmFormatCurrency:amount['currencySysName'] }}
                 </div>
-               
-            </tr>
-            </tbody>
-          </table>
-          <!--<nav>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Назад</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">4</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">Вперед</a>
-              </li>
-            </ul>
-          </nav>-->
+              </template>
+            </grid-column>
+          </grid>
+        
         </div>
       </div>
     </div>
