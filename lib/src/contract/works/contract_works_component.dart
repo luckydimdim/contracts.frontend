@@ -45,7 +45,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
   @ViewChild(GridComponent)
   GridComponent grid;
 
-  var worksDataSource = new DataSource();
+  DataSource worksDataSource;
 
   ContractWorksComponent(this._router, this._callOffService,
       this._contractsService, this._authorizationService);
@@ -55,9 +55,9 @@ class ContractWorksComponent implements OnInit, OnDestroy {
     Instruction ci = _router.parent.parent.currentInstruction;
     contractId = ci.component.params['id'];
 
-    await loadCallOffOrders();
-
     contractModel = await _contractsService.general.getContract(contractId);
+
+    await loadCallOffOrders();
 
     if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
 
