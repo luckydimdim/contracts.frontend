@@ -154,8 +154,9 @@
               <!--/row-->
 
               <div class="row">
-                <div class="col-md-12">
-
+                
+                <div class="col-md-6">
+    
                   <div class="form-group mt-1"
                        [class.has-danger]="!contractCreateForm.valid && (contractCreateForm.dirty || contractCreateForm.touched)"
                        [class.has-success]="contractCreateForm.valid && contractCreateForm.touched">
@@ -168,12 +169,28 @@
                     </label>
                     <span class="pl-1">Расходы облагаются НДС</span>
                   </div>
-
+  
                 </div>
                 <!-- /col -->
               </div>
               <!--/row-->
+  
+              <div class="row">
+    
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="templateSelect">Шаблон первичной документации</label>
+                    <select [(ngModel)]="model.templateSysName" class="form-control" id="templateSelect">
+                      <option [value]="'default'">Стандартный</option>
+                      <option [value]="'SouthTambey'">South Tambey</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /col -->
 
+              </div>
+              <!--/row-->
+              
               <div class="row">
 
                 <div class="col-md-6">
