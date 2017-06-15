@@ -9,13 +9,15 @@ import 'contract_general_write_component.dart';
 import 'contract_general_read_component.dart';
 import '../../contracts_service/contracts_service.dart';
 import '../general/amount.dart';
+import 'package:angular_utils/directives.dart';
 
 @Component(
     selector: 'contract-general',
     templateUrl: 'contract_general_component.html',
     directives: const [
       ContractGeneralWriteComponent,
-      ContractGeneralReadComponent
+      ContractGeneralReadComponent,
+      CmLoadingSpinComponent
     ])
 class ContractGeneralComponent implements OnInit {
   final ContractsService service;
