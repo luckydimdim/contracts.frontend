@@ -28,7 +28,7 @@ class ContractListComponent implements OnInit {
   final AuthorizationService _authorizationService;
   static const DisplayName = const {'displayName': 'Список договоров'};
 
-  bool readOnly = true;
+  bool readOnly = false;
 
   DataSource dataSource;
 
@@ -37,7 +37,7 @@ class ContractListComponent implements OnInit {
 
   @override
   ngOnInit() async {
-    if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
+    if (_authorizationService.isInRole(Role.Contractor)) readOnly = true;
 
     List<ContractGeneralModel> contractsList = await _service.getContracts();
 

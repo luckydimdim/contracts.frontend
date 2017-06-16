@@ -40,7 +40,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
    */
   bool isEmpty = false;
 
-  bool readOnly = true;
+  bool readOnly = false;
 
   @ViewChild(GridComponent)
   GridComponent grid;
@@ -59,7 +59,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     await loadCallOffOrders();
 
-    if (_authorizationService.isInRole(Role.Customer)) readOnly = false;
+    if (_authorizationService.isInRole(Role.Contractor)) readOnly = true;
 
     return null;
   }
