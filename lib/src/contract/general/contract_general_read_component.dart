@@ -21,8 +21,6 @@ class ContractGeneralReadComponent implements OnInit {
   final Router _router;
   final AuthorizationService _authorizationService;
 
-  bool readOnly = false;
-
   @Input()
   ContractGeneralModel model = new ContractGeneralModel();
 
@@ -38,9 +36,11 @@ class ContractGeneralReadComponent implements OnInit {
   ContractGeneralReadComponent(
       this.service, this._router, this._authorizationService);
 
+  bool isContractor = false;
+
   @override
   ngOnInit() async {
-    if (_authorizationService.isInRole(Role.Contractor)) readOnly = true;
+    if (_authorizationService.isOneRole(Role.Contractor)) isContractor = true;
 
     breadcrumbInit();
   }

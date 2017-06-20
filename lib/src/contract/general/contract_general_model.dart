@@ -60,6 +60,9 @@ class ContractGeneralModel extends Object with JsonConverter, MapConverter {
   // только чтение
   bool readOnly = false;
 
+  // возможность удаления
+  bool canDelete = false;
+
   @override
   Map toJson() {
     var result = super.toJson();

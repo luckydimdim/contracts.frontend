@@ -37,7 +37,7 @@ class ContractListComponent implements OnInit {
 
   @override
   ngOnInit() async {
-    if (_authorizationService.isInRole(Role.Contractor)) readOnly = true;
+    if (_authorizationService.isOneRole(Role.Contractor)) readOnly = true;
 
     List<ContractGeneralModel> contractsList = await _service.getContracts();
 

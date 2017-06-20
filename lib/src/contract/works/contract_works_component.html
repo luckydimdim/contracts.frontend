@@ -21,7 +21,7 @@
 			<grid-column header="ФИО" field="assignee" width="20%"></grid-column>
 			<grid-column width="1%">
 				<template let-callOff="rowData" grid-template="body">
-					<button  *ngIf="!readOnly && !inCreatingMode(callOff)" class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
+					<button  *ngIf="callOff['canDelete'] && !inCreatingMode(callOff)" class="btn btn-tiny" (click)="deleteWork(callOff['id'])"><i class="fa fa-trash-o"></i></button>
 				</template>
 			</grid-column>
 			

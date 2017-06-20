@@ -9,7 +9,7 @@
         <i class="icon-action-undo"></i>
       &nbsp; Назад
       </button>
-      <button *ngIf="!service.creatingMode && !model.readOnly" type="button" class="btn btn-sm btn-danger ml-1" [cmLoadingBtn]="deleteContract">
+      <button *ngIf="!service.creatingMode && model.canDelete" type="button" class="btn btn-sm btn-danger ml-1" [cmLoadingBtn]="deleteContract">
         <i class="fa fa-trash-o"></i>
          <span class="ladda-label">
            &nbsp;Удалить</span>

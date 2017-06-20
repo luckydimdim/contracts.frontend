@@ -59,7 +59,7 @@ class ContractWorksComponent implements OnInit, OnDestroy {
 
     await loadCallOffOrders();
 
-    if (_authorizationService.isInRole(Role.Contractor)) readOnly = true;
+    if (_authorizationService.isOneRole(Role.Contractor)) readOnly = true;
 
     return null;
   }
