@@ -11,20 +11,20 @@
           <grid #grid [dataSource]="dataSource" [tableStyleClass]="'table table-condensed table-striped table-hover  table-bordered'">
     
             <grid-column header="Подрядчик" field="contractorName"></grid-column>
-            <grid-column header="№ договора">
+            <grid-column header="№ договора" field="number">
               <template let-contract="rowData" grid-template="body">
                 <a [routerLink]="['Contract', {id:contract['id']}]">{{ getContractNumber(contract)}}</a>
               </template>
             </grid-column>
     
-            <grid-column header="Дата заключения">
+            <grid-column header="Дата заключения" field="startDate">
               <template let-contract="rowData" grid-template="body">
                 {{ contract['startDate'] | date:'dd.MM.yyyy' }}
               </template>
             </grid-column>
     
     
-            <grid-column header="Дата завершения">
+            <grid-column header="Дата завершения" field="finishDate">
               <template let-contract="rowData" grid-template="body">
                 {{ contract['finishDate'] | date:'dd.MM.yyyy' }}
               </template>
@@ -33,7 +33,7 @@
             <grid-column header="Название" field="name"></grid-column>
             <grid-column header="Объект" field="constructionObjectName"></grid-column>
     
-            <grid-column header="Стоимость">
+            <grid-column header="Стоимость" [sortable]="false">
               <template let-contract="rowData" grid-template="body">
                 <div class="text-md-right text-nowrap" *ngFor="let amount of contract['amounts']">
                   {{ amount['value'] | cmFormatMoney | cmFormatCurrency:amount['currencySysName'] }}
